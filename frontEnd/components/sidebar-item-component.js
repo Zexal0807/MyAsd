@@ -1,14 +1,11 @@
 class SidebarListComponent extends ZexalComponent {
 
-    _icon = '<i class="fa fa-users"></i>';
+    _icon = "";
 
-    _text = "Products";
-    _url = "/home"
+    _text = "";
+    _url = ""
 
-    _item = [
-        { text: "Add new", url: "/home/a" },
-        { text: "Add cat", url: "/home/h" }
-    ];
+    _item = [];
 
     static get observedAttributes() {
         return ['open'];
@@ -41,7 +38,6 @@ class SidebarListComponent extends ZexalComponent {
     }
 
     _render() {
-
         var li = document.createElement("li");
         li.innerHTML = this._icon;
 
@@ -57,10 +53,11 @@ class SidebarListComponent extends ZexalComponent {
 
         var ul = document.createElement("ul");
         ul.className = "panel-collapse collapse panel-switch " + (this.open == "1" ? "show" : "");
+        var temp = this._url;
         this._item.forEach(it => {
             var item = new SidebarItemComponent();
-            item._text = it.text;
-            item._url = it.url;
+            item._text = it.nome;
+            item._url = temp + "/" + it.url;
 
             var tmp = document.createElement("li");
             tmp.append(item);
@@ -77,9 +74,9 @@ customElements.define("sidebar-list", SidebarListComponent);
 
 class SidebarItemComponent extends ZexalComponent {
 
-    _url = "/home";
+    _url = "";
 
-    _text = "Products";
+    _text = "";
 
     changeRouter() {
         document.querySelector("app-content").setAttribute("url", this._url)
@@ -90,7 +87,7 @@ class SidebarItemComponent extends ZexalComponent {
         this.querySelector('span').addEventListener('click', this.changeRouter.bind(this));
     }
     _render() {
-        return `<span>Users</span>`;
+        return '<span>' + this._text + '</span>';
     }
 }
 customElements.define("sidebar-item", SidebarItemComponent);

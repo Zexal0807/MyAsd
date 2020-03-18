@@ -2,14 +2,14 @@ app-sidebar {
     background-color: red;
 }
 
-app-sidebar>.sidebar-header {
+app-sidebar .sidebar-header {
     background-color: rebeccapurple;
     width: 100%;
     height: 15%;
     border-bottom: 1px solid black;
 }
 
-app-sidebar>ul {
+app-sidebar>div>ul {
     overflow-y: scroll;
     height: 85%;
 }

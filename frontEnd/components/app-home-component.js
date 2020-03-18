@@ -7,6 +7,7 @@ class AppHomeComponent extends ZexalComponent {
     _render() {
         var ret = document.createElement('div');
         var sidebar = new SidebarComponent();
+        sidebar._data = this._data.funzioni;
         ret.append(sidebar);
 
         const div = document.createElement('div');
