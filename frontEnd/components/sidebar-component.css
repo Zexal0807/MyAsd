@@ -1,0 +1,41 @@
+app-sidebar {
+    background-color: red;
+}
+
+app-sidebar>.sidebar-header {
+    background-color: rebeccapurple;
+    width: 100%;
+    height: 15%;
+    border-bottom: 1px solid black;
+}
+
+app-sidebar>ul {
+    overflow-y: scroll;
+    height: 85%;
+}
+
+.sidebar-nav {
+    background-color: blue;
+    margin: 0;
+    padding-left: 5%;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 0;
+    line-height: 300%;
+}
+
+.sidebar-nav li ul.panel-collapse {
+    list-style: none;
+    -moz-padding-start: 0;
+    -webkit-padding-start: 0;
+    -khtml-padding-start: 0;
+    -o-padding-start: 0;
+    padding-start: 0;
+    padding: 0;
+}
+
+.sidebar-nav li ul.panel-collapse li {
+    text-indent: 8%;
+}
