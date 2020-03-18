@@ -1,17 +1,16 @@
 class NavbarComponent extends ZexalComponent {
 
     _username = "";
-
     _style = "frontEnd/components/navbar-component.css";
 
-	_render() {
+    _render() {
         return `
         <nav class="navbar navbar-light">
             <span>` + this._username + `</span>
-            <button>
+            <a href="/logout">
                 Esci <i class="fas fa-door-open"></i>
-            </button>
+            </a>
         </nav>`;
-	}
+    }
 }
 customElements.define("app-navbar", NavbarComponent);

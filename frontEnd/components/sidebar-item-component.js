@@ -1,10 +1,8 @@
 class SidebarListComponent extends ZexalComponent {
 
     _icon = "";
-
     _text = "";
     _url = ""
-
     _item = [];
 
     static get observedAttributes() {
@@ -75,7 +73,6 @@ customElements.define("sidebar-list", SidebarListComponent);
 class SidebarItemComponent extends ZexalComponent {
 
     _url = "";
-
     _text = "";
 
     changeRouter() {

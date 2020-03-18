@@ -1,7 +1,6 @@
 class AppHomeComponent extends ZexalComponent {
 
     _data = null;
-
     _style = "frontEnd/components/app-home-component.css";
 
     _render() {

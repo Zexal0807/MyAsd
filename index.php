@@ -5,7 +5,7 @@ require 'backEnd/classes/VLKDatabase.php';
 require 'backEnd/classes/Database.php';
 
 session_start();
-$_SESSION['id'] = 2;
+
 ZRoute::get("/", function (){
 	include "frontEnd/app.html";
 });
@@ -57,7 +57,7 @@ ZRoute::post("/login", function ($data){
 	@Input
 		/
 */
-ZRoute::post("/logout", function ($data){
+ZRoute::get("/logout", function ($data){
 	$_SESSION = [];
 	redirect("/");
 });

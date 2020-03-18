@@ -1,7 +1,6 @@
 class SidebarComponent extends ZexalComponent {
 
     _data = null;
-
     _style = "frontEnd/components/sidebar-component.css";
 
     _render() {
