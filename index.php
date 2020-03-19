@@ -119,7 +119,7 @@ ZRoute::post("/getUserData", function ($data){
 
 			$retu['funzioni'][$v["tid"]]['sub'][] = $tmp;
 		}
-		header("contentType: json");
+		header('Content-Type: application/json');
 		echo json_encode($retu);
 	}else{
 		header("HTTP/1.0 404 Not Found");
