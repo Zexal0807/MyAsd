@@ -7,13 +7,12 @@ class SidebarListComponent extends ZexalComponent {
 
     _open = true;
 
-    constructor(url, text, icon, item, selected = false) {
+    constructor(url, text, icon, item) {
         super();
         this._url = url;
         this._text = text;
         this._icon = icon;
         this._item = item;
-        this._selected = selected;
     }
 
     toggleOpen() {
@@ -29,9 +28,7 @@ class SidebarListComponent extends ZexalComponent {
 
     _render() {
         var li = document.createElement("li");
-        if (this._selected) {
-            li.className = "selected";
-        }
+
         li.append(new SidebarItemComponent(this._url, this._text));
 
         var i = document.createElement("i");

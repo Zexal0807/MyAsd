@@ -1,5 +1,7 @@
 class AppContentComponent extends ZexalComponent {
 
+    _style = "frontEnd/components/app-content-component.css";
+
     constructor() {
         super();
         this.setAttribute("url", "/home");
@@ -10,7 +12,11 @@ class AppContentComponent extends ZexalComponent {
     }
 
     _render() {
-        return this.getAttribute('url') + "<div>CONTENT</div>";
+
+        var div = document.createElement("div");
+        div.append(this.getAttribute('url'));
+
+        return div;
         var screen = null;
         switch (this.getAttribute("url")) {
             case "home":

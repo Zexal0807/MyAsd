@@ -9,21 +9,13 @@ class SidebarItemComponent extends ZexalComponent {
         this._text = text;
     }
 
-    changeRouter() {
-        document.querySelector("app-content").setAttribute("url", this._url);
-        document.querySelectorAll("app-sidebar li").forEach(ele => {
-            ele.className = "";
-        })
-        this.parentElement.className = "selected";
-        if (this.parentElement.parentElement.parentElement.tagName == "LI") {
-            this.parentElement.parentElement.parentElement.className = "selected";
-        }
-    }
-
     connectedCallback() {
         super.connectedCallback();
-        this.querySelector('span').addEventListener('click', this.changeRouter.bind(this));
-    }
+        var url = this._url;
+        this.querySelector('span').addEventListener('click', function() {
+            document.querySelector("app-sidebar").setRouter(url);
+        })
+    };
     _render() {
         return '<span>' + this._text + '</span>';
     }
