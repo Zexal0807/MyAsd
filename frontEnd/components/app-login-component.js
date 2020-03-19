@@ -15,7 +15,7 @@ class AppLoginComponent extends ZexalComponent {
                 location.reload();
             },
             error: function(e) {
-                this.querySelector("app-alert").add("danger", "DA PRENDERE DAL BACKEND", false);
+                document.querySelector("app-alert").add("danger", e.responseText, false);
             }
         });
     }

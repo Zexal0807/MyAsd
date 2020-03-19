@@ -5,6 +5,8 @@ class getUserData{
     ];
 
     public static function api($data){
+        require 'backEnd/classes/VLKDatabase.php';
+        
         if(isset($_SESSION['id'])){
             $DB = new VLKDatabase();
             $ret = $DB->select(

@@ -2,8 +2,8 @@
 
 class Api {
     public static $API_LIST = [
-        "getUserData" => "getUserData.php",
-        "api2" => "api2.php"
+        "login" => "login.php",
+        "getUserData" => "getUserData.php"
     ];
 }
 
