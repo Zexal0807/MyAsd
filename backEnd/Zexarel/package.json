@@ -39,6 +39,9 @@
 				"ZBladeCompiler" : "ZBladeCompiler.php",
 				"ZView" : "ZView.php",
 				"ZModel" : "ZHtmlModel.php"
+			},
+			"ValidatorSchema" : {
+				"ValidatorSchema" : "ValidatorSchema.php"
 			}
 		}
 	}
