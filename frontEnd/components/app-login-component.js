@@ -15,7 +15,7 @@ class AppLoginComponent extends ZexalComponent {
                 location.reload();
             },
             error: function(e) {
-                console.log(e);
+                this.querySelector("app-alert").add("danger", "DA PRENDERE DAL BACKEND", false);
             }
         });
     }
@@ -27,6 +27,7 @@ class AppLoginComponent extends ZexalComponent {
 
     _render() {
         return `
+        <app-alert></app-alert>
 		<center>
 			<div class="card col-8 col-md-6">
 				<form class="card-body">
