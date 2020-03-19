@@ -1,10 +1,16 @@
 class AppContentComponent extends ZexalComponent {
+
+    constructor() {
+        super();
+        this.setAttribute("url", "/home");
+    }
+
     static get observedAttributes() {
         return ['url'];
     }
 
     _render() {
-        return "<div>CONTENT</div>";
+        return this.getAttribute('url') + "<div>CONTENT</div>";
         var screen = null;
         switch (this.getAttribute("url")) {
             case "home":

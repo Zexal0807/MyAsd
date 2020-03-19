@@ -17,13 +17,27 @@ app-sidebar>div>ul {
 .sidebar-nav {
     background-color: blue;
     margin: 0;
-    padding-left: 5%;
+    padding-left: 0;
     list-style: none;
 }
 
 .sidebar-nav li {
-    text-indent: 0;
-    line-height: 300%;
+    line-height: 240%;
+    padding-left: 2%;
+    background-color: red;
+    border-bottom: 1px solid black;
+}
+
+.sidebar-nav li.selected {
+    background-color: seagreen;
+}
+
+.sidebar-nav li i.hide {
+    visibility: hidden;
+}
+
+.sidebar-nav li i[data-toggle="collapse"] {
+    padding-right: 5%;
 }
 
 .sidebar-nav li ul.panel-collapse {
@@ -33,9 +47,21 @@ app-sidebar>div>ul {
     -khtml-padding-start: 0;
     -o-padding-start: 0;
     padding-start: 0;
-    padding: 0;
+    padding-left: 10%;
 }
 
 .sidebar-nav li ul.panel-collapse li {
-    text-indent: 8%;
+    padding-left: 15%;
+    background-color: #dab1b1;
+    border: 0;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+}
+
+.sidebar-nav li ul.panel-collapse li.selected {
+    background-color: green;
+}
+
+sidebar-item span {
+    cursor: pointer;
 }
