@@ -37,7 +37,7 @@ app-sidebar>div>ul {
 }
 
 .sidebar-nav li i[data-toggle="collapse"] {
-    padding-right: 5%;
+    padding-right: 2%;
 }
 
 .sidebar-nav li ul.panel-collapse {
@@ -51,7 +51,6 @@ app-sidebar>div>ul {
 }
 
 .sidebar-nav li ul.panel-collapse li {
-    padding-left: 15%;
     background-color: #dab1b1;
     border: 0;
     border-top: 1px solid black;
@@ -62,6 +61,13 @@ app-sidebar>div>ul {
     background-color: green;
 }
 
-sidebar-item span {
+sidebar-item div {
     cursor: pointer;
+    display: inline-block;
+    width: 90%;
+    margin-left: 1%;
+}
+
+.panel-collapse sidebar-item div {
+    margin-left: 10%;
 }

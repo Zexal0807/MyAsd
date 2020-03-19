@@ -12,12 +12,12 @@ class SidebarItemComponent extends ZexalComponent {
     connectedCallback() {
         super.connectedCallback();
         var url = this._url;
-        this.querySelector('span').addEventListener('click', function() {
+        this.querySelector('div').addEventListener('click', function() {
             document.querySelector("app-sidebar").setRouter(url);
         })
     };
     _render() {
-        return '<span>' + this._text + '</span>';
+        return '<div>' + this._text + '</div>';
     }
 }
 customElements.define("sidebar-item", SidebarItemComponent);
