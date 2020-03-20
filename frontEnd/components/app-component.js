@@ -1,3 +1,6 @@
+import { AppLoginComponent } from './app-login-component.js';
+import { AppHomeComponent } from './app-home-component.js';
+
 class AppComponent extends ZexalComponent {
 
     _data = null;

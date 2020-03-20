@@ -1,4 +1,4 @@
-class SidebarItemComponent extends ZexalComponent {
+export class SidebarItemComponent extends ZexalComponent {
 
     _url = "";
     _text = "";

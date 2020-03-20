@@ -1,4 +1,6 @@
-class SidebarListComponent extends ZexalComponent {
+import { SidebarItemComponent } from './sidebar-item-component.js';
+
+export class SidebarListComponent extends ZexalComponent {
 
     _url = ""
     _text = "";

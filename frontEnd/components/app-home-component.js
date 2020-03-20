@@ -1,4 +1,9 @@
-class AppHomeComponent extends ZexalComponent {
+import { AppAlertComponent } from './app-alert-component.js';
+import { SidebarComponent } from './sidebar/sidebar-component.js';
+import { NavbarComponent } from './navbar/navbar-component.js';
+import { AppContentComponent } from './content/app-content-component.js';
+
+export class AppHomeComponent extends ZexalComponent {
 
     _data = null;
     _style = "frontEnd/components/app-home-component.css";

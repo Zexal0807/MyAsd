@@ -1,4 +1,4 @@
-class AppAlertComponent extends ZexalComponent {
+export class AppAlertComponent extends ZexalComponent {
 
     _style = "frontEnd/components/app-alert-component.css";
 
