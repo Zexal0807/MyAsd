@@ -28,7 +28,8 @@ class getUserData{
             ->innerJoin("vlk_funzioni", "vlk_privilegi.idFunzione", "=", "vlk_funzioni.id")
             ->innerJoin("vlk_tipofunzioni", "vlk_funzioni.idTipoFunzione", "=", "vlk_tipofunzioni.id")
             ->innerJoin("vlk_utenti", "vlk_privilegi.idUtente", "=", "vlk_utenti.id")
-            ->where("vlk_privilegi.idUtente", "=", $_SESSION['id'])
+            ->where("vlk_privilegi.idUtente", "=", $_SESSION['id'], "AND")
+            ->where("vlk_funzioni.url", "IS NOT")
             ->execute();
     
             $retu["id"] = $ret[0]['id'];
