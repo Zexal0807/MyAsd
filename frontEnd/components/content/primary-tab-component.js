@@ -4,15 +4,43 @@ export class PrimaryTabComponent extends ZexalComponent {
 
     _item = [];
 
-    _render() {
+    connectedCallback() {
+        this.render();
+        const self = this;
+        $.ajax({
+            type: "POST",
+            url: "getUserData",
+            data: {},
+            dataType: "json",
+            success: function(s) {
+                Object.entries(s.funzioni).forEach(function([key, val]) {
+                    if (val.url == self._url) {
+                        self._item = val.sub;
+                        self._icon = val.icon;
+                        self.render();
+                    }
+                });
+            },
+            error: function(e) {
+                self._data = false;
+                self.render();
+            }
+        });
+    }
 
+    _render() {
+        var self = this;
         var ret = document.createElement("div");
-        ret.innerHTML = this._icon;
 
         var div = document.createElement("div");
-        div.className = "card-deck"
+        div.className = "tab-icon";
+        div.innerHTML = this._icon;
+        ret.append(div);
+
+        var div = document.createElement("div");
+        div.className = "card-deck ml-3 mr-3"
         this._item.forEach(it => {
-            div.append(new CardComponent(it.text, it.desc, it.url));
+            div.append(new CardComponent(it.nome, it.descrizione, "/" + self._url + "/" + it.url));
         });
         ret.append(div);
 
@@ -31,9 +59,11 @@ class CardComponent extends ZexalComponent {
     }
 
     _render() {
+        this.className = "col-6 col-md-4 pl-0 pr-0"
+
         var ret = document.createElement("div");
         var div = document.createElement("div");
-        div.className = "card";
+        div.className = "card mb-3";
 
         var div2 = document.createElement("div");
         div2.className = "card-body";
