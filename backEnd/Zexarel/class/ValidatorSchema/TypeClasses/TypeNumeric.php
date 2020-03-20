@@ -7,7 +7,7 @@ class TypeNumeric extends Constraints implements ValidationInterface {
       return false;
     }
     // TODO: isFloat, isDouble, isInt....
-    return parent::numRangeCheck();
+    return true;
   }
 
 }

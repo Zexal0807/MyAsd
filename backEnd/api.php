@@ -4,6 +4,7 @@ class Api {
     public static $API_LIST = [
         "login" => "login.php",
         "getUserData" => "getUserData.php",
+        "userFunction" => "userFunction.php",
         "datiAsd" => "config/datiAsd.php",
         "elencoCorsi" => "corsi/elencoCorsi.php",
         "addCorso" => "corsi/addCorso.php",
