@@ -17,7 +17,7 @@ class deleteCorso{
 
         $DB = new Database($_SESSION['db_host'], $_SESSION['db_user'], $_SESSION['db_pasw'], $_SESSION['db_db']);
 
-        if(canEditCorso::api(['id' => $data['id']]){
+        if(canEditCorso::api(['id' => $data['id']])){
             $ret = $DB->delete("orari")
                 ->where("idCorso", "=", $data['id'])
                 ->execute();

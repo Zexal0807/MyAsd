@@ -51,7 +51,7 @@ class ValidatorSchema {
           break;
         case 'array':
           foreach ($json_payload[$value['name']] as $vv) {
-            $this->recursive_walk($value['schema']['sub'], $vv);
+            $this->recursive_walk($value['schema'], $vv);
           }
           break;
         case 'object':
