@@ -5,11 +5,15 @@ class Api {
         "login" => "login.php",
         "getUserData" => "getUserData.php",
         "userFunction" => "userFunction.php",
-        "datiAsd" => "config/datiAsd.php",
-        "elencoCorsi" => "corsi/elencoCorsi.php",
-        "addCorso" => "corsi/addCorso.php",
-        "editCorso" => "corsi/editCorso.php",
-        "deleteCorso" => "corsi/deleteCorso.php"
+        "datiAsd" => "config/datiAsd.php",                          //2
+        "getTipoEntrate" => "contabilita/getTipoEntrate.php",       //3
+        "setTipoEntrate" => "contabilita/setTipoEntrate.php",       //3
+        "getTipoUscite" => "contabilita/getTipoUscite.php",         //4
+        "setTipoUscite" => "contabilita/setTipoUscite.php",         //4
+        "elencoCorsi" => "corsi/elencoCorsi.php",                   //6
+        "addCorso" => "corsi/addCorso.php",                         //12
+        "editCorso" => "corsi/editCorso.php",                       //13
+        "deleteCorso" => "corsi/deleteCorso.php"                    //14
     ];
 }
 

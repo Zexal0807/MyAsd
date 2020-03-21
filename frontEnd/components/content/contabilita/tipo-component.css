@@ -1,0 +1,21 @@
+tipo-entrate form {
+    width: 80%;
+    padding-top: 3%;
+}
+
+tipo-entrate div i {
+    float: right;
+    margin-right: 2%;
+    cursor: pointer;
+}
+
+tipo-uscite form {
+    width: 80%;
+    padding-top: 3%;
+}
+
+tipo-uscite div i {
+    float: right;
+    margin-right: 2%;
+    cursor: pointer;
+}
