@@ -7,7 +7,7 @@ export class ConfigDatiComponent extends ZexalComponent {
         const self = this;
         $.ajax({
             type: "POST",
-            url: "datiAsd",
+            url: "/datiAsd",
             data: {},
             dataType: "json",
             success: function(s) {

@@ -10,13 +10,13 @@ export class ListaMovimentiComponent extends ZexalComponent {
         self.render();
         $.ajax({
             type: "POST",
-            url: "userFunction",
+            url: "/userFunction",
             data: { id: 8 },
             dataType: "json",
             success: function() {
                 $.ajax({
                     type: "POST",
-                    url: "getMovimenti",
+                    url: "/getMovimenti",
                     data: {},
                     dataType: "json",
                     success: function(s) {

@@ -15,13 +15,13 @@ export class AddUscitaComponent extends ZexalComponent {
         const self = this;
         $.ajax({
             type: "POST",
-            url: "userFunction",
+            url: "/userFunction",
             data: { id: 8 },
             dataType: "json",
             success: function() {
                 $.ajax({
                     type: "POST",
-                    url: "getTipoUscite",
+                    url: "/getTipoUscite",
                     data: {},
                     dataType: "json",
                     success: function(s) {
@@ -54,7 +54,7 @@ export class AddUscitaComponent extends ZexalComponent {
         e.preventDefault();
         $.ajax({
             type: "POST",
-            url: "addSpesa",
+            url: "/addSpesa",
             data: this._data,
             dataType: "json",
             success: function(s) {

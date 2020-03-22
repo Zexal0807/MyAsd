@@ -9,7 +9,7 @@ export class CorsiElencoComponent extends ZexalComponent {
         const self = this;
         $.ajax({
             type: "POST",
-            url: "elencoCorsi",
+            url: "/elencoCorsi",
             data: {},
             dataType: "json",
             success: function(s) {
@@ -65,7 +65,7 @@ class CorsoComponent extends ZexalComponent {
                 if (confirm("Sicuro?")) {
                     $.ajax({
                         type: "POST",
-                        url: "deleteCorso",
+                        url: "/deleteCorso",
                         data: {
                             id: self._data.id
                         },
@@ -272,7 +272,7 @@ class AddCorsoComponent extends CorsoModalComponent {
         const self = this;
         $.ajax({
             type: "POST",
-            url: "userFunction",
+            url: "/userFunction",
             data: {
                 id: 12
             },
@@ -299,7 +299,7 @@ class AddCorsoComponent extends CorsoModalComponent {
 
         $.ajax({
             type: "POST",
-            url: "addCorso",
+            url: "/addCorso",
             data: this._data,
             dataType: "json",
             success: function(s) {
@@ -334,7 +334,7 @@ class EditCorsoComponent extends CorsoModalComponent {
         const self = this;
         $.ajax({
             type: "POST",
-            url: "userFunction",
+            url: "/userFunction",
             data: {
                 id: 13
             },
@@ -352,7 +352,7 @@ class EditCorsoComponent extends CorsoModalComponent {
 
         $.ajax({
             type: "POST",
-            url: "editCorso",
+            url: "/editCorso",
             data: this._data,
             dataType: "json",
             success: function(s) {

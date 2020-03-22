@@ -80,7 +80,7 @@ export class TipoEntrateComponent extends TipoComponent {
         const self = this;
         $.ajax({
             type: "POST",
-            url: "getTipoEntrate",
+            url: "/getTipoEntrate",
             data: {},
             dataType: "json",
             success: function(s) {
@@ -99,7 +99,7 @@ export class TipoEntrateComponent extends TipoComponent {
 
         $.ajax({
             type: "POST",
-            url: "setTipoEntrate",
+            url: "/setTipoEntrate",
             data: { data: this._data },
             dataType: "json",
             success: function(s) {
@@ -121,7 +121,7 @@ export class TipoUsciteComponent extends TipoComponent {
         const self = this;
         $.ajax({
             type: "POST",
-            url: "getTipoUscite",
+            url: "/getTipoUscite",
             data: {},
             dataType: "json",
             success: function(s) {
@@ -140,7 +140,7 @@ export class TipoUsciteComponent extends TipoComponent {
 
         $.ajax({
             type: "POST",
-            url: "setTipoUscite",
+            url: "/setTipoUscite",
             data: { data: this._data },
             dataType: "json",
             success: function(s) {

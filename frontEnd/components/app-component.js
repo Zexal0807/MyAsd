@@ -12,7 +12,7 @@ class AppComponent extends ZexalComponent {
         const self = this;
         $.ajax({
             type: "POST",
-            url: "getUserData",
+            url: "/getUserData",
             data: {},
             dataType: "json",
             success: function(s) {
