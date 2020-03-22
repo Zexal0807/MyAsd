@@ -1,8 +1,6 @@
 <?php
 class getTipoEntrate{
 
-    public static $fx = 4;
-
     public static $schema = [
     ];
 

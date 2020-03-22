@@ -1,8 +1,6 @@
 <?php
 class getTipoUscite{
 
-    public static $fx = 5;
-
     public static $schema = [
     ];
 

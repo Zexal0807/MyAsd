@@ -10,8 +10,7 @@ class setTipoEntrate{
             "schema" => [
                 [
                     'name' => "id",
-                    "type" => "numeric",
-                    "required" => true
+                    "type" => "numeric"
                 ],
                 [
                     'name' => "descrizione",
@@ -28,10 +27,16 @@ class setTipoEntrate{
         $DB = new Database($_SESSION['db_host'], $_SESSION['db_user'], $_SESSION['db_pasw'], $_SESSION['db_db']);
 
         foreach($data['data'] as $d){
-            $DB->update("tipoEntrate")
-                ->set("descrizione", $d['descrizione'])
-                ->where("id", "=", $d['id'])
-                ->execute();
+            if($d['id'] != ''){
+                $DB->update("tipoentrate")
+                    ->set("descrizione", $d['descrizione'])
+                    ->where("id", "=", $d['id'])
+                    ->execute();
+            }else{
+                $DB->insert("tipoentrate", "descrizione")
+                    ->value($d['descrizione'])
+                    ->execute();
+            }
         }
         return true;
     }
