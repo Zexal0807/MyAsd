@@ -30,12 +30,6 @@ class ValidatorSchema {
 
       $val = false;
 
-      if (!isset($json_payload[$value['name']])) {
-        $this->error_nodes[] = sprintf("'%s' does not exists.", $value['name']);
-        $this->validated = false;
-        return;
-      }
-
       switch ($value['type']) {
         case 'text':
           $this->validated = (new Validation(new TypeText($value, $json_payload[$value['name']])))->validate();
