@@ -6,7 +6,7 @@ class Database extends ZDatabase{
     $this->password = $password;
     $this->database = $database;
     parent::__construct();
-    $this->set_charset("utf8mb4_general_ci");
+    $this->set_charset("utf8");
   }
 }
 ?>

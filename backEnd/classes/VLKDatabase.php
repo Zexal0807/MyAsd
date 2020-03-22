@@ -6,7 +6,7 @@ class VLKDatabase extends ZDatabase{
     $this->password = "";
     $this->database = "myasd";
     parent::__construct();
-    $this->set_charset("utf8mb4_general_ci");
+    $this->set_charset("utf8");
   }
 }
 ?>

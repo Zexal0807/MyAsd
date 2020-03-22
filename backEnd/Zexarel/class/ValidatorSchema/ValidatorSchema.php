@@ -1,14 +1,14 @@
 <?php
-require("TypeClasses\ValidationInterface.php");
+require("TypeClasses/ValidationInterface.php");
 
-require("TypeClasses\Constraints.php");
+require("TypeClasses/Constraints.php");
 
-require("TypeClasses\TypeBool.php");
-require("TypeClasses\TypeText.php");
-require("TypeClasses\TypeNumeric.php");
-require("TypeClasses\TypeDate.php");
+require("TypeClasses/TypeBool.php");
+require("TypeClasses/TypeText.php");
+require("TypeClasses/TypeNumeric.php");
+require("TypeClasses/TypeDate.php");
 
-require("TypeClasses\Validation.php");
+require("TypeClasses/Validation.php");
 
 class ValidatorSchema {
 

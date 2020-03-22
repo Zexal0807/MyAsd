@@ -28,12 +28,12 @@ class setTipoUscite{
 
         foreach($data['data'] as $d){
             if($d['id'] != ''){
-                $DB->update("tipoUscite")
+                $DB->update("tipouscite")
                     ->set("descrizione", $d['descrizione'])
                     ->where("id", "=", $d['id'])
                     ->execute();
             }else{
-                $DB->insert("tipoUscite", "descrizione")
+                $DB->insert("tipouscite", "descrizione")
                     ->value($d['descrizione'])
                     ->execute();
             }

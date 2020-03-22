@@ -9,7 +9,7 @@ class getTipoEntrate{
 
         $DB = new Database($_SESSION['db_host'], $_SESSION['db_user'], $_SESSION['db_pasw'], $_SESSION['db_db']);
         $ret = $DB->select("*")
-            ->from("tipoEntrate")
+            ->from("tipoentrate")
             ->orderBy("descrizione")
             ->execute();
 
