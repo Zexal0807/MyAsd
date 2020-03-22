@@ -34,8 +34,11 @@ class ValidatorSchema {
         case 'text':
           $t = new TypeText($value, $json_payload[$value['name']]);
           break;
-        case 'numeric':
+        case 'int':
+        case 'float':
+        case 'double':
           $t = new TypeNumeric($value, $json_payload[$value['name']]);
+          $t->setType($value['type']);
           break;
         case 'boolean':
           $t = new TypeBool($value, $json_payload[$value['name']]);

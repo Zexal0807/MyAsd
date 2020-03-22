@@ -1,12 +1,29 @@
 <?php
-class TypeNumeric extends Constraints implements ValidationInterface {
+class TypeNumeric extends SuperType implements ValidationInterface {
+
+  private $type = "int";
+
+  public function setType($type){
+    $this->type = $type;
+  }
 
   public function validateType() {
-    if (!is_numeric($this->inputjson)) {
-      $this->error_nodes[] = sprintf("Invalid data type for %s", $this->node_object['name']);
-      return false;
+    switch($this->type){
+      case "int":
+        if (intval($this->inputjson) !== $this->inputjson) {
+          return false;
+        }
+      case "float":
+        if (floatval($this->inputjson) !== $this->inputjson) {
+          return false;
+        }
+      case "double":
+        if (doubleval($this->inputjson) !== $this->inputjson) {
+          return false;
+        }
+      default:
+        return false;
     }
-    // TODO: isFloat, isDouble, isInt....
     return true;
   }
 
