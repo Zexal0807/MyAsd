@@ -1,7 +1,6 @@
 import { AppAlertComponent } from './app-alert-component.js';
 
 export class AppLoginComponent extends ZexalComponent {
-    _style = "frontEnd/components/app-login-component.css";
 
     login(e) {
         e.preventDefault();

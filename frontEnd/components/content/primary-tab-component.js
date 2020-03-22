@@ -1,4 +1,4 @@
-export class PrimaryTabComponent extends ZexalComponent {
+class PrimaryTabComponent extends ZexalComponent {
 
     _icon = ""
 
@@ -47,7 +47,6 @@ export class PrimaryTabComponent extends ZexalComponent {
         return ret;
     }
 }
-customElements.define("primary-tab", PrimaryTabComponent);
 
 class CardComponent extends ZexalComponent {
 
@@ -85,3 +84,18 @@ class CardComponent extends ZexalComponent {
     }
 }
 customElements.define("tab-card", CardComponent);
+
+export class ConfigTabComponent extends PrimaryTabComponent {
+    _url = 'config';
+}
+customElements.define("config-tab", ConfigTabComponent);
+
+export class CorsiTabComponent extends PrimaryTabComponent {
+    _url = 'corsi';
+}
+customElements.define("corsi-tab", CorsiTabComponent);
+
+export class ContabilitaTabComponent extends PrimaryTabComponent {
+    _url = 'contabilita';
+}
+customElements.define("contabilita-tab", ContabilitaTabComponent);

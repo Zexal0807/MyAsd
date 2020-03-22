@@ -1,14 +1,15 @@
-import { ConfigTabComponent } from './config/config-tab-component.js';
+import {
+    ConfigTabComponent,
+    CorsiTabComponent,
+    ContabilitaTabComponent
+} from './primary-tab-component.js';
+
 import { ConfigDatiComponent } from './config/config-dati-component.js';
-import { CorsiTabComponent } from './corsi/corsi-tab-component.js';
 import { CorsiElencoComponent } from './corsi/corsi-elenco-component.js';
-import { ContabilitaTabComponent } from './contabilita/contabilita-tab-component.js';
 import { TipoEntrateComponent, TipoUsciteComponent } from './contabilita/tipo-component.js';
 
 
 export class AppContentComponent extends ZexalComponent {
-
-    _style = "frontEnd/components/content/app-content-component.css";
 
     constructor() {
         super();
