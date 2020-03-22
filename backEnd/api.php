@@ -6,11 +6,13 @@ class Api {
         "getUserData" => "getUserData.php",
         "userFunction" => "userFunction.php",
         "datiAsd" => "config/datiAsd.php",                          //2
-        "getTipoEntrate" => "contabilita/getTipoEntrate.php",       //3
+        "getTipoEntrate" => "contabilita/getTipoEntrate.php",
         "setTipoEntrate" => "contabilita/setTipoEntrate.php",       //3
-        "getTipoUscite" => "contabilita/getTipoUscite.php",         //4
+        "getTipoUscite" => "contabilita/getTipoUscite.php",
         "setTipoUscite" => "contabilita/setTipoUscite.php",         //4
         "elencoCorsi" => "corsi/elencoCorsi.php",                   //6
+        "addSpesa" => "contabilita/addSpesa.php",                   //8
+        "getMovimenti" => "contabilita/getMovimenti.php",           //10
         "addCorso" => "corsi/addCorso.php",                         //12
         "editCorso" => "corsi/editCorso.php",                       //13
         "deleteCorso" => "corsi/deleteCorso.php"                    //14

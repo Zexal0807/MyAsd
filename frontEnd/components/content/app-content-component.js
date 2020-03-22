@@ -6,8 +6,12 @@ import {
 
 import { ConfigDatiComponent } from './config/config-dati-component.js';
 import { CorsiElencoComponent } from './corsi/corsi-elenco-component.js';
-import { TipoEntrateComponent, TipoUsciteComponent } from './contabilita/tipo-component.js';
-
+import {
+    TipoEntrateComponent,
+    TipoUsciteComponent
+} from './contabilita/tipo-component.js';
+import { AddUscitaComponent } from './contabilita/add-uscita-component.js';
+import { ListaMovimentiComponent } from './contabilita/lista-movimenti-component.js';
 
 export class AppContentComponent extends ZexalComponent {
 
@@ -44,6 +48,12 @@ export class AppContentComponent extends ZexalComponent {
                 break;
             case "/contabilita/tipouscite":
                 screen = new TipoUsciteComponent();
+                break;
+            case "/contabilita/spesa":
+                screen = new AddUscitaComponent();
+                break;
+            case "/contabilita/movimenti":
+                screen = new ListaMovimentiComponent();
                 break;
             default:
                 //screen = new Altro();

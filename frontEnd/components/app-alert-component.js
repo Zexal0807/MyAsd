@@ -1,7 +1,5 @@
 export class AppAlertComponent extends ZexalComponent {
 
-    _style = "frontEnd/components/app-alert-component.css";
-
     add(type = "success", content, autodismiss = true) {
 
         var alert = document.createElement("div");
