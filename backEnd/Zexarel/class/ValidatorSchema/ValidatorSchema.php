@@ -1,7 +1,7 @@
 <?php
 require("TypeClasses/ValidationInterface.php");
 
-require("TypeClasses/Constraints.php");
+require("TypeClasses/SuperType.php");
 
 require("TypeClasses/TypeBool.php");
 require("TypeClasses/TypeText.php");
@@ -28,20 +28,20 @@ class ValidatorSchema {
     foreach ($schema as $nodes => $value) {
       $type = isset($value['type']) ? $value['type'] : 'object';
 
-      $val = false;
+      $t = null;
 
       switch ($value['type']) {
         case 'text':
-          $this->validated = (new Validation(new TypeText($value, $json_payload[$value['name']])))->validate();
+          $t = new TypeText($value, $json_payload[$value['name']]);
           break;
         case 'numeric':
-          $this->validated = (new Validation(new TypeNumeric($value, $json_payload[$value['name']])))->validate();
+          $t = new TypeNumeric($value, $json_payload[$value['name']]);
           break;
         case 'boolean':
-          $this->validated = (new Validation(new TypeBool($value, $json_payload[$value['name']])))->validate();
+          $t = new TypeBool($value, $json_payload[$value['name']]);
           break;
         case 'date':
-          $this->validated = (new Validation(new TypeDate($value, $json_payload[$value['name']])))->validate();
+          $t = new TypeDate($value, $json_payload[$value['name']]);
           break;
         case 'array':
           foreach ($json_payload[$value['name']] as $vv) {
@@ -56,11 +56,12 @@ class ValidatorSchema {
           return;
           break;
       }
+      $val = new Validation($t);
+      $this->validated = $val->validate();
+      if(!$this->validated){
+        return;
+      }
     }
-  }
-
-  public function getErrors() {
-    return $this->error_nodes;
   }
 
 }
