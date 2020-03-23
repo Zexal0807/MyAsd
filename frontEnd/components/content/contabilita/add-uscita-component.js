@@ -3,8 +3,8 @@ export class AddUscitaComponent extends ZexalComponent {
     _style = "frontEnd/components/content/contabilita/add-uscita-component.css";
 
     _data = {
-        data: "",
-        importo: 0,
+        data: new Date().toISOString().slice(0, 10),
+        importo: 35.00,
         tipoUscita: 1,
         descrizione: "",
         cartaceo: ""
