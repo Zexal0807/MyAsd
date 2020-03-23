@@ -10,7 +10,7 @@ class Api {
         "addTipoEntrate" => "contabilita/addTipoEntrate.php",       //3
         "getTipoUscite" => "contabilita/getTipoUscite.php",
         "addTipoUscite" => "contabilita/addTipoUscite.php",         //4
-        "elencoCorsi" => "corsi/elencoCorsi.php",                   //6
+        "getCorsi" => "corsi/getCorsi.php",                         //6
         "addSpesa" => "contabilita/addSpesa.php",                   //8
         "getMovimenti" => "contabilita/getMovimenti.php",           //10
         "addCorso" => "corsi/addCorso.php",                         //12

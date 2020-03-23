@@ -9,7 +9,7 @@ export class CorsiElencoComponent extends ZexalComponent {
         const self = this;
         $.ajax({
             type: "POST",
-            url: "/elencoCorsi",
+            url: "/getCorsi",
             data: {},
             dataType: "json",
             success: function(s) {

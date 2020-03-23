@@ -1,5 +1,5 @@
 <?php
-class elencoCorsi{
+class getCorsi{
 
     public static $fx = 6;
 
