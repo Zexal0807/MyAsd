@@ -8,22 +8,19 @@ class TypeNumeric extends SuperType implements ValidationInterface {
   }
 
   public function validateType() {
+    $f = false;
     switch($this->type){
       case "int":
-        if (intval($this->inputjson) !== $this->inputjson) {
-          return false;
-        }
+        $f = filter_var($this->value, FILTER_VALIDATE_INT);
+        break;
       case "float":
-        if (floatval($this->inputjson) !== $this->inputjson) {
-          return false;
-        }
-      case "double":
-        if (doubleval($this->inputjson) !== $this->inputjson) {
-          return false;
-        }
+        $f = filter_var($this->value, FILTER_VALIDATE_FLOAT);
+        break;
       default:
         return false;
     }
+    if(!$f)
+      return false;
     return true;
   }
 

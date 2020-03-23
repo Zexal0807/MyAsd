@@ -7,9 +7,9 @@ class Api {
         "userFunction" => "userFunction.php",
         "datiAsd" => "config/datiAsd.php",                          //2
         "getTipoEntrate" => "contabilita/getTipoEntrate.php",
-        "setTipoEntrate" => "contabilita/setTipoEntrate.php",       //3
+        "addTipoEntrate" => "contabilita/addTipoEntrate.php",       //3
         "getTipoUscite" => "contabilita/getTipoUscite.php",
-        "setTipoUscite" => "contabilita/setTipoUscite.php",         //4
+        "addTipoUscite" => "contabilita/addTipoUscite.php",         //4
         "elencoCorsi" => "corsi/elencoCorsi.php",                   //6
         "addSpesa" => "contabilita/addSpesa.php",                   //8
         "getMovimenti" => "contabilita/getMovimenti.php",           //10
@@ -30,7 +30,6 @@ function api($name, $data){
                 echo json_encode($name::api($data));
             } else {
                 header("HTTP/1.0 402 Not Valid");
-                echo json_encode($sc->getErrors());
             }
         }else{
             header("HTTP/1.0 403 Forbidden");

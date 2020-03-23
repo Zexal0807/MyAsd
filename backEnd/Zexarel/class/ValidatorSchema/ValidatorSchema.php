@@ -6,65 +6,71 @@ require("TypeClasses/SuperType.php");
 require("TypeClasses/TypeBool.php");
 require("TypeClasses/TypeText.php");
 require("TypeClasses/TypeNumeric.php");
-require("TypeClasses/TypeDate.php");
-
-require("TypeClasses/Validation.php");
 
 class ValidatorSchema {
 
-  private $error_nodes = [];
-
   public $validated = true;
 
-  public function validate($schema, $json_payload) {
+  public function validate($schema, $data) {
     if (!is_array($schema)) {
-      return false;
+      $this->validated = false;
+      return $this->validated;
     }
-    $this->recursive_walk($schema, $json_payload);
+    foreach ($schema as $value) {
+      $this->recursive_walk($value, $data);
+    }
     return $this->validated;
   }
 
-  private function recursive_walk($schema, $json_payload) {
-    foreach ($schema as $nodes => $value) {
-      $type = isset($value['type']) ? $value['type'] : 'object';
+  private function recursive_walk($value, $input) {
+    $t = null;
+    switch ($value['type']) {
+      case 'ipv4':
+      case 'ipv6':
+      case 'mac':
+      case 'email':
+      case 'date':
+      case 'time':
+      case 'string':
+        $t = new TypeText($input[$value['name']]);
+        $t->setType($value['type']);
+        $this->validated = $t->validate();
+        break;
+      case 'int':
+      case 'float':
+        $t = new TypeNumeric($input[$value['name']]);
+        $t->setType($value['type']);
+        $this->validated = $t->validate();
+        break;
+      case 'boolean':
+        $t = new TypeBool($input[$value['name']]);
+        $this->validated = $t->validate();
+        break;
+      case 'array':
+        $ass = isset($value['assoc']) ? $value['assoc'] : false;
+        if($ass){
 
-      $t = null;
+          $f = fopen("a.txt", "a");
+          fwrite($f, json_encode($value, JSON_PRETTY_PRINT ));
+          fwrite($f, json_encode($input[$value['name']], JSON_PRETTY_PRINT ));
+          fwrite($f, "/n/n");
+          fclose($f);
 
-      switch ($value['type']) {
-        case 'text':
-          $t = new TypeText($value, $json_payload[$value['name']]);
-          break;
-        case 'int':
-        case 'float':
-        case 'double':
-          $t = new TypeNumeric($value, $json_payload[$value['name']]);
-          $t->setType($value['type']);
-          break;
-        case 'boolean':
-          $t = new TypeBool($value, $json_payload[$value['name']]);
-          break;
-        case 'date':
-          $t = new TypeDate($value, $json_payload[$value['name']]);
-          break;
-        case 'array':
-          foreach ($json_payload[$value['name']] as $vv) {
-            $this->recursive_walk($value['schema'], $vv);
+          foreach ($value['schema'] as $sub) {
+            $this->recursive_walk($sub, $input[$value['name']]);
           }
-          break;
-        case 'object':
-          $this->recursive_walk($value['sub'], $json_payload[$value['name']]);
-          break;
-        default:
-          $this->validated = false;
-          return;
-          break;
-      }
-      $val = new Validation($t);
-      $this->validated = $val->validate();
-      if(!$this->validated){
-        return;
-      }
+        }else{
+          $s = $value['schema'];
+          for($i = 0; $i < sizeof($input[$value['name']]); $i++){
+            $s['name'] = $i;
+            $this->recursive_walk($s, [$i => $input[$value['name']][$i]]);
+          }
+        }
+        break;
+      default:
+        $this->validated = false;
+        break;
     }
+  
   }
-
 }
