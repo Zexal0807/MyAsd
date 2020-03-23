@@ -7,7 +7,7 @@ export class ListaMovimentiComponent extends ZexalComponent {
 
     connectedCallback() {
         const self = this;
-        self.render();
+        this.render();
         $.ajax({
             type: "POST",
             url: "/userFunction",

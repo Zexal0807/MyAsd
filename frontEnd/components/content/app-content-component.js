@@ -5,7 +5,10 @@ import {
 } from './primary-tab-component.js';
 
 import { ConfigDatiComponent } from './config/config-dati-component.js';
+
 import { CorsiElencoComponent } from './corsi/corsi-elenco-component.js';
+import { AddIscrizioneComponent } from './corsi/add-iscrizione-component.js';
+
 import {
     TipoEntrateComponent,
     TipoUsciteComponent
@@ -39,6 +42,9 @@ export class AppContentComponent extends ZexalComponent {
                 break;
             case "/corsi/elenco":
                 screen = new CorsiElencoComponent();
+                break;
+            case "/corsi/iscrizione":
+                screen = new AddIscrizioneComponent();
                 break;
             case "/contabilita":
                 screen = new ContabilitaTabComponent();

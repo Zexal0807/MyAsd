@@ -15,7 +15,8 @@ class Api {
         "getMovimenti" => "contabilita/getMovimenti.php",           //10
         "addCorso" => "corsi/addCorso.php",                         //12
         "editCorso" => "corsi/editCorso.php",                       //13
-        "deleteCorso" => "corsi/deleteCorso.php"                    //14
+        "deleteCorso" => "corsi/deleteCorso.php",                   //14
+        "getCorsoDetails" => "corsi/getCorsoDetails.php"            //15
     ];
 }
 
