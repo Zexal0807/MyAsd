@@ -67,7 +67,6 @@ export class TipoEntrateComponent extends TipoComponent {
                 self.render();
             },
             error: function(e) {
-                debugger;
                 location.reload();
             }
         });
@@ -107,7 +106,6 @@ export class TipoUsciteComponent extends TipoComponent {
                 self.render();
             },
             error: function(e) {
-                debugger;
                 location.reload();
             }
         });

@@ -23,6 +23,11 @@ class addSpesa{
             'name' => "descrizione",
             "type" => "string",
             "required" => true
+        ],
+        [
+            'name' => "cartaceo",
+            "type" => "string",
+            "required" => true
         ]
     ];
 
@@ -32,7 +37,7 @@ class addSpesa{
         $DB = new Database($_SESSION['db_host'], $_SESSION['db_user'], $_SESSION['db_pasw'], $_SESSION['db_db']);
 
         $DB->insert("uscite")
-            ->value(null, $data['data'], 1, $data['importo'], $data['tipoUscita'], $data['descrizione'], null)
+            ->value(null, $data['data'], 1, $data['importo'], $data['tipoUscita'], $data['descrizione'], $data['cartaceo'], null)
             ->execute();
 
         return true;

@@ -6,7 +6,8 @@ export class AddUscitaComponent extends ZexalComponent {
         data: "",
         importo: 0,
         tipoUscita: 1,
-        descrizione: ""
+        descrizione: "",
+        cartaceo: ""
     };
 
     _tipoUscite = [];
@@ -78,14 +79,18 @@ export class AddUscitaComponent extends ZexalComponent {
                     <div class="col-sm-4">
                         <input type="date" class="form-control" name="data" required value="` + this._data.data + `">
                     </div>
-                    <label class="col-sm-2 col-form-label">Importo</label>
+                    <label class="col-sm-2 col-form-label">Rif. cartaceo</label>
                     <div class="col-sm-4">
-                        <input type="number" step="0.01" class="form-control" name="importo" required value="` + this._data.importo + `">
+                        <input type="text" class="form-control" name="cartaceo" required value="` + this._data.cartaceo + `">
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Importo</label>
+                    <div class="col-sm-3">
+                        <input type="number" step="0.01" class="form-control" name="importo" required value="` + this._data.importo + `">
+                    </div>
                     <label class="col-sm-2 col-form-label">Tipo Spesa</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-5">
                         <select class="form-control col-sm-12" name="tipoUscita">`;
         this._tipoUscite.forEach(el => {
             r += `<option value="` + el.id + `" ` + (self._data.tipoUscita == el.id ? "selected" : "") + `>` + el.descrizione + `</option>`;
