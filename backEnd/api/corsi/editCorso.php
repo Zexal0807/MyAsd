@@ -6,12 +6,12 @@ class editCorso{
     public static $schema = [
         [
             'name' => "id",
-            "type" => "numeric",
+            "type" => "int",
             "required" => true
         ],
         [
             'name' => "nome",
-            "type" => "text",
+            "type" => "string",
             "required" => true
         ],
         [
@@ -26,7 +26,7 @@ class editCorso{
         ],
         [
             'name' => "costo",
-            "type" => "numeric",
+            "type" => "float",
             "required" => true
         ],
         [
@@ -36,27 +36,32 @@ class editCorso{
         ],
         [
             'name' => "costoRata",
-            "type" => "numeric",
+            "type" => "float",
             "required" => true
         ],
         [
             'name' => "orari",
             "type" => "array",
+            "assoc" => false,
             "schema" => [
-                [
-                    'name' => "giorno",
-                    "type" => "text",
-                    "required" => true
-                ],
-                [
-                    'name' => "inizio",
-                    "type" => "text",
-                    "required" => true
-                ],
-                [
-                    'name' => "fine",
-                    "type" => "text",
-                    "required" => true
+                "type" => "array",
+                "assoc" => true,
+                "schema" => [
+                    [
+                        'name' => "giorno",
+                        "type" => "string",
+                        "required" => true
+                    ],
+                    [
+                        'name' => "inizio",
+                        "type" => "time",
+                        "required" => true
+                    ],
+                    [
+                        'name' => "fine",
+                        "type" => "time",
+                        "required" => true
+                    ]
                 ]
             ]
         ]
@@ -65,7 +70,7 @@ class editCorso{
     public static function api($data){
         require_once 'backEnd/classes/Database.php';
         require_once 'backEnd/api/corsi/canEditCorso.php';
-        
+
         $DB = new Database($_SESSION['db_host'], $_SESSION['db_user'], $_SESSION['db_pasw'], $_SESSION['db_db']);
 
         if(canEditCorso::api(['id' => $data['id']])){

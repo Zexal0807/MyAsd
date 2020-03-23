@@ -21,7 +21,7 @@ class addSpesa{
         ],
         [
             'name' => "descrizione",
-            "type" => "text",
+            "type" => "string",
             "required" => true
         ]
     ];

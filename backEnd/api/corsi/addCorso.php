@@ -6,7 +6,7 @@ class addCorso{
     public static $schema = [
         [
             'name' => "nome",
-            "type" => "text",
+            "type" => "string",
             "required" => true
         ],
         [
@@ -37,21 +37,26 @@ class addCorso{
         [
             'name' => "orari",
             "type" => "array",
+            "assoc" => false,
             "schema" => [
-                [
-                    'name' => "giorno",
-                    "type" => "text",
-                    "required" => true
-                ],
-                [
-                    'name' => "inizio",
-                    "type" => "text",
-                    "required" => true
-                ],
-                [
-                    'name' => "fine",
-                    "type" => "text",
-                    "required" => true
+                "type" => "array",
+                "assoc" => true,
+                "schema" => [
+                    [
+                        'name' => "giorno",
+                        "type" => "string",
+                        "required" => true
+                    ],
+                    [
+                        'name' => "inizio",
+                        "type" => "time",
+                        "required" => true
+                    ],
+                    [
+                        'name' => "fine",
+                        "type" => "time",
+                        "required" => true
+                    ]
                 ]
             ]
         ]

@@ -4,7 +4,7 @@ class userFunction{
     public static $schema = [
         [
             "name" => "id",
-            "type" => "numeric",
+            "type" => "int",
             "required" => true
         ]
     ];

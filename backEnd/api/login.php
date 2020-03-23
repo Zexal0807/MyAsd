@@ -4,12 +4,12 @@ class login{
     public static $schema = [
         [
             'name' => "username",
-            'type' => "text",
+            'type' => "string",
             'required' => true
         ],
         [
             'name' => "password",
-            'type' => "text",
+            'type' => "string",
             'required' => true
         ]
     ];
