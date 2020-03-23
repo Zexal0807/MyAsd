@@ -39,6 +39,7 @@ export class ListaMovimentiComponent extends ZexalComponent {
         <table class="table table-striped">
             <tr>
                 <th>Data</th>
+                <th>Riferimento</th>
                 <th>Tipologia</th>
                 <th>Descizione</th>
                 <th>Entrate</th>
@@ -48,6 +49,7 @@ export class ListaMovimentiComponent extends ZexalComponent {
         this._data.movimenti.forEach(el => {
             r += `<tr>
                     <td>` + el.data + `</td>
+                    <td>` + el.cartaceo + `</td>
                     <td>` + el.tipo + `</td>
                     <td>` + el.descrizione + `</td>
                     <td>` + (el.entrate == null ? "" : el.entrate + "€") + `</td>
@@ -57,11 +59,13 @@ export class ListaMovimentiComponent extends ZexalComponent {
         r += `<tr>
                 <th></th>
                 <th></th>
+                <th></th>
                 <th>Tot</th>
                 <th>` + this._data.cassa.entrate + `€</th>
                 <th>` + this._data.cassa.uscite + `€</th>
             </tr>
             <tr>
+                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
