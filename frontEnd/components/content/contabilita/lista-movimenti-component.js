@@ -36,11 +36,40 @@ export class ListaMovimentiComponent extends ZexalComponent {
 
     _render() {
         var r = `
-            CASSA : ` + this._data.cassa;
-        r += `<br><br>`;
+        <table class="table table-striped">
+            <tr>
+                <th>Data</th>
+                <th>Tipologia</th>
+                <th>Descizione</th>
+                <th>Entrate</th>
+                <th>Uscite</th>
+            </tr>`;
+
         this._data.movimenti.forEach(el => {
-            r += `(` + el.id + `) ` + el.data + `: ` + el.tipo + " - " + el.descrizione + " " + el.importo + `€ <br>`;
+            r += `<tr>
+                    <td>` + el.data + `</td>
+                    <td>` + el.tipo + `</td>
+                    <td>` + el.descrizione + `</td>
+                    <td>` + (el.entrate == null ? "" : el.entrate + "€") + `</td>
+                    <td>` + (el.uscite == null ? "" : el.uscite + "€") + `</td>
+                </tr>`;
         });
+        r += `<tr>
+                <th></th>
+                <th></th>
+                <th>Tot</th>
+                <th>` + this._data.cassa.entrate + `€</th>
+                <th>` + this._data.cassa.uscite + `€</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Tot</th>
+                <th>` + (Number(this._data.cassa.entrate) + Number(this._data.cassa.uscite)) + `€</th>
+            </tr>
+        </table>`;
+
         return r;
     }
 }
