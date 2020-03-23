@@ -49,13 +49,6 @@ class ValidatorSchema {
       case 'array':
         $ass = isset($value['assoc']) ? $value['assoc'] : false;
         if($ass){
-
-          $f = fopen("a.txt", "a");
-          fwrite($f, json_encode($value, JSON_PRETTY_PRINT ));
-          fwrite($f, json_encode($input[$value['name']], JSON_PRETTY_PRINT ));
-          fwrite($f, "/n/n");
-          fclose($f);
-
           foreach ($value['schema'] as $sub) {
             $this->recursive_walk($sub, $input[$value['name']]);
           }
