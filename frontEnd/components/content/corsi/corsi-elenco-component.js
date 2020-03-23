@@ -99,9 +99,6 @@ class CorsoComponent extends ZexalComponent {
         var r = document.createElement('div');
         r.className = "details";
         r.innerHTML = `Costo : ` + this._data.costo + `<br>`;
-        if (this._data.rate != 0) {
-            r.innerHTML += "Pagabile in " + this._data.rate + " rate da " + this._data.costoRata
-        }
 
         r.innerHTML += `<br>Orari:`;
         this._data.orari.forEach(o => {
@@ -216,16 +213,6 @@ class CorsoModalComponent extends ZexalComponent {
                     <input type="text" class="form-control" name="costo" required value="` + this._data.costo + `" placeholder="210">
                 </div>
             </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Numero Rate</label>
-                <div class="col-sm-4">
-                    <input type="text" class="form-control" name="rate" required value="` + this._data.rate + `" placeholder="8">
-                </div>
-                <label class="col-sm-2 col-form-label">Costo per rata</label>
-                <div class="col-sm-4">
-                    <input type="text" class="form-control" name="costoRata" required value="` + this._data.costoRata + `" placeholder="30">
-                </div>
-            </div>
             <hr>
             <div class="days">`;
         this._data.orari.forEach(o => {
@@ -259,8 +246,6 @@ class AddCorsoComponent extends CorsoModalComponent {
         inizio: "",
         fine: "",
         costo: "",
-        rate: "",
-        costoRata: "",
         orari: [
             { giorno: "", inizio: "", fine: "" }
         ]

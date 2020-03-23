@@ -30,16 +30,6 @@ class editCorso{
             "required" => true
         ],
         [
-            'name' => "rate",
-            "type" => "numeric",
-            "required" => true
-        ],
-        [
-            'name' => "costoRata",
-            "type" => "float",
-            "required" => true
-        ],
-        [
             'name' => "orari",
             "type" => "array",
             "assoc" => false,

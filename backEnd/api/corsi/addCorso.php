@@ -25,16 +25,6 @@ class addCorso{
             "required" => true
         ],
         [
-            'name' => "rate",
-            "type" => "numeric",
-            "required" => true
-        ],
-        [
-            'name' => "costoRata",
-            "type" => "numeric",
-            "required" => true
-        ],
-        [
             'name' => "orari",
             "type" => "array",
             "assoc" => false,
