@@ -29,7 +29,9 @@ export class AddIscrizioneComponent extends ZexalComponent {
                     dataType: "json",
                     success: function(s) {
                         self._elencoCorsi = s;
+                        self._data.idCorso = self._elencoCorsi[0].id;
                         self.loadCorso(self._elencoCorsi[0].id);
+                        self.render();
                     },
                     error: function(e) {
                         console.log(e);
@@ -53,6 +55,8 @@ export class AddIscrizioneComponent extends ZexalComponent {
             dataType: "json",
             success: function(s) {
                 self._elencoIscritti = s;
+                if (s.lenght > 0)
+                    self._data.idIscritto = self._elencoIscritti[0].id;
                 self.render();
             },
             error: function(e) {
@@ -84,15 +88,13 @@ export class AddIscrizioneComponent extends ZexalComponent {
         e.preventDefault();
         $.ajax({
             type: "POST",
-            url: "/addSpesa",
+            url: "/addIscrizione",
             data: this._data,
             dataType: "json",
             success: function(s) {
-                debugger;
                 document.querySelector("app-content").connectedCallback();
             },
             error: function(e) {
-                debugger;
                 console.log(e);
                 document.querySelector("app-content").connectedCallback();
             }

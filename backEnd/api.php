@@ -16,6 +16,7 @@ class Api {
         "addCorso" => "corsi/addCorso.php",                         //12
         "editCorso" => "corsi/editCorso.php",                       //13
         "deleteCorso" => "corsi/deleteCorso.php",                   //14
+        "addIscrizione" => "corsi/addIscrizione.php",               //15
         "getCorsoDetails" => "corsi/getCorsoDetails.php"            //15
     ];
 }
