@@ -11,12 +11,12 @@ class addSpesa{
         ],
         [
             'name' => "importo",
-            "type" => "numeric",
+            "type" => "float",
             "required" => true
         ],
         [
             'name' => "tipoUscita",
-            "type" => "numeric",
+            "type" => "int",
             "required" => true
         ],
         [

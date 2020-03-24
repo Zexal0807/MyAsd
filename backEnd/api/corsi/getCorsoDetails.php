@@ -26,7 +26,7 @@ class getCorsoDetails{
                 FROM iscritti
                 INNER JOIN anagrafiche ON iscritti.id = anagrafiche.idIscritto
                 WHERE iscritti.id NOT IN (
-                    SELECT id
+                    SELECT idIscritto
                     FROM iscrizioni
                     WHERE idCorso = '.$data['id'].'
                 )

@@ -21,7 +21,7 @@ class addCorso{
         ],
         [
             'name' => "costo",
-            "type" => "numeric",
+            "type" => "float",
             "required" => true
         ],
         [

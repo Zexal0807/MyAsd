@@ -34,15 +34,13 @@ class TypeText extends SuperType implements ValidationInterface {
         break;
       case "date":
         $d = DateTime::createFromFormat('Y-m-d', $this->value);
-        $f = (sizeof($d->getLastErrors()) > 0);
+        $f = ($d->getLastErrors()['error_count'] == 0);
         break;
       case "time":
         $t = DateTime::createFromFormat('H:i:s', $this->value);
-        $f = (sizeof($t->getLastErrors()) > 0);
+        $f = ($d->getLastErrors()['error_count'] == 0);
         break;
     }
-    if(!$f)
-      return false;
-    return true;
+    return $f;
   }
 }
