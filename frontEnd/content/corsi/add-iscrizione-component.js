@@ -1,34 +1,35 @@
-export class AddUscitaComponent extends ZexalComponent {
+export class AddIscrizioneComponent extends ZexalComponent {
 
-    _style = "frontEnd/components/content/contabilita/add-uscita-component.css";
+    _style = "frontEnd/content/corsi/add-iscrizione-component.css";
+
+    _elencoCorsi = [];
+
+    _elencoIscritti = [];
 
     _data = {
+        idCorso: 0,
         data: new Date().toISOString().slice(0, 10),
-        importo: 35.00,
-        tipoUscita: 1,
-        descrizione: "",
-        cartaceo: ""
+        idIscritto: null
     };
 
-    _tipoUscite = [];
 
     connectedCallback() {
         const self = this;
+        this.render();
         $.ajax({
             type: "POST",
             url: "/userFunction",
-            data: { id: 8 },
+            data: { id: 15 },
             dataType: "json",
             success: function() {
                 $.ajax({
                     type: "POST",
-                    url: "/getTipoUscite",
+                    url: "/getCorsi",
                     data: {},
                     dataType: "json",
                     success: function(s) {
-                        self._tipoUscite = s;
-                        self.render();
-                        self.addEvent();
+                        self._elencoCorsi = s;
+                        self.loadCorso(self._elencoCorsi[0].id);
                     },
                     error: function(e) {
                         console.log(e);
@@ -41,10 +42,38 @@ export class AddUscitaComponent extends ZexalComponent {
         });
     }
 
+    loadCorso(id) {
+        var self = this;
+        $.ajax({
+            type: "POST",
+            url: "/getCorsoDetails",
+            data: {
+                id: id
+            },
+            dataType: "json",
+            success: function(s) {
+                self._elencoIscritti = s;
+                self.render();
+            },
+            error: function(e) {
+                console.log(e);
+            }
+        });
+
+    }
+
+    render() {
+        super.render();
+        this.addEvent();
+    }
+
     addEvent() {
         const self = this;
         $(this.querySelectorAll('*[name]')).on("change keyup keydown", function() {
             self._data[$(this).attr("name")] = this.value;
+            if ($(this).attr("name") == "idCorso") {
+                self.loadCorso(this.value);
+            }
         });
         this.querySelector('form').addEventListener('submit', function(e) {
             self.sendData(e);
@@ -75,39 +104,33 @@ export class AddUscitaComponent extends ZexalComponent {
         var r = `<center>
             <form>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Data spesa</label>
+                    <label class="col-sm-2 col-form-label">Data iscrizione</label>
                     <div class="col-sm-4">
                         <input type="date" class="form-control" name="data" required value="` + this._data.data + `">
                     </div>
-                    <label class="col-sm-2 col-form-label">Rif. cartaceo</label>
+                    <label class="col-sm-2 col-form-label">Corso</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" name="cartaceo" required value="` + this._data.cartaceo + `">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Importo</label>
-                    <div class="col-sm-3">
-                        <input type="number" step="0.01" class="form-control" name="importo" required value="` + this._data.importo + `">
-                    </div>
-                    <label class="col-sm-2 col-form-label">Tipo Spesa</label>
-                    <div class="col-sm-5">
-                        <select class="form-control col-sm-12" name="tipoUscita">`;
-        this._tipoUscite.forEach(el => {
-            r += `<option value="` + el.id + `" ` + (self._data.tipoUscita == el.id ? "selected" : "") + `>` + el.descrizione + `</option>`;
+                        <select class="form-control col-sm-12" name="idCorso">`;
+        this._elencoCorsi.forEach(el => {
+            r += `<option value="` + el.id + `" ` + (self._data.idCorso == el.id ? "selected" : "") + `>` + el.nome + `</option>`;
         });
         r += `</select>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Descrizione</label>
+                    <label class="col-sm-2 col-form-label">Iscritto</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="descrizione" required value="` + this._data.descrizione + `">
+                        <select class="form-control col-sm-12" name="idIscritto">`;
+        this._elencoIscritti.forEach(el => {
+            r += `<option value="` + el.id + `" ` + (self._data.idIscritto == el.id ? "selected" : "") + `>` + el.cognome + ' ' + el.nome + `</option>`;
+        });
+        r += `</select>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary mb-2">Aggiungi spesa</button>
+                <button type="submit" class="btn btn-primary mb-2">Aggiungi iscrizione</button>
             </form>
         </center>`;
         return r;
     }
 }
-customElements.define("add-uscita", AddUscitaComponent);
+customElements.define("add-iscrizione", AddIscrizioneComponent);

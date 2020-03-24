@@ -3,7 +3,7 @@ import { AppHomeComponent } from './app-home-component.js';
 
 class AppComponent extends ZexalComponent {
 
-    _style = "frontEnd/components/app-component.css";
+    _style = "frontEnd/app-component.css";
 
     _data = null;
 

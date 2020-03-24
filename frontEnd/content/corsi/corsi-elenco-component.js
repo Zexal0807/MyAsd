@@ -1,6 +1,6 @@
 export class CorsiElencoComponent extends ZexalComponent {
 
-    _style = "frontEnd/components/content/corsi/corsi-elenco-component.css";
+    _style = "frontEnd/content/corsi/corsi-elenco-component.css";
 
     _data = [];
 

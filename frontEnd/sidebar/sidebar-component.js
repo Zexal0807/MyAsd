@@ -3,7 +3,7 @@ import { SidebarListComponent } from './sidebar-list-component.js';
 export class SidebarComponent extends ZexalComponent {
 
     _data = null;
-    _style = "frontEnd/components/sidebar/sidebar-component.css";
+    _style = "frontEnd/sidebar/sidebar-component.css";
 
     connectedCallback() {
         this.render();

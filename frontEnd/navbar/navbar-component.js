@@ -1,7 +1,7 @@
 export class NavbarComponent extends ZexalComponent {
 
     _username = "";
-    _style = "frontEnd/components/navbar/navbar-component.css";
+    _style = "frontEnd/navbar/navbar-component.css";
 
     _render() {
         return `

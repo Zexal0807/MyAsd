@@ -1,6 +1,6 @@
 class TipoComponent extends ZexalComponent {
 
-    _style = "frontEnd/components/content/contabilita/tipo-component.css";
+    _style = "frontEnd/content/contabilita/tipo-component.css";
 
     _data = [];
 
