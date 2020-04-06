@@ -1,0 +1,3 @@
+[submodule "backEnd/Zexarel"]
+	path = backEnd/Zexarel
+	url = https://github.com/Zexal0807/Zexarel
