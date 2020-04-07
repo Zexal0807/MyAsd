@@ -21,48 +21,54 @@ class Api {
     ];
 }
 
-function api($name, $data){
-    if(array_key_exists($name, Api::$API_LIST)){
-        header('Content-Type: application/json');
-        require("api/".Api::$API_LIST[$name]);
-        if(auth($name)){
-            $sc = new ValidatorSchema();
-            $sc->validate($name::$schema, $data);
-            if($sc->validated){
-                echo json_encode($name::api($data));
-            } else {
-                header("HTTP/1.0 402 Not Valid");
+foreach(Api::$API_LIST as $k => $v){
+    ZRoute::post("/".$k, function(){});
             }
-        }else{
-            header("HTTP/1.0 403 Forbidden");
-        }
-    }else{
-        header("HTTP/1.0 404 Not Found");
-    }
-}
 
-function auth($class){
-    if(property_exists($class, 'fx')){
-        require 'backEnd/classes/VLKDatabase.php';
+ZRoute::addMiddleware(function($data){
+    $req = new Request();
+    if(find("zcrud", $req->getUrl()) != -1){
+        //è una crud -> frega cazzi
+    }elseif($req->getMethod() == "POST"){
+        if(array_key_exists($req->getUrl(), Api::$API_LIST)){
+
+            $className = $req->getUrl();
+            $classPath = "api/".Api::$API_LIST[$className];
+            
+            header('Content-Type: application/json');
+            require($classPath);
+
+            if(property_exists($className, 'fx')){
+                require 'classes/VLKDatabase.php';
         if(isset($_SESSION['id'])){
             $DB = new VLKDatabase();
             $ret = $DB->selectAll()
                 ->from("vlk_privilegi")
                 ->where("idUtente", "=", $_SESSION['id'], " AND")
-                ->where("idFunzione", "=", $class::$fx)
+                        ->where("idFunzione", "=", $className::$fx)
                 ->execute();
             if(sizeof($ret) != 1){
+                        header("HTTP/1.0 403 Forbidden");
+                        return false;
+                    }
+                }else{
+                    header("HTTP/1.0 403 Forbidden");
+                    return false;
+                }
+            }
+            $sc = new ValidatorSchema();
+            $sc->validate($className::$schema, $data);
+            if($sc->validated){
+                echo json_encode($className::api($data));
+            } else {
+                header("HTTP/1.0 402 Not Valid");
                 return false;
             }
         }else{
+            header("HTTP/1.0 404 Not Found");
             return false;
         }
     }
     return true;
-}
+});
 
-foreach(Api::$API_LIST as $k => $v){
-    ZRoute::post("/".$k, function($data){
-        api((new Request())->getUrl(), $data);
-    });
-}
