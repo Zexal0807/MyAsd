@@ -122,12 +122,9 @@ class CorsoModalComponent extends ZexalComponent {
 
     addEvent() {
         const self = this;
-        $(this.querySelectorAll('*[name]')).on("change keyup keydown", function() {
-            self._data[this.name] = this.value;
-        });
         this.querySelector('.add-day').addEventListener("click", function() {
             self._i++;
-            self._data.orari[self._i] = { giorno: "", inizio: "", fine: "" };
+            self._data.orari[self._i] = { giorno: "Mon", inizio: "", fine: "" };
             self.querySelector('.days').innerHTML += self._renderDay(self._data.orari[self._i], self._i);
             self._addRemoveDayEvent();
         });
@@ -146,6 +143,33 @@ class CorsoModalComponent extends ZexalComponent {
         $(this.querySelectorAll('i[data-row]')).on("click", function() {
             self._data.orari = self._data.orari.slice(Number(this.getAttribute('data-row')), 1);
             $(this.parentElement.parentElement).remove();
+        });
+        $(this.querySelectorAll('*[name]')).unbind("change keyup keydown");
+        $(this.querySelectorAll('*[name]')).on("change keyup keydown", function(e) {
+            if (this.type == 'time' && this.value.length == 5)
+                this.value = this.value + ":00";
+            var p = this.name.split("[");
+            for (let i = 0; i < p.length; i++) {
+                p[i] = p[i].split("]")[0];
+            }
+
+            var tmp = this.value;
+            for (let i = 0; i < p.length; i++) {
+                var a = [];
+                a[p[p.length - 1 - i]] = tmp;
+                tmp = a;
+            }
+
+            function mergeV(v1, v2, p) {
+                if (p.length == 1) {
+                    return {...v1, ...v2 };
+                } else {
+                    let h = [];
+                    h[p[0]] = mergeV(v1[p[0]], v2[p[0]], p.slice(1))
+                    return {...v1, ...h };
+                }
+            }
+            self._data = mergeV(self._data, tmp, p);
         });
     }
 

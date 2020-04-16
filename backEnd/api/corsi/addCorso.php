@@ -53,22 +53,20 @@ class addCorso{
     ];
 
     public static function api($data){
-        require_once 'backEnd/classes/Database.php';
-
-        $DB = new Database($_SESSION['db_host'], $_SESSION['db_user'], $_SESSION['db_pasw'], $_SESSION['db_db']);
-
-        $ret = $DB->insert("corsi")
-            ->value(null, $data['nome'], $data['inizio'], $data['fine'], $data['costo'], $data['rate'], $data['costoRata'])
-            ->execute();
-
-        $id = $ret;
-
+        $c = (new CRUDcorsi())->insert([
+            "nome" => $data['nome'], 
+            "inizio" => $data['inizio'], 
+            "fine" => $data['fine'], 
+            "costo" => $data['costo']
+        ]);
         foreach($data['orari'] as $o){
-            $ret = $DB->insert("orari")
-                ->value(null, $id, $o['giorno'], $o['inizio'], $o['fine'])
-                ->execute();
+            (new CRUDorari())->insert([
+                "idCorso" => $c['insertId'], 
+                "inizio" => $o['inizio'], 
+                "fine" => $o['fine'], 
+                "giorno" => $o['costo']
+            ]);
         }
-
         return true;
     }
 }
