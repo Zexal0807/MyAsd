@@ -36,4 +36,3 @@ class CRUDorari extends ZModel{
 	}
 
 }
-new CRUDorari();

@@ -36,4 +36,3 @@ class CRUDcorsi extends ZModel{
 	}
 
 }
-new CRUDcorsi();
