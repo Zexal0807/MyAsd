@@ -38,6 +38,11 @@ class editCorso{
                 "assoc" => true,
                 "schema" => [
                     [
+                        'name' => "id",
+                        "type" => "int",
+                        "required" => true
+                    ],
+                    [
                         'name' => "giorno",
                         "type" => "string",
                         "required" => true
@@ -58,31 +63,27 @@ class editCorso{
     ];
 
     public static function api($data){
-        require_once 'backEnd/classes/Database.php';
         require_once 'backEnd/api/corsi/canEditCorso.php';
 
-        $DB = new Database($_SESSION['db_host'], $_SESSION['db_user'], $_SESSION['db_pasw'], $_SESSION['db_db']);
-
         if(canEditCorso::api(['id' => $data['id']])){
+            $c = (new CRUDcorsi())->update([
+                "id" => $data['id'], 
+                "nome" => $data['nome'], 
+                "inizio" => $data['inizio'], 
+                "fine" => $data['fine'], 
+                "costo" => $data['costo']
+            ]);
 
-            $ret = $DB->update("corsi")
-                ->set("nome", $data['nome'])
-                ->set("inizio", $data['inizio'])
-                ->set("fine", $data['fine'])
-                ->set("costo", $data['costo'])
-                ->set("rate", $data['rate'])
-                ->set("costoRata", $data['costoRata'])
-                ->where("id", "=", $data['id'])
-                ->execute();
-
-            $ret = $DB->delete("orari")
-                ->where("idCorso", "=", $data['id'])
-                ->execute();
+            $db  = (new CRUDorari())->connect();
+            $db->query("DELETE FROM orari WHERE idCorso = ".$data['id']);
 
             foreach($data['orari'] as $o){
-                $ret = $DB->insert("orari")
-                    ->value(null, $data['id'], $o['giorno'], $o['inizio'], $o['fine'])
-                    ->execute();
+                (new CRUDorari())->insert([
+                    "idCorso" => $data['id'], 
+                    "giorno" => $o['giorno'],
+                    "inizio" => $o['inizio'], 
+                    "fine" => $o['fine']
+                ]);
             }
 
             return true;

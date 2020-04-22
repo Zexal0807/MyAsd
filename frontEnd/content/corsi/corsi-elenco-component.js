@@ -123,10 +123,10 @@ class CorsoModalComponent extends ZexalComponent {
     addEvent() {
         const self = this;
         this.querySelector('.add-day').addEventListener("click", function() {
-            self._i++;
             self._data.orari[self._i] = { giorno: "Mon", inizio: "", fine: "" };
             self.querySelector('.days').innerHTML += self._renderDay(self._data.orari[self._i], self._i);
             self._addRemoveDayEvent();
+            self._i++;
         });
         this._addRemoveDayEvent();
         this.querySelector('button.close').addEventListener('click', function() {
@@ -141,8 +141,15 @@ class CorsoModalComponent extends ZexalComponent {
         var self = this;
         $(this.querySelectorAll('i[data-row]')).unbind("click");
         $(this.querySelectorAll('i[data-row]')).on("click", function() {
-            self._data.orari = self._data.orari.slice(Number(this.getAttribute('data-row')), 1);
+            var ind = Number(this.getAttribute('data-row'));
+            self._data.orari.splice(ind, 1);
             $(this.parentElement.parentElement).remove();
+            $(self.querySelectorAll('i[data-row]')).each(function(k, v) {
+                if (Number(v.getAttribute('data-row')) > ind) {
+                    v.setAttribute('data-row', Number(v.getAttribute('data-row')) - 1);
+                }
+            });
+
         });
         $(this.querySelectorAll('*[name]')).unbind("change keyup keydown");
         $(this.querySelectorAll('*[name]')).on("change keyup keydown", function(e) {
