@@ -1,4 +1,4 @@
-class DatiIscrittoComponent extends ZexalComponent {
+export class DatiIscrittoComponent extends ZexalComponent {
 
     _id = null
     _data = null;
@@ -10,7 +10,6 @@ class DatiIscrittoComponent extends ZexalComponent {
 
     connectedCallback() {
         const self = this;
-        this.render();
         $.ajax({
             type: "POST",
             url: "/getDatiIscritto",
@@ -18,6 +17,10 @@ class DatiIscrittoComponent extends ZexalComponent {
             dataType: "json",
             success: function(d) {
                 self._data = d;
+                self.render();
+                $('button', self).on('click', function() {
+                    $('app-content').render();
+                });
             },
             error: function(e) {
                 console.log(e);
@@ -25,13 +28,8 @@ class DatiIscrittoComponent extends ZexalComponent {
         });
     }
 
-    connectedCallback() {
-        this.render();
-        var self = this;
-    }
-
     _render() {
-        return '<div><b>' + this._data.nome + ' ' + this._data.cognome + '</b></div>';
+        return '<button>INDIETRO</button><div><b>' + this._data.nome + ' ' + this._data.cognome + '</b></div>';
     }
 }
 customElements.define("dati-iscritto", DatiIscrittoComponent);
