@@ -1,4 +1,4 @@
-import DatiIscittoComponent from './dati-iscritto-component';
+import { DatiIscrittoComponent } from './dati-iscritto-component.js';
 
 class ListaIscrittiComponent extends ZexalComponent {
 
@@ -11,8 +11,8 @@ class ListaIscrittiComponent extends ZexalComponent {
             self.setAnno($(this).val());
         });
         $('tr').on("click", function() {
-            $('app-content').html();
-            $('app-content').append(new DatiIscittoComponent(1));
+            $('app-content').html("");
+            $('app-content').append(new DatiIscrittoComponent(1));
         });
     }
 
@@ -41,11 +41,7 @@ class ListaIscrittiComponent extends ZexalComponent {
     }
 }
 
-
-/*
-export class ListaSociComponent extends ZexalComponent {
-
-    _data = [];
+export class ListaSociComponent extends ListaIscrittiComponent {
 
     connectedCallback() {
         const self = this;
@@ -83,36 +79,5 @@ export class ListaSociComponent extends ZexalComponent {
         });
     }
 
-    render() {
-        super.render();
-        var self = this;
-        $(this.querySelector('select')).on('change', function() {
-            self.setAnno($(this).val());
-        });
-    }
-
-    _render() {
-        var r = `
-        <select>
-            <option value="2020" selected>2020</option>
-        </select>
-
-        <table class="table table-striped">
-            <tr>
-                <th>Cognome</th>
-                <th>Nome</th>
-            </tr>`;
-
-        this._data.forEach(el => {
-            r += `<tr>
-                    <td>` + el.cognome + `</td>
-                    <td>` + el.nome + `</td>
-                </tr>`;
-        });
-        r += `
-        </table>`;
-
-        return r;
-    }
 }
-customElements.define("lista-soci", ListaSociComponent);*/
+customElements.define("lista-soci", ListaSociComponent);

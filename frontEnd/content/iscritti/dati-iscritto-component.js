@@ -19,7 +19,7 @@ export class DatiIscrittoComponent extends ZexalComponent {
                 self._data = d;
                 self.render();
                 $('button', self).on('click', function() {
-                    $('app-content').render();
+                    document.querySelector('app-content').render();
                 });
             },
             error: function(e) {

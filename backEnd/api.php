@@ -11,7 +11,11 @@ class Api {
         "getTipoUscite" => "contabilita/getTipoUscite.php",
         "addTipoUscite" => "contabilita/addTipoUscite.php",         //4
         "getCorsi" => "corsi/getCorsi.php",                         //6
-        "getDatiIscitto" => "iscritti/getDatiIscritto.php",
+        
+        "getSoci" => "iscritti/getSoci.php",
+        
+        "getDatiIscritto" => "iscritti/getDatiIscritto.php",
+
         "addSpesa" => "contabilita/addSpesa.php",                   //8
         "getMovimenti" => "contabilita/getMovimenti.php",           //10
         "addCorso" => "corsi/addCorso.php",                         //12
@@ -72,4 +76,3 @@ ZRoute::addMiddleware(function($data){
     }
     return true;
 });
-
