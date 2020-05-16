@@ -2,8 +2,17 @@ app-sidebar {
     background-color: red;
 }
 
+app-sidebar.hide {
+    margin-left: -50%;
+    box-shadow: 0 0 black;
+}
+
 app-sidebar .sidebar-header {
-    background-color: rebeccapurple;
+    background-color: #fff4f4;
+    background-image: url(https://www.roujutsu.it/immagini/logo.png);
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
     width: 100%;
     height: 15%;
     border-bottom: 1px solid black;

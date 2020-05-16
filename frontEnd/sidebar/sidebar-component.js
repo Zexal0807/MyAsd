@@ -13,13 +13,10 @@ export class SidebarComponent extends ZexalComponent {
     _render() {
         var div = document.createElement("div");
         var tmp = document.createElement("div");
-        tmp.innerHTML = "QUESTO é L?HEADER"
         tmp.className = "sidebar-header";
         div.append(tmp);
         var tmp = document.createElement("ul");
         tmp.className = "sidebar-nav";
-
-        tmp.append(new SidebarListComponent("/home", "Home", "", []));
 
         Object.entries(this._data).forEach(function([key, val]) {
             tmp.append(new SidebarListComponent("/" + val.url, val.nome, val.icon, val.sub));
@@ -40,6 +37,9 @@ export class SidebarComponent extends ZexalComponent {
                 e.parentElement.className = "selected";
             }
         });
+        if (isMobile) {
+            $(this).addClass("hide");
+        }
     }
 
 }

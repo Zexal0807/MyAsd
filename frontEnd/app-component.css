@@ -35,7 +35,7 @@ app-home>div {
     height: 100%;
 }
 
-app-home>div>app-sidebar {
+app-sidebar {
     width: 22%;
     height: 100%;
 }
@@ -53,14 +53,34 @@ app-home app-content>div {
 
 app-home config-tab .tab-icon,
 app-home corsi-tab .tab-icon,
-app-home contabilita-tab .tab-icon {
+app-home contabilita-tab .tab-icon,
+app-home iscritti-tab .tab-icon,
+app-home home-tab .tab-icon {
     text-align: center;
     margin-bottom: 2%;
 }
 
 app-home config-tab .tab-icon i,
 app-home corsi-tab .tab-icon i,
-app-home contabilita-tab .tab-icon i {
+app-home contabilita-tab .tab-icon i,
+app-home iscritti-tab .tab-icon i,
+app-home home-tab .tab-icon i {
     font-size: 9rem;
     padding: 4%;
+}
+
+@media only screen and (max-width: 760px) {
+    app-navbar>.navbar {
+        height: 6%;
+    }
+    app-sidebar {
+        position: fixed;
+        z-index: 99;
+        width: 50%;
+        transition: ease-in-out 1s margin;
+        box-shadow: 0 0px 2000px 53px black;
+    }
+    app-home>div>div {
+        width: 100%;
+    }
 }
