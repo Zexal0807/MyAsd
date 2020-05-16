@@ -38,7 +38,7 @@ class PrimaryTabComponent extends ZexalComponent {
         ret.append(div);
 
         var div = document.createElement("div");
-        div.className = "card-deck ml-3 mr-3"
+        div.className = "row ml-0 mr-0"
         this._item.forEach(it => {
             div.append(new CardComponent(it.nome, it.descrizione, "/" + self._url + "/" + it.url));
         });
@@ -58,7 +58,7 @@ class CardComponent extends ZexalComponent {
     }
 
     _render() {
-        this.className = "col-6 col-md-4 pl-0 pr-0"
+        this.className = "col-6 col-md-4 pl-2 pr-2"
 
         var ret = document.createElement("div");
         var div = document.createElement("div");
@@ -85,6 +85,11 @@ class CardComponent extends ZexalComponent {
 }
 customElements.define("tab-card", CardComponent);
 
+export class HomeTabComponent extends PrimaryTabComponent {
+    _url = 'home';
+}
+customElements.define("home-tab", HomeTabComponent);
+
 export class ConfigTabComponent extends PrimaryTabComponent {
     _url = 'config';
 }
@@ -99,3 +104,8 @@ export class ContabilitaTabComponent extends PrimaryTabComponent {
     _url = 'contabilita';
 }
 customElements.define("contabilita-tab", ContabilitaTabComponent);
+
+export class IscrittiTabComponent extends PrimaryTabComponent {
+    _url = 'iscritti';
+}
+customElements.define("iscritti-tab", IscrittiTabComponent);

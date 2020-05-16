@@ -1,7 +1,9 @@
 import {
+    HomeTabComponent,
     ConfigTabComponent,
     CorsiTabComponent,
-    ContabilitaTabComponent
+    ContabilitaTabComponent,
+    IscrittiTabComponent
 } from './primary-tab-component.js';
 
 import { ConfigDatiComponent } from './config/config-dati-component.js';
