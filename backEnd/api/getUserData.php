@@ -34,8 +34,18 @@ class getUserData{
     
             $retu["id"] = $ret[0]['id'];
             $retu["username"] = $ret[0]['username'];
-            $retu["funzioni"] = [];
-            
+            $retu["funzioni"] = [
+                0 => [
+                    "descrizione" => "Home",
+                    "nome" => "Home",
+                    "icon" => '<i class="fas fa-home"></i>',
+                    "url" => "home",
+                    "sub" => [
+
+                    ]
+                ]
+            ];
+
             foreach($ret as $k => $v){
                 if(!isset($retu['funzioni'][$v["tid"]])){
                     $tmp['idTipoFunzione'] = $v["tid"];
