@@ -1,3 +1,8 @@
+lista-soci .data,
+lista-associati .data,
+lista-tesserati .data {
+    padding: 2%;
+}
 
 riga-iscritto>div {
     display: flex;
