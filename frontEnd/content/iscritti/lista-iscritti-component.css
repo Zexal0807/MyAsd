@@ -1,0 +1,34 @@
+
+riga-iscritto>div {
+    display: flex;
+    background-color: white;
+    border: 1px solid black;
+}
+
+riga-iscritto:nth-child(2n)>div {
+    background-color: #cccccc;
+}
+
+riga-iscritto:hover div {
+    background-color: #ff4c56;
+}
+
+riga-iscritto img {
+    border-radius: 45%;
+    height: 11vh;
+    width: 11vh;
+    margin: 0 1vh;
+    border: 1px solid black;
+}
+
+riga-iscritto>div div:not(:first-child) {
+    border-left: 1px solid black;
+    text-align: center;
+}
+
+@media screen and (max-width: 760px) {
+    riga-iscritto img {
+        height: 11vh;
+        width: 11vh;
+    }
+}
