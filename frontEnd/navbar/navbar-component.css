@@ -4,8 +4,16 @@ app-navbar>.navbar {
     background-color: #FF000E;
     box-shadow: 0 1px 2px 0px black;
     padding-right: 3%;
+    display: block;
+    text-align: right;
 }
 
 app-navbar>.sidehide {
     float: left;
+}
+
+@media screen and (max-width: 760px) {
+    app-navbar>.navbar {
+        display: flex;
+    }
 }

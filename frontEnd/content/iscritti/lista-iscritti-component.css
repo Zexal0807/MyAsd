@@ -16,24 +16,35 @@ riga-iscritto:nth-child(2n)>div {
 
 riga-iscritto:hover div {
     background-color: #ff4c56;
+    cursor: pointer;
 }
 
 riga-iscritto img {
     border-radius: 45%;
     height: 11vh;
     width: 11vh;
-    margin: 0 1vh;
+    margin: 0.5vh 0;
     border: 1px solid black;
 }
 
 riga-iscritto>div div:not(:first-child) {
     border-left: 1px solid black;
     text-align: center;
+    padding-top: calc(12vh / 4);
+    font-size: 3vh;
+}
+
+riga-iscritto div.d-none {
+    text-transform: uppercase;
 }
 
 @media screen and (max-width: 760px) {
     riga-iscritto img {
         height: 11vh;
         width: 11vh;
+    }
+    riga-iscritto>div div:not(:first-child) {
+        padding-top: calc(12vh / 3);
+        font-size: 2.5vh;
     }
 }
