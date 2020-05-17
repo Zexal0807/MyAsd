@@ -1,3 +1,18 @@
+lista-soci .filter,
+lista-associati .filter,
+lista-tesserati .filter {
+    margin-top: 1%;
+    text-align: center;
+}
+
+lista-soci .filter select,
+lista-associati .filter select,
+lista-tesserati .filter select {
+    display: inline-block;
+    width: 10%;
+    margin-left: 2%;
+}
+
 lista-soci .data,
 lista-associati .data,
 lista-tesserati .data {
@@ -39,6 +54,11 @@ riga-iscritto div.d-none {
 }
 
 @media screen and (max-width: 760px) {
+    lista-soci .filter select,
+    lista-associati .filter select,
+    lista-tesserati .filter select {
+        width: 25%;
+    }
     riga-iscritto img {
         height: 11vh;
         width: 11vh;

@@ -3,7 +3,7 @@ app-sidebar {
 }
 
 app-sidebar.hide {
-    margin-left: -50%;
+    margin-left: -65%;
     box-shadow: 0 0 black;
 }
 
@@ -14,42 +14,57 @@ app-sidebar .sidebar-header {
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;
-    height: 15%;
+    height: 20%;
     border-bottom: 1px solid black;
 }
 
 app-sidebar>div>ul {
     overflow-y: scroll;
-    height: 85%;
+    height: 80%;
 }
 
-.sidebar-nav {
-    background-color: blue;
+app-sidebar .sidebar-nav {
+    background-color: #fff4f4;
     margin: 0;
     padding-left: 0;
     list-style: none;
 }
 
-.sidebar-nav li {
+app-sidebar .sidebar-nav::-webkit-scrollbar {
+    width: 7px;
+}
+
+app-sidebar .sidebar-nav::-webkit-scrollbar-thumb {
+    background: #f00;
+    border-radius: 20px;
+    border-left: 1px solid #fff4f4;
+}
+
+app-sidebar .sidebar-nav::-webkit-scrollbar-track {
+    background: #cecece;
+    border-left: 1px solid #fff4f4;
+}
+
+app-sidebar .sidebar-nav li {
     line-height: 240%;
     padding-left: 2%;
     background-color: red;
     border-bottom: 1px solid black;
 }
 
-.sidebar-nav li.selected {
-    background-color: seagreen;
+app-sidebar .sidebar-nav li.selected {
+    background-color: #ffb8b8;
 }
 
-.sidebar-nav li i.hide {
+app-sidebar .sidebar-nav li i.hide {
     visibility: hidden;
 }
 
-.sidebar-nav li i[data-toggle="collapse"] {
+app-sidebar .sidebar-nav li i[data-toggle="collapse"] {
     padding-right: 2%;
 }
 
-.sidebar-nav li ul.panel-collapse {
+app-sidebar .sidebar-nav li ul.panel-collapse {
     list-style: none;
     -moz-padding-start: 0;
     -webkit-padding-start: 0;
@@ -59,15 +74,15 @@ app-sidebar>div>ul {
     padding-left: 10%;
 }
 
-.sidebar-nav li ul.panel-collapse li {
+app-sidebar .sidebar-nav li ul.panel-collapse li {
     background-color: #dab1b1;
     border: 0;
     border-top: 1px solid black;
     border-left: 1px solid black;
 }
 
-.sidebar-nav li ul.panel-collapse li.selected {
-    background-color: green;
+app-sidebar .sidebar-nav li ul.panel-collapse li.selected {
+    background-color: #ff000e;
 }
 
 sidebar-item div {

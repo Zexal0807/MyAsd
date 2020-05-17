@@ -103,7 +103,9 @@ class ListaIscrittiComponent extends ZexalComponent {
         var r = ``;
         if (this._filterYear) {
             r += `<div class="col-12 filter">
-            <select>`;
+                <div class="">
+            Anno sportivo:
+            <select class="form-control">`;
             var y = (new Date()).getFullYear();
             for (let i = 2015; i <= y; i++) {
                 r += `<option value="` + i + `"`;
@@ -113,6 +115,7 @@ class ListaIscrittiComponent extends ZexalComponent {
                 r += `>` + i + `</option>`
             }
             r += `</select>
+            </div>
         </div>`;
         }
         r += `<div class="data"></div>`;
