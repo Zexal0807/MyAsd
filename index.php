@@ -16,7 +16,7 @@ ZRoute::get("/logout", function ($data){
 	redirect("/");
 });
 
-ZRoute::get("/load-image/<id>", function ($data){
+ZRoute::get("/load-file/<id>", function ($data){
 	require_once 'backEnd/classes/Database.php';
 	$DB = new Database($_SESSION['db_host'], $_SESSION['db_user'], $_SESSION['db_pasw'], $_SESSION['db_db']);
 
@@ -26,9 +26,13 @@ ZRoute::get("/load-image/<id>", function ($data){
 		->execute();
 		
 	if(sizeof($ret) == 1){
+		require_once 'backEnd/Zexarel/class/ZDownloader/ZDownloader.php';
 		$ext = substr($ret[0]['nome'], find(".", $ret[0]['nome']) + 1);
-		header('Content-type: image/'.$ext);
-		echo $ret[0]['data']; 
+		header("Content-type: ".ZDownloader::$MIME_TYPE[$ext]);
+		header("Content-Disposition: attachment; filename=".$ret[0]['nome']);
+		ob_clean();
+		flush();
+		echo $ret[0]['data'];
 	}
 });
 
