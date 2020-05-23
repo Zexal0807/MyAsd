@@ -14,6 +14,8 @@ class ZexalComponent extends HTMLElement {
         this.render();
     }
 
+    _addEvent() {}
+
     render() {
         this.innerHTML = '';
 
@@ -23,6 +25,7 @@ class ZexalComponent extends HTMLElement {
         } else {
             this.innerHTML = content;
         }
+        this._addEvent();
         if (this._style != null) {
             if (document.querySelectorAll("link[href='" + this._style + "']").length == 0) {
                 const style = document.createElement('link');
