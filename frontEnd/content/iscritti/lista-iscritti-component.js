@@ -28,8 +28,8 @@ class RigaIscritto extends ZexalComponent {
     _addEvent() {
         var self = this;
         $(this).on("click", function() {
-            $('app-content').html("");
-            $('app-content').append(new DatiIscrittoComponent(self._data.id));
+            $('app-content > div').html("");
+            $('app-content > div').append(new DatiIscrittoComponent(self._data.id));
         });
     }
 
