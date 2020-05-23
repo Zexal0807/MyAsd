@@ -16,7 +16,7 @@ class RigaIscritto extends ZexalComponent {
         <div class="col-12 p-0 ml-0 mr-0">
             <div class="col-3 col-md-2 p-0">
                 <center>
-                    <img src="load-image/` + this._data.foto + `" >
+                    <img src="load-file/` + this._data.foto + `" >
                 </center>
             </div>
             <div class="col-5 col-md-4">` + this._data.cognome + " " + this._data.nome + `</div>

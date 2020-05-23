@@ -36,6 +36,7 @@ dati-iscritto .table {
 
 dati-iscritto .table>.row {
     margin: 0;
+    padding: 1% 0;
 }
 
 dati-iscritto .table>.row:nth-of-type(2n) {
@@ -53,14 +54,23 @@ dati-iscritto .table .open {
     padding: 1rem;
 }
 
+doc-table .row>div:first-child {}
+
+doc-table .row>div:nth-child(2) i {
+    float: right;
+}
+
 @media screen and (max-width: 760px) {
     dati-iscritto .anagrafica span {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
     dati-iscritto .he {
         height: 8vh;
     }
     dati-iscritto .table .open {
         padding: 0.5rem;
+    }
+    dati-iscritto .table>.row {
+        padding: 3% 0;
     }
 }
