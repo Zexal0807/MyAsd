@@ -42,6 +42,7 @@ app-home>div {
 app-sidebar {
     width: 22%;
     height: 100%;
+    background-color: red;
 }
 
 app-home>div>div {
@@ -89,17 +90,26 @@ app-home home-tab .tab-icon i {
 }
 
 @media only screen and (max-width: 760px) {
-    app-navbar>.navbar {
-        height: 6%;
+    app-alert {
+        width: 70%;
     }
     app-sidebar {
         position: fixed;
         z-index: 99;
-        width: 65%;
-        transition: ease-in-out 1s margin;
+        width: 70%;
+        transform: none;
+        transition: transform 0.5s linear;
         box-shadow: 0 0px 2000px 53px black;
+        will-change: transform;
+    }
+    app-sidebar.hide {
+        transform: translateX(-100%);
+        box-shadow: 0 0 black;
     }
     app-home>div>div {
         width: 100%;
+    }
+    app-navbar>.navbar {
+        height: 6%;
     }
 }

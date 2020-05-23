@@ -18,6 +18,12 @@ import {
 import { AddUscitaComponent } from './contabilita/add-uscita-component.js';
 import { ListaMovimentiComponent } from './contabilita/lista-movimenti-component.js';
 
+import {
+    ListaSociComponent,
+    ListaTesseratiComponent,
+    ListaAssociatiComponent
+} from './iscritti/lista-iscritti-component.js';
+
 export class AppContentComponent extends ZexalComponent {
 
     constructor() {
@@ -33,6 +39,9 @@ export class AppContentComponent extends ZexalComponent {
         var div = document.createElement("div");
         var screen = null;
         switch (this.getAttribute("url")) {
+            case "/home":
+                screen = new HomeTabComponent();
+                break;
             case "/config":
                 screen = new ConfigTabComponent();
                 break;
@@ -63,8 +72,19 @@ export class AppContentComponent extends ZexalComponent {
             case "/contabilita/movimenti":
                 screen = new ListaMovimentiComponent();
                 break;
+            case "/iscritti":
+                screen = new IscrittiTabComponent();
+                break;
+            case "/iscritti/associati":
+                screen = new ListaAssociatiComponent();
+                break;
+            case "/iscritti/tesserati":
+                screen = new ListaTesseratiComponent();
+                break;
+            case "/iscritti/soci":
+                screen = new ListaSociComponent();
+                break;
             default:
-                //screen = new Altro();
                 break;
         }
         div.append(screen);

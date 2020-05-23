@@ -1,12 +1,3 @@
-app-sidebar {
-    background-color: red;
-}
-
-app-sidebar.hide {
-    margin-left: -65%;
-    box-shadow: 0 0 black;
-}
-
 app-sidebar .sidebar-header {
     background-color: #fff4f4;
     background-image: url(https://www.roujutsu.it/immagini/logo.png);

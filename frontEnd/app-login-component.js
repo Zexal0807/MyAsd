@@ -16,7 +16,7 @@ export class AppLoginComponent extends ZexalComponent {
                 location.reload();
             },
             error: function(e) {
-                document.querySelector("app-alert").add("danger", e.responseText, false);
+                document.querySelector("app-alert").add("danger", e.responseText);
             }
         });
     }
@@ -30,7 +30,7 @@ export class AppLoginComponent extends ZexalComponent {
         return `
         <app-alert></app-alert>
 		<center>
-			<div class="card col-8 col-md-6">
+			<div class="card col-9 col-md-4">
 				<form class="card-body">
 					<div class="form-group">
 						<label>Username</label>
