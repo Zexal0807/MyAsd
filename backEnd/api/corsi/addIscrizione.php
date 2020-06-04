@@ -18,6 +18,11 @@ class addIscrizione{
             'name' => "idIscritto",
             "type" => "int",
             "required" => true
+        ],
+        [
+            'name' => "costo",
+            "type" => "float",
+            "required" => true
         ]
     ];
 
@@ -26,10 +31,8 @@ class addIscrizione{
 
         $DB = new Database($_SESSION['db_host'], $_SESSION['db_user'], $_SESSION['db_pasw'], $_SESSION['db_db']);
 
-        $DB->insert("iscrizioni")
-            ->value(null, $data['idIscritto'], $data['idCorso'], $data['data'])
+        return $DB->insert("iscrizioni")
+            ->value(null, $data['idIscritto'], $data['idCorso'], $data['costo'], $data['data'])
             ->execute();
-
-        return true;
     }
 }
