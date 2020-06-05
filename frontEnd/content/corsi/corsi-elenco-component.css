@@ -1,4 +1,38 @@
-.modal.show {
+corso-details .back {
+    cursor: pointer;
+    font-size: 2rem;
+    margin-top: 1%;
+    margin-left: 1%;
+}
+
+corso-details .edit {
+    cursor: pointer;
+    font-size: 2rem;
+    margin-top: 1%;
+    margin-right: 1%;
+    float: right;
+}
+
+corso-details .delete {
+    cursor: pointer;
+    font-size: 2rem;
+    margin-top: 1%;
+    margin-right: 1%;
+    float: right;
+}
+
+corso-details form div.form-group {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+corso-details form .days i {
+    float: none;
+    cursor: pointer;
+}
+
+
+/*.modal.show {
     display: block;
 }
 
@@ -61,4 +95,4 @@ corso-row .details>i {
 .days i {
     float: none;
     cursor: pointer;
-}
+}*/

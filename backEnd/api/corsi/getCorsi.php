@@ -11,19 +11,11 @@ class getCorsi{
         require_once 'backEnd/api/corsi/canEditCorso.php';
 
         $DB = new Database($_SESSION['db_host'], $_SESSION['db_user'], $_SESSION['db_pasw'], $_SESSION['db_db']);
-        $ret = $DB->select("*")
+        $ret = $DB->select("id", "nome", "DATE_FORMAT(inizio, '%d/%m/%Y') AS data_inizio", "DATE_FORMAT(fine, '%d/%m/%Y') AS data_fine")
             ->from("corsi")
             ->orderBy("inizio DESC, id")
             ->execute();
 
-        foreach($ret as &$v){
-            $v['orari'] = $DB->select("*")
-                ->from("orari")
-                ->where("idCorso", "=", $v['id'])
-                ->execute();
-            $v['modificabile'] = canEditCorso::api(['id' => $v['id']]);
-        }
-        
         return $ret;
     }
 }

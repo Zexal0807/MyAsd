@@ -1,3 +1,5 @@
+import { CorsoDetailComponent } from './corso-details-component.js';
+
 export class CorsiElencoComponent extends ZexalComponent {
 
     _style = "frontEnd/content/corsi/corsi-elenco-component.css";
@@ -22,16 +24,7 @@ export class CorsiElencoComponent extends ZexalComponent {
 
     _render() {
         var r = document.createElement('div');
-        r.innerHTML = `
-            <div class="corso-header row ml-0 mr-0">
-                <div class="col-5">Nome Corso</div>
-                <div class="col-3">Inizio</div>
-                <div class="col-3">Fine</div>
-                <div class="col-1">
-                    <add-corso></add-corso>
-                </div>
-            </div>
-        `;
+        r.className = "row ml-0 mr-0 mt-3"
         this._data.forEach(d => {
             r.append(new CorsoComponent(d));
         });
@@ -52,68 +45,27 @@ class CorsoComponent extends ZexalComponent {
     connectedCallback() {
         this.render();
         var self = this;
-        this.querySelector('.row').addEventListener("click", function() {
-            $(this.parentElement.querySelector('.details')).slideToggle();
-            $(this.querySelector('i')).toggleClass("fa-arrow-circle-down");
-            $(this.querySelector('i')).toggleClass("fa-arrow-circle-up");
+
+        $(this).on("click", function() {
+            $('app-content > div').html("");
+            $('app-content > div').append(new CorsoDetailComponent(self._data.id));
         });
-        if (this._data.modificabile) {
-            this.querySelector('.details .fa-edit').addEventListener("click", function() {
-                $(self.querySelector('.modal')).toggleClass("show");
-            });
-            this.querySelector('.details .fa-trash-alt').addEventListener("click", function() {
-                if (confirm("Sicuro?")) {
-                    $.ajax({
-                        type: "POST",
-                        url: "/deleteCorso",
-                        data: {
-                            id: self._data.id
-                        },
-                        dataType: "json",
-                        success: function(s) {
-                            document.querySelector("app-content").connectedCallback();
-                        },
-                        error: function(e) {
-                            document.querySelector("app-content").connectedCallback();
-                        }
-                    });
-                }
-            });
-        }
     }
 
     _render() {
-        var ret = document.createElement('div');
-        var r = document.createElement('div');
-        r.className = "row ml-0 mr-0";
-        r.innerHTML = `
-            <div class="col-5">` + this._data.nome + `</div>
-            <div class="col-3">` + this._data.inizio + `</div>
-            <div class="col-3">` + this._data.fine + `</div>
-            <div class="col-1">
-                <i class="fas fa-arrow-circle-down"></i>
-            </div>`;
-
-        ret.append(r);
-
-        var r = document.createElement('div');
-        r.className = "details";
-        r.innerHTML = `Costo : ` + this._data.costo + `<br>`;
-
-        r.innerHTML += `<br>Orari:`;
-        this._data.orari.forEach(o => {
-            r.innerHTML += "<br>" + o.giorno + ` dalle ` + o.inizio + " alle " + o.fine;
-        });
-        if (this._data.modificabile) {
-            r.innerHTML += `<i class="fas fa-edit"></i><i class="fas fa-trash-alt"></i>`;
-            r.append(new EditCorsoComponent(this._data));
-        }
-        ret.append(r);
-        return ret;
+        this.className = "col-6 col-md-4 pl-2 pr-2"
+        return `<div class="card mb-3">
+            <div class="card-body">
+                <span class="titolo">` + this._data.nome + `</span><br>
+                <span class="periodo">Dal <b>` + this._data.data_inizio + `</b> al <b>` + this._data.data_fine + `</b></span>
+            </div>
+        </div>`;
     }
 }
-customElements.define("corso-row", CorsoComponent);
+customElements.define("corso-component", CorsoComponent);
 
+
+/*
 class CorsoModalComponent extends ZexalComponent {
 
     _actionText = "";
@@ -182,29 +134,29 @@ class CorsoModalComponent extends ZexalComponent {
 
     _renderDay(o, i) {
         var r = `
-        <div class="form-group row">
-            <div class="col-sm-1 col-form-label"></div>
-            <select class="form-control col-sm-2" name="orari[` + i + `][giorno]">`;
+            < div class="form-group row" >
+                <div class="col-sm-1 col-form-label"></div>
+                <select class="form-control col-sm-2" name="orari[` + i + `][giorno]">`;
         r += `<option value="Mon" ` + (o.giorno == 'Mon' ? "selected" : "") + `>Lun</option>`
-        r += `<option value="Tue" ` + (o.giorno == 'Tue' ? "selected" : "") + `>Mar</option>`
-        r += `<option value="Wed" ` + (o.giorno == 'Wed' ? "selected" : "") + `>Mer</option>`
-        r += `<option value="Thu" ` + (o.giorno == 'Thu' ? "selected" : "") + `>Gio</option>`
-        r += `<option value="Fri" ` + (o.giorno == 'Fri' ? "selected" : "") + `>Ven</option>`
-        r += `<option value="Sat" ` + (o.giorno == 'Sat' ? "selected" : "") + `>Sab</option>`
-        r += `<option value="Sun" ` + (o.giorno == 'Sun' ? "selected" : "") + `>Dom</option>`
-        r += `</select>
+        r += `< option value = "Tue" ` + (o.giorno == 'Tue' ? "selected" : "") + ` > Mar</option > `
+        r += `< option value = "Wed" ` + (o.giorno == 'Wed' ? "selected" : "") + ` > Mer</option > `
+        r += `< option value = "Thu" ` + (o.giorno == 'Thu' ? "selected" : "") + ` > Gio</option > `
+        r += `< option value = "Fri" ` + (o.giorno == 'Fri' ? "selected" : "") + ` > Ven</option > `
+        r += `< option value = "Sat" ` + (o.giorno == 'Sat' ? "selected" : "") + ` > Sab</option > `
+        r += `< option value = "Sun" ` + (o.giorno == 'Sun' ? "selected" : "") + ` > Dom</option > `
+        r += `</select >
             <label class="col-sm-2 col-form-label">Ora inizio</label>
             <div class="col-sm-2">
                 <input type="time" class="form-control" name="orari[` + i + `][inizio]" required value="` + o.inizio + `">
             </div>
-            <label class="col-sm-2 col-form-label">Ora fine</label>
-            <div class="col-sm-2">
-                <input type="time" class="form-control" name="orari[` + i + `][fine]" required value="` + o.fine + `">
+                <label class="col-sm-2 col-form-label">Ora fine</label>
+                <div class="col-sm-2">
+                    <input type="time" class="form-control" name="orari[` + i + `][fine]" required value="` + o.fine + `">
             </div>
-            <div class="col-sm-1 col-form-label">
-                <i data-row="` + i + `" class="fa fa-times"></i>
-            </div>
-        </div>`;
+                    <div class="col-sm-1 col-form-label">
+                        <i data-row="` + i + `" class="fa fa-times"></i>
+                    </div>
+                </div>`;
         return r;
     }
 
@@ -212,58 +164,58 @@ class CorsoModalComponent extends ZexalComponent {
         var self = this;
         var r = `
 <div class="modal bd-example-modal-lg" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">` + this._actionText + `</h5>
-        <button type="button" class="close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Nome corso</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name="nome" placeholder="Nome corso" required value="` + this._data.nome + `">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">` + this._actionText + `</h5>
+                                <button type="button" class="close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Nome corso</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="nome" placeholder="Nome corso" required value="` + this._data.nome + `">
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Data inizio</label>
-                <div class="col-sm-4">
-                    <input type="date" class="form-control" name="inizio" required value="` + this._data.inizio + `">
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Data inizio</label>
+                                            <div class="col-sm-4">
+                                                <input type="date" class="form-control" name="inizio" required value="` + this._data.inizio + `">
                 </div>
-                <label class="col-sm-2 col-form-label">Data fine</label>
-                <div class="col-sm-4">
-                    <input type="date" class="form-control" name="fine" required value="` + this._data.fine + `">
+                                                <label class="col-sm-2 col-form-label">Data fine</label>
+                                                <div class="col-sm-4">
+                                                    <input type="date" class="form-control" name="fine" required value="` + this._data.fine + `">
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Costo totale</label>
-                <div class="col-sm-4">
-                    <input type="text" class="form-control" name="costo" required value="` + this._data.costo + `" placeholder="210">
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Costo totale</label>
+                                                    <div class="col-sm-4">
+                                                        <input type="text" class="form-control" name="costo" required value="` + this._data.costo + `" placeholder="210">
                 </div>
-            </div>
-            <hr>
-            <div class="days">`;
+                                                    </div>
+                                                    <hr>
+                                                        <div class="days">`;
         this._data.orari.forEach(o => {
             r += self._renderDay(o, self._i);
             self._i++;
         });
         r += `</div>
-            <center>
-            <i class="add-day fa fa-plus"></i>
-            <br>
-            <hr>
-            <button type="submit" class="btn btn-primary mb-2">
-            ` + this._actionText + `
+                                                        <center>
+                                                            <i class="add-day fa fa-plus"></i>
+                                                            <br>
+                                                                <hr>
+                                                                    <button type="submit" class="btn btn-primary mb-2">
+                                                                        ` + this._actionText + `
             </button>
             </center>
         </form>
       </div>
     </div>
-  </div>
-</div> `;
+                                                </div>
+                                            </div> `;
         return r;
     }
 
@@ -388,4 +340,4 @@ class EditCorsoComponent extends CorsoModalComponent {
     }
 
 }
-customElements.define("edit-corso", EditCorsoComponent);
+customElements.define("edit-corso", EditCorsoComponent);*/
