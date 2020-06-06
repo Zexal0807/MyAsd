@@ -81,8 +81,8 @@ class editCorso{
                 (new CRUDorari())->insert([
                     "idCorso" => $data['id'], 
                     "giorno" => $o['giorno'],
-                    "inizio" => $o['inizio'], 
-                    "fine" => $o['fine']
+                    "inizio" => (new Datetime($o['inizio']))->format("H:i:s"), 
+                    "fine" => (new Datetime($o['fine']))->format("H:i:s")
                 ]);
             }
 

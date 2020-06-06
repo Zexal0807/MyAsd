@@ -62,9 +62,9 @@ class addCorso{
         foreach($data['orari'] as $o){
             (new CRUDorari())->insert([
                 "idCorso" => $c['insertId'], 
-                "inizio" => $o['inizio'], 
-                "fine" => $o['fine'], 
-                "giorno" => $o['costo']
+                "inizio" => (new Datetime($o['inizio']))->format("H:i:s"), 
+                "fine" => (new Datetime($o['fine']))->format("H:i:s"),
+                "giorno" => $o['giorno']
             ]);
         }
         return true;
