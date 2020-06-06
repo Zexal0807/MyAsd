@@ -10,25 +10,37 @@ class Api {
         "addTipoEntrate" => "contabilita/addTipoEntrate.php",       //3
         "getTipoUscite" => "contabilita/getTipoUscite.php",
         "addTipoUscite" => "contabilita/addTipoUscite.php",         //4
-        "getCorsi" => "corsi/getCorsi.php",                         //6
-        
-        "getSoci" => "iscritti/getSoci.php",
-        
-        "getDatiIscritto" => "iscritti/getDatiIscritto.php",
 
-        "addSpesa" => "contabilita/addSpesa.php",                   //8
-        "getMovimenti" => "contabilita/getMovimenti.php",           //10
+        
+        //--------------Corsi
+        "getCorsi" => "corsi/getCorsi.php",                         //6
+        "getCorso" => "corsi/getCorso.php",                         //15
+        "deleteCorso" => "corsi/deleteCorso.php",                   //14
         "addCorso" => "corsi/addCorso.php",                         //12
         "editCorso" => "corsi/editCorso.php",                       //13
-        "deleteCorso" => "corsi/deleteCorso.php",                   //14
+
         "addIscrizione" => "corsi/addIscrizione.php",               //15
-        "getCorsoDetails" => "corsi/getCorsoDetails.php"            //15
+        
+
+
+
+
+        "getAssociati" => "iscritti/getAssociati.php",
+        "getSoci" => "iscritti/getSoci.php",
+        "getTesserati" => "iscritti/getTesserati.php",
+        "getDatiIscritto" => "iscritti/getDatiIscritto.php",
+
+        "addPagamentoCorso" => "contabilita/addPagamentoCorso.php",
+        "addSpesa" => "contabilita/addSpesa.php",                   //8
+        "getMovimenti" => "contabilita/getMovimenti.php"            //10
+        
+        
     ];
 }
 
 foreach(Api::$API_LIST as $k => $v){
     ZRoute::post("/".$k, function(){});
-            }
+}
 
 ZRoute::addMiddleware(function($data){
     $req = new Request();
@@ -45,14 +57,14 @@ ZRoute::addMiddleware(function($data){
 
             if(property_exists($className, 'fx')){
                 require 'classes/VLKDatabase.php';
-        if(isset($_SESSION['id'])){
-            $DB = new VLKDatabase();
-            $ret = $DB->selectAll()
-                ->from("vlk_privilegi")
-                ->where("idUtente", "=", $_SESSION['id'], " AND")
+                if(isset($_SESSION['id'])){
+                    $DB = new VLKDatabase();
+                    $ret = $DB->selectAll()
+                        ->from("vlk_privilegi")
+                        ->where("idUtente", "=", $_SESSION['id'], " AND")
                         ->where("idFunzione", "=", $className::$fx)
-                ->execute();
-            if(sizeof($ret) != 1){
+                        ->execute();
+                    if(sizeof($ret) != 1){
                         header("HTTP/1.0 403 Forbidden");
                         return false;
                     }
@@ -70,7 +82,7 @@ ZRoute::addMiddleware(function($data){
                 return false;
             }
         }else{
-            header("HTTP/1.0 404 Not Found");
+            header("HTTP/1.0 404 Api Not Found");
             return false;
         }
     }
