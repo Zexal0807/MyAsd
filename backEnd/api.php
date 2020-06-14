@@ -19,6 +19,7 @@ class Api {
         "addCorso" => "corsi/addCorso.php",                         //12
         "editCorso" => "corsi/editCorso.php",                       //13
 
+        "getIscrivibiliCorso" => "corsi/getIscrivibiliCorso.php",   //15
         "addIscrizione" => "corsi/addIscrizione.php",               //15
         
 

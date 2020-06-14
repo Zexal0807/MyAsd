@@ -16,7 +16,7 @@ export class AppHomeComponent extends ZexalComponent {
         sidebar._data = this._data.funzioni;
         ret.append(sidebar);
 
-        const div = document.createElement('div');
+        var div = document.createElement('div');
         var navbar = new NavbarComponent();
         navbar._username = this._data.username;
         div.append(navbar);
@@ -48,10 +48,11 @@ export class AppHomeComponent extends ZexalComponent {
                 }
             }
             window.history.replaceState("", "", url.pathname);
-            $('app-content > div').html("");
-            $('app-content > div').append(screen);
+            if (screen != null) {
+                $('app-content > div').html("");
+                $('app-content > div').append(screen);
+            }
         }
-
     }
 }
 customElements.define("app-home", AppHomeComponent);

@@ -53,7 +53,7 @@ export class AddIscrizioneComponent extends ZexalComponent {
         var self = this;
         $.ajax({
             type: "POST",
-            url: "/getCorso",
+            url: "/getIscrivibiliCorso",
             data: {
                 id: id
             },
