@@ -30,16 +30,18 @@ export class CorsiElencoComponent extends ZexalComponent {
     }
 
     _render() {
+        var ret = document.createElement('div');
+        ret.innerHTML = `
+            <center><button><i class="fas fa-plus"></i></button></center>
+            <hr>
+        `;
         var r = document.createElement('div');
         r.className = "row ml-0 mr-0 mt-3";
-        r.innerHTML = `
-            <button>Aggiungi</button>
-        `;
-
         this._data.forEach(d => {
             r.append(new CorsoComponent(d));
         });
-        return r;
+        ret.append(r);
+        return ret;
     }
 }
 customElements.define("corsi-elenco", CorsiElencoComponent);
@@ -64,13 +66,19 @@ class CorsoComponent extends ZexalComponent {
     }
 
     _render() {
-        this.className = "col-6 col-md-4 pl-2 pr-2"
-        return `<div class="card mb-3">
+        this.className = "col-12 col-md-4"
+        var html = `<div class="card">
             <div class="card-body">
                 <span class="titolo">` + this._data.nome + `</span><br>
-                <span class="periodo">Dal <b>` + this._data.data_inizio + `</b> al <b>` + this._data.data_fine + `</b></span>
+                <span class="periodo">Dal <b>` + this._data.data_inizio + `</b>`;
+        if (isMobile) {
+            html += '<br>';
+        }
+
+        html += `al <b>` + this._data.data_fine + `</b></span>
             </div>
         </div>`;
+        return html
     }
 }
 customElements.define("corso-component", CorsoComponent);

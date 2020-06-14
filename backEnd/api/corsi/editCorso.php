@@ -38,11 +38,6 @@ class editCorso{
                 "assoc" => true,
                 "schema" => [
                     [
-                        'name' => "id",
-                        "type" => "int",
-                        "required" => true
-                    ],
-                    [
                         'name' => "giorno",
                         "type" => "string",
                         "required" => true

@@ -221,7 +221,7 @@ export class CorsoDetailComponent extends ZexalComponent {
                 html += `<i class="fas fa-edit edit"></i>`;
             }
         }
-        html += this._data.nome + `
+        html += `
         <hr>
         <form>
             <div class="form-group row">
@@ -240,7 +240,7 @@ export class CorsoDetailComponent extends ZexalComponent {
         if (this._editMode) {
             html += `<input type="date" class="form-control" name="inizio" required value="` + this._data.inizio + `">`;
         } else {
-            html += `<div class="col-form-label">` + this._data.inizio + `</div>`;
+            html += `<div class="col-form-label">` + this._data.data_inizio + `</div>`;
         }
         html += `
                 </div>
@@ -249,7 +249,7 @@ export class CorsoDetailComponent extends ZexalComponent {
         if (this._editMode) {
             html += `<input type="date" class="form-control" name="fine" required value="` + this._data.fine + `">`;
         } else {
-            html += `<div class="col-form-label">` + this._data.fine + `</div>`;
+            html += `<div class="col-form-label">` + this._data.data_fine + `</div>`;
         }
         html += `</div>
             </div>
@@ -291,6 +291,16 @@ export class CorsoDetailComponent extends ZexalComponent {
             html += `</button>
             </center>`;
         }
+        if (!this._editMode) {
+            html += `<hr>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Iscritti:</label>
+                <div class="col-sm-10"></div>
+            </div>`;
+            this._data.iscritti.forEach((o) => {
+                html += o.nome + " " + o.cognome;
+            })
+        };
         html += `
         </form>`;
 

@@ -1,3 +1,31 @@
+corsi-elenco button {
+    border-radius: 50%;
+    height: 5vw;
+    width: 5vw;
+    margin-top: 0.8rem;
+    margin-bottom: 0;
+    color: white;
+    border: 0;
+    background-color: red;
+    box-shadow: 0 0 9px 0px black;
+    cursor: pointer;
+}
+
+corsi-elenco hr {
+    width: 95%;
+}
+
+corsi-elenco corso-component {
+    padding-left: .5rem;
+    padding-right: .5rem;
+    margin-bottom: .5rem;
+}
+
+corsi-elenco corso-component .card {
+    box-shadow: 0px 0px 8px black;
+    cursor: pointer;
+}
+
 corso-details .back {
     cursor: pointer;
     font-size: 2rem;
@@ -29,4 +57,17 @@ corso-details form div.form-group {
 corso-details form .days i {
     float: none;
     cursor: pointer;
+}
+
+@media screen and (max-width: 760px) {
+    corsi-elenco button {
+        height: 13vw;
+        width: 13vw;
+    }
+    corsi-elenco hr {
+        display: none;
+    }
+    corsi-elenco corso-component {
+        margin-bottom: 1.5rem;
+    }
 }
