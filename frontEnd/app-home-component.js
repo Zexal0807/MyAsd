@@ -3,6 +3,8 @@ import { SidebarComponent } from './sidebar/sidebar-component.js';
 import { NavbarComponent } from './navbar/navbar-component.js';
 import { AppContentComponent } from './content/app-content-component.js';
 
+import { DatiIscrittoComponent } from './content/iscritti/dati-iscritto-component.js'
+
 export class AppHomeComponent extends ZexalComponent {
 
     _data = null;
@@ -25,6 +27,31 @@ export class AppHomeComponent extends ZexalComponent {
         ret.append(div);
 
         return ret;
+    }
+
+    _addEvent() {
+        if (location.search.length > 1) {
+            var screen = null;
+            var url = new URL(location.href);
+
+            var search = new URLSearchParams(location.search);
+            var comp = search.get('comp');
+
+            if (comp != null) {
+                switch (comp) {
+                    case "dati-iscritto":
+                        let id = search.get('c1');
+                        if (id != null) {
+                            screen = new DatiIscrittoComponent(id);
+                        }
+                        break;
+                }
+            }
+            window.history.replaceState("", "", url.pathname);
+            $('app-content > div').html("");
+            $('app-content > div').append(screen);
+        }
+
     }
 }
 customElements.define("app-home", AppHomeComponent);
