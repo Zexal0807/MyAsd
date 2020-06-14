@@ -2,15 +2,18 @@ export class AddPagamentoComponent extends ZexalComponent {
 
     _style = "frontEnd/content/contabilita/add-pagamento-component.css";
 
+    _elencoPagamenti = [];
+
     _elencoCorsi = [];
 
     _elencoIscritti = [];
 
     _data = {
-        idCorso: 0,
+        idCorso: null,
         data: new Date().toISOString().slice(0, 10),
         idIscritto: null,
         importo: 0,
+        idTipoPagamento: null,
         descrizione: ""
     };
 
@@ -25,18 +28,31 @@ export class AddPagamentoComponent extends ZexalComponent {
             success: function() {
                 $.ajax({
                     type: "POST",
-                    url: "/getCorsi",
+                    url: "/getTipoPagamento",
                     data: {},
                     dataType: "json",
                     success: function(s) {
-                        self._elencoCorsi = s;
-                        if (s.length > 0) {
-                            self._data.idCorso = self._elencoCorsi[0].id;
-                            self._data.costo = self._elencoCorsi[0].costo;
-                            self.loadCorso(self._elencoCorsi[0].id);
-                        } else {
-                            self.render();
-                        }
+                        self._elencoPagamenti = s;
+                        self._data.idTipoPagamento = self._elencoPagamenti[0].id;
+                        $.ajax({
+                            type: "POST",
+                            url: "/getCorsi",
+                            data: {},
+                            dataType: "json",
+                            success: function(s) {
+                                self._elencoCorsi = s;
+                                if (s.length > 0) {
+                                    self._data.idCorso = self._elencoCorsi[0].id;
+                                    self._data.costo = self._elencoCorsi[0].costo;
+                                    self.loadCorso(self._elencoCorsi[0].id);
+                                } else {
+                                    self.render();
+                                }
+                            },
+                            error: function(e) {
+                                console.log(e);
+                            }
+                        });
                     },
                     error: function(e) {
                         console.log(e);
@@ -95,10 +111,12 @@ export class AddPagamentoComponent extends ZexalComponent {
             dataType: "json",
             success: function(s) {
                 document.querySelector("app-content").connectedCallback();
+                document.querySelector('alert-component').add("success", "Pagamento registrato");
             },
             error: function(e) {
                 console.log(e);
                 document.querySelector("app-content").connectedCallback();
+                document.querySelector('alert-component').add("danger", "Pagamento fallito");
             }
         });
     }
@@ -122,13 +140,12 @@ export class AddPagamentoComponent extends ZexalComponent {
             r += `</select>
             </div>
         </div>`;
-
             if (this._elencoIscritti.length == 0) {
                 r += `<label class="col-sm-12 col-form-label">Nessuno può pagare questo corso, verifica ci siano iscritti</label>`;
             } else {
                 r += `<div class="form-group row">
-            <label class="col-sm-2 col-form-label">Iscritto</label>
-            <div class="col-sm-10">
+            <label class="col-sm-3 col-form-label">Iscritto</label>
+            <div class="col-sm-9">
                 <select class="form-control col-sm-12" name="idIscritto">`;
                 this._elencoIscritti.forEach(el => {
                     r += `<option value="` + el.id + `" ` + (self._data.idIscritto == el.id ? "selected" : "") + `>` + el.cognome + ' ' + el.nome + `</option>`;
@@ -138,30 +155,40 @@ export class AddPagamentoComponent extends ZexalComponent {
         </div>
         
         <div class="form-group row">
-
-            <label class="col-sm-2 col-form-label">Data pagamento</label>
+            <label class="col-sm-3 col-form-label">Data pagamento</label>
             <div class="col-sm-4">
                 <input type="date" class="form-control" name="data" required value="` + this._data.data + `">
-            </div>
-
-            <label class="col-sm-4 col-form-label">
-                Importo pagato
-            </label>
-            <div class="col-sm-4">
-                <input type="number" class="form-control" name="importo" required value="` + this._data.importo + `" step="0.01">
-            </div>
-
+                </div>
+            <div class="col-sm-5"></div>
         </div>
 
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Descrizione</label>
-            <textarea name="descrizione">` + this._data.descrizione + `</textarea>
+            <label class="col-sm-3 col-form-label">
+                Importo pagato
+            </label>
+            <div class="col-sm-3">
+                <input type="number" class="form-control" name="importo" required value="` + this._data.importo + `" step="0.01">
+            </div>
+            <label class="col-sm-3 col-form-label">Tipo Pagamento</label>
+            <div class="col-sm-3">
+                <select class="form-control col-sm-12" name="idTipoTesseramento">`;
+                this._elencoPagamenti.forEach(el => {
+                    r += `<option value="` + el.id + `" ` + (self._data.idTipoTesseramento == el.id ? "selected" : "") + `>` + el.descrizione + `</option>`;
+                });
+                r += `</select>
+            </div>
         </div>
 
-        <button type="submit" class="btn btn-primary mb-2">Aggiungi iscrizione</button>`;
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Descrizione</label>
+            <div class="col-sm-9">
+                <textarea name="descrizione" class="form-control col-sm-12">` + this._data.descrizione + `</textarea>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mb-2">Aggiungi pagamento</button>`;
             }
         }
-
         r += `</form>
         </center>`;
         return r;

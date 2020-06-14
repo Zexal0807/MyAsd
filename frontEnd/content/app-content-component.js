@@ -10,6 +10,9 @@ import { ConfigDatiComponent } from './config/config-dati-component.js';
 
 import { CorsiElencoComponent } from './corsi/corsi-elenco-component.js';
 import { AddIscrizioneComponent } from './corsi/add-iscrizione-component.js';
+import { AddPagamentoComponent } from './contabilita/add-pagamento-component.js';
+
+import { AddTesseramentoComponent } from './corsi/add-tesseramento-component.js';
 
 import {
     TipoEntrateComponent,
@@ -52,6 +55,12 @@ export class AppContentComponent extends ZexalComponent {
                 break;
             case "/corsi/iscrizione":
                 screen = new AddIscrizioneComponent();
+                break;
+            case "/corsi/tesseramento":
+                screen = new AddTesseramentoComponent();
+                break;
+            case "/corsi/pagamento":
+                screen = new AddPagamentoComponent();
                 break;
             case "/contabilita":
                 screen = new ContabilitaTabComponent();
