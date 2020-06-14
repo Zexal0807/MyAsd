@@ -6,6 +6,7 @@ class Api {
         "getUserData" => "getUserData.php",
         "userFunction" => "userFunction.php",
         "datiAsd" => "config/datiAsd.php",                          //2
+
         "getTipoEntrate" => "contabilita/getTipoEntrate.php",
         "addTipoEntrate" => "contabilita/addTipoEntrate.php",       //3
         "getTipoUscite" => "contabilita/getTipoUscite.php",
@@ -21,15 +22,16 @@ class Api {
 
         "getIscrivibiliCorso" => "corsi/getIscrivibiliCorso.php",   //15
         "addIscrizione" => "corsi/addIscrizione.php",               //15
+
+        "addPagamentoCorso" => "contabilita/addPagamentoCorso.php", //15
         
-
-
-
 
         "getAssociati" => "iscritti/getAssociati.php",
         "getSoci" => "iscritti/getSoci.php",
         "getTesserati" => "iscritti/getTesserati.php",
         "getDatiIscritto" => "iscritti/getDatiIscritto.php",
+
+
 
         "addPagamentoCorso" => "contabilita/addPagamentoCorso.php",
         "addSpesa" => "contabilita/addSpesa.php",                   //8

@@ -32,7 +32,6 @@ class AppComponent extends ZexalComponent {
             return "<div>LOADER</div>";
         } else if (this._data) {
             screen = new AppHomeComponent();
-            screen.setAttribute("url", "/home");
             screen._data = this._data;
         } else {
             screen = new AppLoginComponent();
