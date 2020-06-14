@@ -26,6 +26,11 @@ class addPagamentoCorso{
             'name' => "idCorso",
             "type" => "int",
             "required" => true
+        ],
+        [
+            'name' => "idTipoPagamento",
+            "type" => "int",
+            "required" => true
         ]
     ];
 
@@ -46,7 +51,7 @@ class addPagamentoCorso{
             //20 => Entrate da pagamenti corso
 
             $id = $DB->insert("entrate")
-                ->value(null, $data['data'], 1, $data['importo'], 20, $data['descrizione'], null, 1, null)
+                ->value(null, $data['data'], 1, $data['importo'], 20, $data['descrizione'], null, $data['idTipoPagamento'], null)
                 ->execute();
 
             $ret = $DB->insert("pagamenti")

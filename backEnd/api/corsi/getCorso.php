@@ -28,16 +28,11 @@ class getCorso{
                 ->where("idCorso", "=", $data['id'])
                 ->execute();
 
-            $ret['iscritti'] = $DB->select("anagrafiche.idIscritto AS id", "anagrafiche.cognome", "anagrafiche.nome", "DATE_FORMAT(anagrafiche.data_nascita, '%d/%m/%Y') AS data_nascita", "anagrafiche.codice_fiscale", "anagrafiche.foto")
-                ->from("iscritti")
-                ->innerJoin("anagrafiche", "iscritti.id", "=", "anagrafiche.idIscritto")
-                ->innerJoin("iscrizioni", "iscrizioni.idIscritto", "=", "iscritti.id")
-                ->where("iscrizioni.idCorso", "=", $data['id'])
+            $ret['iscritti'] = $DB->select("*")
+                ->from("iscritticorso")
+                ->where("idCorso", "=", $data['id'])
                 ->execute();
         
-
-
-
             return $ret;
         }
     }
