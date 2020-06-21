@@ -12,7 +12,6 @@ class Api {
         "getTipoUscite" => "contabilita/getTipoUscite.php",
         "addTipoUscite" => "contabilita/addTipoUscite.php",         //4
 
-        
         //--------------Corsi
         "getCorsi" => "corsi/getCorsi.php",                         //6
         "getCorso" => "corsi/getCorso.php",                         //15
@@ -27,9 +26,8 @@ class Api {
         "addPagamentoCorso" => "contabilita/addPagamentoCorso.php", //15
         "getTipoPagamento" => "contabilita/getTipoPagamento.php",
 
-
         //-------------Iscritti
-        "getAssociati" => "iscritti/getAssociati.php",
+        "getIscritti" => "iscritti/getIscritti.php",
         "getSoci" => "iscritti/getSoci.php",
         "getTesserati" => "iscritti/getTesserati.php",
         "getDatiIscritto" => "iscritti/getDatiIscritto.php",
@@ -48,9 +46,7 @@ foreach(Api::$API_LIST as $k => $v){
 
 ZRoute::addMiddleware(function($data){
     $req = new Request();
-    if(find("zcrud", $req->getUrl()) != -1){
-        //è una crud -> frega cazzi
-    }elseif($req->getMethod() == "POST"){
+    if($req->getMethod() == "POST"){
         if(array_key_exists($req->getUrl(), Api::$API_LIST)){
 
             $className = $req->getUrl();

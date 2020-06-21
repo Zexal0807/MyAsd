@@ -1,3 +1,9 @@
+var isMobile = false;
+if (screen.width <= 480) {
+    isMobile = true;
+    console.log("Mobile");
+}
+
 class ZexalComponent extends HTMLElement {
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -28,7 +34,7 @@ class ZexalComponent extends HTMLElement {
         this._addEvent();
         if (this._style != null) {
             if (document.querySelectorAll("link[href='" + this._style + "']").length == 0) {
-                const style = document.createElement('link');
+                var style = document.createElement('link');
                 style.setAttribute('rel', 'stylesheet');
                 style.setAttribute('href', this._style);
                 document.head.append(style);

@@ -158,7 +158,7 @@ export class ListaAssociatiComponent extends ListaIscrittiComponent {
     _filterYear = false;
 
     _functionId = 8;
-    _loadUrl = "/getAssociati";
+    _loadUrl = "/getIscritti";
 
 }
 customElements.define("lista-associati", ListaAssociatiComponent);
