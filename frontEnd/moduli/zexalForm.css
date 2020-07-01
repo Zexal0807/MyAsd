@@ -1,0 +1,261 @@
+zexal-form {
+    text-align: -webkit-center
+}
+
+zexal-form>form>div:first-child {
+    height: 8px;
+    background-color: #313131;
+}
+
+zexal-form .carousel.slide {
+    background-color: white;
+    box-shadow: 0 0px 10px 2px #676767;
+}
+
+.section-question {
+    font-size: 25px;
+    padding: 0.5rem 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.section-question.error {
+    background-color: #ffbbbb;
+    border-radius: 5px;
+}
+
+.section-question .question {
+    color: black;
+    text-align: left;
+}
+
+.section-question .question span {
+    color: red;
+}
+
+.section-question .desc {
+    font-size: 14px;
+    margin: 0px 0.5%;
+}
+
+.section-question .underline {
+    height: 6px;
+    background-image: linear-gradient(#ff0000 2px, transparent 2px), linear-gradient(#d8dce9 2px, transparent 2px), linear-gradient(#ff0000 2px, transparent 2px);
+    background-size: 0% 1px, 100% 1px, 100% 1px;
+    background-position: 0 bottom, 0 bottom, 0 bottom;
+    transition: background-size 0.3s ease-in-out;
+    background-repeat: no-repeat;
+    width: 100%;
+}
+
+.section-question .underline.active {
+    background-size: 50% 2px, 50% 2px, 100% 2px;
+}
+
+.section-question .error {
+    padding-top: 0.5rem;
+    text-align: left;
+    font-size: 19px;
+    color: red;
+    display: none;
+}
+
+.section-question.error .error {
+    display: block;
+}
+
+zexal-button button {
+    border: 0;
+    padding: 0.5rem;
+    min-width: 90px;
+    border-radius: 3px;
+    text-align: center;
+    float: left;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    transition: all 0.3s ease 0s;
+}
+
+zexal-button button:hover {
+    box-shadow: 0 0 10px 0px black;
+    min-width: 95px;
+    color: #5d5d5d;
+    font-weight: bold;
+    transition: all 0.3s ease 0s;
+}
+
+zexal-text .anser,
+zexal-email .anser,
+zexal-phone .anser,
+zexal-number .anser,
+zexal-date .anser,
+zexal-radio .anser,
+zexal-check .anser {
+    font-size: 19px;
+    color: black;
+    text-align: left;
+    margin-top: 1rem;
+    border: 0;
+    background-color: transparent;
+    width: 100%;
+}
+
+zexal-text .anser:focus,
+zexal-email .anser:focus,
+zexal-phone .anser:focus,
+zexal-number .anser:focus,
+zexal-date .anser:focus,
+zexal-radio .anser:focus,
+zexal-check .anser:focus {
+    outline: 0px solid transparent;
+}
+
+zexal-number .question-number,
+zexal-date .question-date {
+    width: 50%;
+    margin-right: 50%;
+}
+
+zexal-title .section-title,
+zexal-title .section-subtitle {
+    font-size: 34px;
+    line-height: 135%;
+    max-width: 100%;
+    min-width: 0%;
+    margin-bottom: 1.5rem;
+}
+
+zexal-title .section-subtitle {
+    font-size: 23px;
+    text-align: left;
+    margin-bottom: 0.5rem;
+}
+
+zexal-radio .radio-option,
+zexal-check .check-option {
+    display: flex;
+    margin-top: 0.5rem;
+    font-size: 19px;
+}
+
+zexal-radio .radio-option .outer-radio {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #383838;
+    background-color: transparent;
+    padding: 2px;
+    border-radius: 100%;
+    margin: 0.3rem 1rem 0.3rem 1.5rem;
+}
+
+zexal-radio .radio-option .inner-radio {
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+zexal-check .check-option .outer-check {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #383838;
+    background-color: white;
+    padding: 2px;
+    border-radius: 0%;
+    margin: 0.3rem 1rem 0.3rem 1.5rem;
+}
+
+zexal-check .check-option .inner-check {
+    width: 12px;
+    height: 12px;
+    border-radius: 0%;
+    cursor: pointer;
+}
+
+zexal-radio .radio-option .inner-radio.selected,
+zexal-check .check-option .inner-check.selected {
+    background-color: red;
+}
+
+zexal-radio .radio-option .radio-desc,
+zexal-check .check-option .check-desc {
+    cursor: pointer;
+}
+
+zexal-file .file-upload,
+zexal-file .file-uploaded {
+    width: 25%;
+    margin-right: 75%;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+    transition: all .3s ease-in-out;
+    background-color: transparent;
+    border-color: #9abce0;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
+
+zexal-radio .radio-option input,
+zexal-check .check-option input,
+zexal-file input,
+zexal-file .file-uploaded {
+    display: none;
+}
+
+zexal-file .file-upload:hover {
+    background-color: #eff7ff;
+    text-decoration: none;
+}
+
+zexal-file .file-upload svg,
+zexal-file .file-uploaded svg {
+    vertical-align: middle;
+}
+
+zexal-file .file-uploaded::before {
+    content: attr(data-name);
+    white-space: pre;
+    float: left;
+}
+
+zexal-file .file-uploaded {
+    cursor: auto;
+    width: 50%;
+    margin-right: 50%;
+    border-color: #d8d8d8;
+}
+
+zexal-file .file-uploaded svg {
+    cursor: pointer;
+    margin-left: 0.5rem;
+    float: right;
+}
+
+zexal-file .file-uploaded svg:hover {
+    background-color: #ff7474;
+    border-radius: 100%;
+}
+
+@media (max-width: 768px) {
+    zexal-form .section-question {
+        padding: 0.5rem 0rem;
+    }
+    zexal-form .question-number,
+    zexal-form .question-date {
+        width: 70%;
+        margin-right: 30%;
+    }
+    zexal-file .file-uploaded {
+        width: 90%;
+        margin-right: 10%;
+    }
+    zexal-file .file-upload {
+        width: 50%;
+        margin-right: 50%;
+    }
+}
