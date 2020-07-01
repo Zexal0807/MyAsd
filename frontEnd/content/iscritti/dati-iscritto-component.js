@@ -29,13 +29,21 @@ export class DatiIscrittoComponent extends ZexalComponent {
         });
     }
 
+    back() {
+        document.querySelector('app-content').render();
+    }
+
     _addEvent() {
         var self = this;
+        if (isMobile) {
+            $(document).on("backbutton", function() {
+                self.back();
+            });
+        }
         $('.back', self).on("click", function() {
-            document.querySelector('app-content').render();
+            self.back();
         });
         $(".data", this).append(new DocTableComponent(this._doc));
-
     }
 
     _render() {
