@@ -23,6 +23,7 @@ export class ZexalButtonComponent extends ZexalComponent {
     }
 
     _isValid() { return true; }
+
     _render() {
         return `<button class="section-button" data-section="` + this.section + `" type="button">AVANTI</button>`;
     }

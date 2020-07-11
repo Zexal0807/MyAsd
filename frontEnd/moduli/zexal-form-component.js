@@ -8,7 +8,7 @@ import { ZexalPhoneQuestionComponent } from './zexal-phonequestion-component.js'
 import { ZexalRadioQuestionComponent } from './zexal-radioquestion-component.js'
 import { ZexalTextQuestionComponent } from './zexal-textquestion-component.js'
 import { ZexalTitleComponent } from './zexal-title-component.js'
-
+import { ZexalHiddenComponent } from './zexal-hidden-component.js'
 
 export class ZexalFormComponent extends ZexalComponent {
 
@@ -43,7 +43,6 @@ export class ZexalFormComponent extends ZexalComponent {
 
     _changeSection(id) {
         var d = $('.carousel-item.active > *', this);
-        console.log(d);
 
         var vi = true;
         $.each(d, function(k, v) {
@@ -56,7 +55,11 @@ export class ZexalFormComponent extends ZexalComponent {
                 vi = false;
             }
         });
-        $('.carousel', this).carousel(id);
+        if (id != "submit") {
+            $('.carousel', this).carousel(id);
+        } else {
+            $('form', this).submit();
+        }
     }
 
     _render() {
@@ -79,6 +82,9 @@ export class ZexalFormComponent extends ZexalComponent {
             var elem;
             el.forEach(function(sel, si) {
                 switch (sel.type) {
+                    case "hidden":
+                        $('.carousel-item[data-value="' + i + '"]', form).append(new ZexalHiddenComponent(sel));
+                        break;
                     case "button":
                         $('.carousel-item[data-value="' + i + '"]', form).append(new ZexalButtonComponent(sel));
                         break;

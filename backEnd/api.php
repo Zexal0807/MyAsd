@@ -32,6 +32,7 @@ class Api {
         "getTesserati" => "iscritti/getTesserati.php",
         "getDatiIscritto" => "iscritti/getDatiIscritto.php",
 
+        "addTesserato"=>"tesseramento/addTesserato.php",
 
         "addSpesa" => "contabilita/addSpesa.php",                   //8
         "getMovimenti" => "contabilita/getMovimenti.php"            //10
@@ -46,7 +47,8 @@ foreach(Api::$API_LIST as $k => $v){
 
 ZRoute::addMiddleware(function($data){
     $req = new Request();
-    if($req->getMethod() == "POST"){
+    if(find("nt/", $req->getUrl()) > -1){
+    }elseif($req->getMethod() == "POST"){
         if(array_key_exists($req->getUrl(), Api::$API_LIST)){
 
             $className = $req->getUrl();

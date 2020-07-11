@@ -18,7 +18,7 @@ export class ZexalTextQuestionComponent extends ZexalQuestionComponent {
             self._isValid();
         });
         $('input', this).on("keydown keyup key", function(e) {
-            if (self.max != undefined && $(this).val().length >= self.max) {
+            if (e.key != "Backspace" && e.key != "Delete" && e.key != "Tab" && self.max != undefined && $(this).val().length >= self.max) {
                 e.preventDefault();
             }
         });
