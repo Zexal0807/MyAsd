@@ -15,10 +15,8 @@ class getTesserati{
         $DB = new Database($_SESSION['db_host'], $_SESSION['db_user'], $_SESSION['db_pasw'], $_SESSION['db_db']);
 
         $ret = $DB->select("*")
-            ->from("tesseramenti")
-            ->innerJoin("anagrafiche", "tesseramenti.idIscritto", "=", "anagrafiche.idIscritto")
-            ->where("tesseramenti.idTipoTesseramento", ">=", 0, "AND")
-            ->where("YEAR(tesseramenti.data)", "=", $data['anno'])
+            ->from("gettesserati")
+            ->where("anno", "=", $data['anno'])
             ->execute();
         
         return $ret;

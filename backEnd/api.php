@@ -34,6 +34,9 @@ class Api {
 
         "addTesserato"=>"tesseramento/addTesserato.php",
 
+        "getTesseramentoComfermabile"=>"tesseramento/getTesseramentoComfermabile.php",
+        "confermaTesseramento"=>"tesseramento/confermaTesseramento.php",
+        
         "addSpesa" => "contabilita/addSpesa.php",                   //8
         "getMovimenti" => "contabilita/getMovimenti.php"            //10
         

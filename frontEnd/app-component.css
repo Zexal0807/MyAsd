@@ -93,6 +93,8 @@ app-home home-tab .tab-icon i {
 @media only screen and (max-width: 760px) {
     app-alert {
         width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
     }
     app-sidebar {
         position: fixed;
