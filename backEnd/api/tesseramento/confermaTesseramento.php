@@ -20,6 +20,7 @@ class confermaTesseramento{
             ->from("tesseramenti")
             ->where("codice", "=", $codice)
             ->execute();
+        
         if(sizeof($ret) == 1){
             $ret = $ret[0];
 
