@@ -17,12 +17,18 @@ export class ZexalFormComponent extends ZexalComponent {
     enctype = "multipart/form-data";
     content = [];
 
+    _data = [];
+
     _style = 'frontEnd/moduli/zexalForm.css';
 
     constructor() {
         super();
         var js = this.getAttribute("data-json");
         this.removeAttribute("data-json");
+
+        var cf = this.getAttribute("data-c");
+        this.removeAttribute("data-c");
+
         var self = this;
 
         $.ajax({
@@ -31,21 +37,32 @@ export class ZexalFormComponent extends ZexalComponent {
             dataType: "json",
             success: function(c) {
                 Object.assign(self, c);
-                self.render();
+                if (cf != null) {
+                    $.ajax({
+                        url: "/getAnagrafica",
+                        method: "POST",
+                        data: {
+                            c: cf
+                        },
+                        success: function(c) {
+                            self._data = c;
+                            self.render();
+                        },
+                        error: function(e) {}
+                    });
+                } else {
+                    self.render();
+                }
             },
             error: function(e) {
-                debugger;
-                Object.assign(self, e);
-                self.render();
+                console.log(e);
             }
         });
     }
 
     _changeSection(id) {
-        var d = $('.carousel-item.active > *', this);
-
         var vi = true;
-        $.each(d, function(k, v) {
+        $.each($('.carousel-item.active > *', this), function(k, v) {
             if (!v._isValid()) {
                 if (vi) {
                     $([document.documentElement, document.body]).animate({
@@ -55,14 +72,17 @@ export class ZexalFormComponent extends ZexalComponent {
                 vi = false;
             }
         });
-        if (id != "submit") {
-            $('.carousel', this).carousel(id);
-        } else {
-            $('form', this).submit();
+        if (vi) {
+            if (id != "submit") {
+                $('.carousel', this).carousel(id);
+            } else {
+                $('form', this).submit();
+            }
         }
     }
 
     _render() {
+        var self = this;
         var form = document.createElement("form");
         form.method = this.method;
         form.action = this.action;
@@ -79,8 +99,9 @@ export class ZexalFormComponent extends ZexalComponent {
 
         form.innerHTML = html;
         this.content.forEach(function(el, i) {
-            var elem;
+            var v = undefined;
             el.forEach(function(sel, si) {
+                v = (self._data[sel.name] == undefined ? undefined : self._data[sel.name]);
                 switch (sel.type) {
                     case "hidden":
                         $('.carousel-item[data-value="' + i + '"]', form).append(new ZexalHiddenComponent(sel));
@@ -89,28 +110,28 @@ export class ZexalFormComponent extends ZexalComponent {
                         $('.carousel-item[data-value="' + i + '"]', form).append(new ZexalButtonComponent(sel));
                         break;
                     case "check":
-                        $('.carousel-item[data-value="' + i + '"]', form).append(new ZexalCheckQuestionComponent(sel));
+                        $('.carousel-item[data-value="' + i + '"]', form).append(new ZexalCheckQuestionComponent(sel, v));
                         break;
                     case "date":
-                        $('.carousel-item[data-value="' + i + '"]', form).append(new ZexalDateQuestionComponent(sel));
+                        $('.carousel-item[data-value="' + i + '"]', form).append(new ZexalDateQuestionComponent(sel, v));
                         break;
                     case "email":
-                        $('.carousel-item[data-value="' + i + '"]', form).append(new ZexalEmailQuestionComponent(sel));
+                        $('.carousel-item[data-value="' + i + '"]', form).append(new ZexalEmailQuestionComponent(sel, v));
                         break;
                     case "file":
                         $('.carousel-item[data-value="' + i + '"]', form).append(new ZexalFileQuestionComponent(sel));
                         break;
                     case "number":
-                        $('.carousel-item[data-value="' + i + '"]', form).append(new ZexalNumberQuestionComponent(sel));
+                        $('.carousel-item[data-value="' + i + '"]', form).append(new ZexalNumberQuestionComponent(sel, v));
                         break;
                     case "phone":
-                        $('.carousel-item[data-value="' + i + '"]', form).append(new ZexalPhoneQuestionComponent(sel));
+                        $('.carousel-item[data-value="' + i + '"]', form).append(new ZexalPhoneQuestionComponent(sel, v));
                         break;
                     case "radio":
-                        $('.carousel-item[data-value="' + i + '"]', form).append(new ZexalRadioQuestionComponent(sel));
+                        $('.carousel-item[data-value="' + i + '"]', form).append(new ZexalRadioQuestionComponent(sel, v));
                         break;
                     case "text":
-                        $('.carousel-item[data-value="' + i + '"]', form).append(new ZexalTextQuestionComponent(sel));
+                        $('.carousel-item[data-value="' + i + '"]', form).append(new ZexalTextQuestionComponent(sel, v));
                         break;
                     case "title":
                         $('.carousel-item[data-value="' + i + '"]', form).append(new ZexalTitleComponent(sel));

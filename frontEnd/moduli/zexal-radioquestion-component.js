@@ -6,13 +6,23 @@ export class ZexalRadioQuestionComponent extends ZexalQuestionComponent {
         var self = this;
         var html = `<div class="question-radio">`;
         Object.entries(this.option).forEach(function(el) {
-            html += `<div class="radio-option">
+            if (self._value == undefined || self._value != el[0]) {
+                html += `<div class="radio-option">
                 <div class="outer-radio">
                     <div class="inner-radio"></div>
                 </div>
                 <div class="radio-desc">` + el[1] + `</div>
                 <input class="anser" type="radio" name="` + self.name + `" value="` + el[0] + `">
             </div>`;
+            } else {
+                html += `<div class="radio-option">
+                <div class="outer-radio">
+                    <div class="inner-radio selected"></div>
+                </div>
+                <div class="radio-desc">` + el[1] + `</div>
+                <input class="anser" type="radio" name="` + self.name + `" value="` + el[0] + `" checked>
+            </div>`;
+            }
         });
         html += `</div>`;
         return html;

@@ -31,6 +31,8 @@ class Api {
         "getSoci" => "iscritti/getSoci.php",
         "getTesserati" => "iscritti/getTesserati.php",
         "getDatiIscritto" => "iscritti/getDatiIscritto.php",
+        "getAnagrafica" => "iscritti/getAnagrafica.php",
+
 
         "addTesserato"=>"tesseramento/addTesserato.php",
 

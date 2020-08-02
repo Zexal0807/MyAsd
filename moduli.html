@@ -16,9 +16,27 @@
 </head>
 
 <body>
+    <script>
+        if (location.search.length > 1) {
+            var search = new URLSearchParams(location.search);
+            var file = search.get('f');
+            if (file == undefined) {
+                document.body.append("QUALCOSA NON HA FUNZIONATO");
+            } else {
+                var cf = search.get('c');
+                if (cf != undefined) {
+                    document.body.innerHTML += '<zexal-form data-json="frontEnd/moduli/' + file + '.json" data-c="' + cf + '"></zexal-form>';
+                } else {
+                    document.body.innerHTML += '<zexal-form data-json="frontEnd/moduli/' + file + '.json"></zexal-form>';
+                }
+                window.history.replaceState("", "", (new URL(location.href)).pathname);
+            }
+        } else {
+            document.body.append("QUALCOSA NON HA FUNZIONATO");
+        }
+    </script>
     <script src="frontEnd/ZexalComponents.js"></script>
     <script type="module" src="frontEnd/moduli/zexal-form-component.js"></script>
-    <zexal-form data-json="frontEnd/moduli/test.json"></zexal-form>
 </body>
 
 </html>

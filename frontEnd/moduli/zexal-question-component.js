@@ -5,9 +5,12 @@ export class ZexalQuestionComponent extends ZexalComponent {
     descrizione = "";
     required = true;
 
-    constructor(arr = []) {
+    _value = undefined;
+
+    constructor(arr = [], value = undefined) {
         super();
         Object.assign(this, arr);
+        this._value = value;
     }
 
     _content() {

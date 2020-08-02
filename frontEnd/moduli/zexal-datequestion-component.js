@@ -6,11 +6,16 @@ export class ZexalDateQuestionComponent extends ZexalTextQuestionComponent {
     mindate
 
     _content() {
-        return `<div class="question-date">
-            <input class="anser" name="` + this.name + `" type="date" placeholder="La tua risposta">
-            <div class="underline"></div>
+        var html = `<div class="question-date">`;
+        if (this._value == undefined)
+            html += `<input class="anser" name="` + this.name + `" type="date" placeholder="La tua risposta">`;
+        else
+            html += `<input class="anser" name="` + this.name + `" type="date" placeholder="La tua risposta" value="` + this._value + `">`;
+        html += `<div class="underline"></div>
         </div>`;
+        return html;
     }
+
     _isValid() {
         if (this.required) {
             if ($('input', this).val() != "") {

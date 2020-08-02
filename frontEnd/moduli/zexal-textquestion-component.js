@@ -3,10 +3,14 @@ import { ZexalQuestionComponent } from './zexal-question-component.js'
 export class ZexalTextQuestionComponent extends ZexalQuestionComponent {
 
     _content() {
-        return `<div class="question-text">
-            <input class="anser" name="` + this.name + `" type="text" placeholder="La tua risposta">
-            <div class="underline"></div>
+        var html = `<div class="question-text">`;
+        if (this._value == undefined)
+            html += `<input class="anser" name="` + this.name + `" type="text" placeholder="La tua risposta">`;
+        else
+            html += `<input class="anser" name="` + this.name + `" type="text" placeholder="La tua risposta" value="` + this._value + `">`;
+        html += `<div class="underline"></div>
         </div>`;
+        return html;
     }
 
     _addEvent() {

@@ -1,8 +1,6 @@
 <?php
 require 'backEnd/Zexarel/loader.php';
 
-require 'backEnd/classes/CRUDuscite.php';
-require 'backEnd/classes/CRUDentrate.php';
 require 'backEnd/classes/CRUDcorsi.php';
 require 'backEnd/classes/CRUDorari.php';
 
