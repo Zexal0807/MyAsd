@@ -8,11 +8,13 @@ class addTesserato{
     public static function api($data){
         require 'backEnd/classes/VLKDatabase.php';
         require_once 'backEnd/classes/Database.php';
+
         $DB = new VLKDatabase();
         $ret = $DB->select("host", "user", "password", "db")
             ->from("vlk_asd")
             ->where("id", "=", $data['asd'])
             ->execute();
+        //Controllo che l'asd sia quella corrispondente
         if(sizeof($ret) != 1){
             header("HTTP/1.0 404 Not Found");
             exit;
@@ -58,6 +60,7 @@ class addTesserato{
                         }
                     }
 
+                    //Sistemamento dei dati per le anagrafiche
                     $age = DateTime::createFromFormat('Y-m-d', $data['data_nascita'])
                     ->diff(new DateTime('now'))
                     ->y;
@@ -68,10 +71,8 @@ class addTesserato{
                     unset($data['asds']);
                     unset($data['_FILES']);
                     unset($data['_COOKIE']);
-                
                     foreach($data as &$vv)
-                    $vv = strtoupper($vv);
-                
+                        $vv = strtoupper($vv);
                     $data['email'] = strtolower($data['email']);
 
                     //inserimento anagrafiche
@@ -149,7 +150,6 @@ class addTesserato{
                     )';
                     $r = $asd->executeSql($sql);
                     echo "CREATA anagrafica\n";
-
 
                     require_once 'backEnd/api/tesseramento/pdfCreator.php';
                     $data['type'] = $data['asd'];

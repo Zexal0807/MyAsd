@@ -104,7 +104,7 @@ export class ZexalFormComponent extends ZexalComponent {
                 v = (self._data[sel.name] == undefined ? undefined : self._data[sel.name]);
                 switch (sel.type) {
                     case "hidden":
-                        $('.carousel-item[data-value="' + i + '"]', form).append(new ZexalHiddenComponent(sel));
+                        $('.carousel-item[data-value="' + i + '"]', form).append(new ZexalHiddenComponent(sel, v));
                         break;
                     case "button":
                         $('.carousel-item[data-value="' + i + '"]', form).append(new ZexalButtonComponent(sel));

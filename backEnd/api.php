@@ -33,8 +33,8 @@ class Api {
         "getDatiIscritto" => "iscritti/getDatiIscritto.php",
         "getAnagrafica" => "iscritti/getAnagrafica.php",
 
-
         "addTesserato"=>"tesseramento/addTesserato.php",
+        "addRinnovo"=>"tesseramento/addRinnovo.php",        
 
         "getTesseramentoComfermabile"=>"tesseramento/getTesseramentoComfermabile.php",
         "confermaTesseramento"=>"tesseramento/confermaTesseramento.php",

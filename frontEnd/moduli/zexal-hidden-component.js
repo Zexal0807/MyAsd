@@ -1,8 +1,10 @@
 export class ZexalHiddenComponent extends ZexalComponent {
 
-    constructor(arr = []) {
+    constructor(arr = [], value = undefined) {
         super();
         Object.assign(this, arr);
+        if (value != undefined)
+            this.value = value;
     }
 
     _isValid() { return true; }
