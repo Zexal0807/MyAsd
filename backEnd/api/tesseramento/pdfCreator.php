@@ -124,14 +124,13 @@ class pdfCreator{
 		//salvo pdf tmp
 		$filename = date("YmdHis").".pdf";
 		$pdf->save('F', $filename);
-		echo "File salvato su HD\n";
+		//echo "File salvato su HD\n";
 
 		//Salvataggio come file nel DB
 		$fi = file_get_contents($filename);
 		$a = intval(date("m")) > 7 ? intval(date("Y"))+1:intval(date("Y"));
 		$tes = $asd->executeSql('INSERT INTO file(nome, data, creazione) VALUES ("Tesseramento '.$a.'.pdf", "'.addslashes($fi).'", "'.date("Y-m-d H:i:s").'")');
-
-		echo "File salvato su DB\n";
+		//echo "File salvato su DB\n";
 
 		pdfCreator::sendDocument($filename, $dati['email'],[
 			"nome"=>$dati['cognome']." ".$dati['nome'],
@@ -139,9 +138,9 @@ class pdfCreator{
 			"sub" => $pal["nome"],
 			"text" => "Email generata automaticamente, si prega di non rispondere<br><br>Buongiorno,<br> Come da voi richiesto, vi alleghiamo i moduli d'iscrizione, essi sono da riconsegnare firmati all'<b>".$pal["nome"]." entro il ".date('d/m/Y', strtotime('+7 day', time()))."</b>"
 		]);
-		echo "Email inviata";
+		//echo "Email inviata";
 
-		return ['code' => $code, 'file'=>$tes, "year" => $a];
+		return ['code' => $code, 'file' => $tes, "year" => $a];
 	}
 	
 	public static function createModuleToken($tipo){

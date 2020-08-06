@@ -21,14 +21,15 @@ class addTesserato{
         }else{
             $ret = $ret[0];
             $asd = new Database($ret['host'], $ret['user'], $ret['password'], $ret['db']);
+
             //creo il record iscritto nell'asd
             $ret = $asd->executeSql('INSERT INTO iscritti (creatore, dataCreazione, ultimaModifica) VALUES("self-moduli", "'.date("Y-m-d H:i:s").'", "'.date("Y-m-d H:i:s").'")');
             if($ret){
-                echo "CREATO ASD\n";
+                //echo "CREATO ASD\n";
                 //creo il record iscritto nella vlk
                 $vlk = $DB->executeSql('INSERT INTO vlk_iscritti (idIscritto, idAsd) VALUES('.$ret.', '.$data['asd'].')');
                 if($vlk){
-                    echo "CREATO VLK\n";
+                    //echo "CREATO VLK\n";
                     $f = "null";
                     $cf = "null";
                     $cfg = "null";
@@ -39,7 +40,7 @@ class addTesserato{
                             $fi = addslashes(file_get_contents($_FILES['foto_mezzobusto']['tmp_name']));
                             $name = basename($_FILES['foto_mezzobusto']['name']);
                             $f = $asd->executeSql('INSERT INTO file(nome, data, creazione) VALUES ("foto'.$name.'", "'.$fi.'", "'.date("Y-m-d H:i:s").'")');
-                            echo "UPLOAD foto\n";
+                            //echo "UPLOAD foto\n";
                             //mail....
                         }
                     }
@@ -48,7 +49,7 @@ class addTesserato{
                             $fi = addslashes(file_get_contents($_FILES['foto_codice_fiscale']['tmp_name']));
                             $name = basename($_FILES['foto_codice_fiscale']['name']);
                             $cf = $asd->executeSql('INSERT INTO file(nome, data, creazione) VALUES ("codice_fiscale'.$name.'", "'.$fi.'", "'.date("Y-m-d H:i:s").'")');
-                            echo "UPLOAD codice_fiscale\n";
+                            //echo "UPLOAD codice_fiscale\n";
                         }
                     }
                     if (sizeof($_FILES['foto_codice_fiscale_genitore']['name']) > 0) {
@@ -56,7 +57,7 @@ class addTesserato{
                             $fi = addslashes(file_get_contents($_FILES['foto_codice_fiscale_genitore']['tmp_name']));
                             $name = basename($_FILES['foto_codice_fiscale_genitore']['name']);
                             $cfg = $asd->executeSql('INSERT INTO file(nome, data, creazione) VALUES ("codice_fiscale_genitore'.$name.'", "'.$fi.'", "'.date("Y-m-d H:i:s").'")');
-                            echo "UPLOAD codice_fiscale_genitore\n";
+                            //echo "UPLOAD codice_fiscale_genitore\n";
                         }
                     }
 
@@ -149,7 +150,7 @@ class addTesserato{
                         '.$cfg.'
                     )';
                     $r = $asd->executeSql($sql);
-                    echo "CREATA anagrafica\n";
+                    //echo "CREATA anagrafica\n";
 
                     require_once 'backEnd/api/tesseramento/pdfCreator.php';
                     $data['type'] = $data['asd'];
@@ -159,6 +160,7 @@ class addTesserato{
                     $sql = 'INSERT INTO tesseramenti(idIscritto, data, idTipoTesseramento, codice, idFile) VALUES("'. $data['idIscritto'].'", "'.date("Y-m-d H:i:s").'", 2'.$pdf['year'].', "'.$pdf['code'].'",'.$pdf['file'].')';
                     
                     $asd->executeSql($sql);
+                    echo "Ti abbiamo inviato una mail con i moduli :)";
                 }
             }
         }

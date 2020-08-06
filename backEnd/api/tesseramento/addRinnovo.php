@@ -19,6 +19,7 @@ class addRinnovo{
             header("HTTP/1.0 404 Not Found");
             exit;
         }else{
+            //echo "Asd corretta \n";
             $ret = $ret[0];
             $asd = new Database($ret['host'], $ret['user'], $ret['password'], $ret['db']);
 
@@ -28,8 +29,9 @@ class addRinnovo{
                 ->where("codice_fiscale", "=", $data['codice_fiscale'], "AND ")
                 ->where("idIscritto", "=", $data['idIscritto'])
                 ->execute();
-            
+
             if(sizeof($ret) == 1){
+                //echo "Anagrafica unica\n";
                 $id = $ret[0]['id'];
 
                 //Sistemamento dei dati per le anagrafiche
@@ -46,6 +48,8 @@ class addRinnovo{
                 foreach($data as &$vv)
                     $vv = strtoupper($vv);
                 $data['email'] = strtolower($data['email']);
+
+                //echo "Dati pronti\n";
 
                 //update anagrafiche
                 $sql = 'UPDATE anagrafiche SET
@@ -84,6 +88,8 @@ class addRinnovo{
                     WHERE idIscritto = '.$data['idIscritto'];
                 $asd->executeSql($sql);
 
+                //echo "Update anagrafica\n";
+
                 //pdf
                 require_once 'backEnd/api/tesseramento/pdfCreator.php';
                 $data['type'] = $data['asd'];
@@ -91,10 +97,9 @@ class addRinnovo{
 
                 $sql = 'INSERT INTO tesseramenti(idIscritto, data, idTipoTesseramento, codice, idFile) VALUES("'. $data['idIscritto'].'", "'.date("Y-m-d H:i:s").'", 4'.$pdf['year'].', "'.$pdf['code'].'",'.$pdf['file'].')';
                  
-                $asd->executeSql($sql);
-            }else{
-
-            }                
+                $ret = $asd->executeSql($sql);
+                echo "Ti abbiamo inviato una mail con i moduli :)";
+            }         
         }
     }
 }

@@ -42,7 +42,8 @@ export class ZexalFormComponent extends ZexalComponent {
                         url: "/getAnagrafica",
                         method: "POST",
                         data: {
-                            c: cf
+                            c: cf,
+                            asd: self.content[0][1].value //Posizione by default da cercare
                         },
                         success: function(c) {
                             self._data = c;
