@@ -49,7 +49,9 @@ export class ZexalFormComponent extends ZexalComponent {
                             self._data = c;
                             self.render();
                         },
-                        error: function(e) {}
+                        error: function(e) {
+                            document.body.append("Anagrafica non trovata");
+                        }
                     });
                 } else {
                     self.render();
@@ -57,9 +59,12 @@ export class ZexalFormComponent extends ZexalComponent {
             },
             error: function(e) {
                 console.log(e);
+                document.body.append("Modulo non trovato");
             }
         });
     }
+
+    connectedCallback() {}
 
     _changeSection(id) {
         var vi = true;
