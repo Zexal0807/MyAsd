@@ -57,9 +57,6 @@ export class AppContentComponent extends ZexalComponent {
             case "/corsi/iscrizione":
                 screen = new AddIscrizioneComponent();
                 break;
-            case "/corsi/pagamento":
-                screen = new AddPagamentoComponent();
-                break;
             case "/corsi/confermatesseramento":
                 screen = new ConfermaTesseramentoComponent();
                 break;
@@ -71,6 +68,9 @@ export class AppContentComponent extends ZexalComponent {
                 break;
             case "/contabilita/tipouscite":
                 screen = new TipoUsciteComponent();
+                break;
+            case "/contabilita/pagamento":
+                screen = new AddPagamentoComponent();
                 break;
             case "/contabilita/spesa":
                 screen = new AddUscitaComponent();

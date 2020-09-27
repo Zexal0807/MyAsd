@@ -106,8 +106,8 @@ class ListaIscrittiComponent extends ZexalComponent {
                 <div class="">
             Anno sportivo:
             <select class="form-control">`;
-            var y = (new Date()).getFullYear();
-            for (let i = 2015; i <= y; i++) {
+            var y = (new Date()).getFullYear() + 1;
+            for (let i = 2019; i <= y; i++) {
                 r += `<option value="` + i + `"`;
                 if (i == this._year) {
                     r += ` selected`;
