@@ -17,6 +17,7 @@ class getTesserati{
         $ret = $DB->select("*")
             ->from("gettesserati")
             ->where("anno", "=", $data['anno'])
+            ->orderBy("cognome, nome")
             ->execute();
         
         return $ret;
