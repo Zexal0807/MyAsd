@@ -150,19 +150,20 @@ class DocTableComponent extends CustomTableComponent {
             if (isMobile) {
                 alert("Download disponibili solo da PC");
             } else {
-                $.ajax({
-                    type: "GET",
-                    url: url,
-                    success: function(d, s, r) {
-                        var fileName = r.getResponseHeader("content-disposition");
-                        fileName = fileName.substring(fileName.indexOf("=") + 1);
-                        var link = document.createElement('a');
-                        link.href = window.URL.createObjectURL(new Blob([d]));
-                        link.download = fileName;
-                        link.click();
-                    },
-                    error: function(e) {}
-                });
+                var req = new XMLHttpRequest();
+                req.open("GET", url, true);
+                req.responseType = "blob";
+                req.onload = function(event) {
+                    var blob = req.response;
+                    var fileName = req.getResponseHeader("fileName") //if you have the fileName header available
+                    fileName = fileName.substring(fileName.indexOf("=") + 1);
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = fileName;
+                    link.click();
+                };
+
+                req.send();
             }
         });
     }
