@@ -140,6 +140,9 @@ class pdfCreator{
 		]);
 		//echo "Email inviata";
 
+		unlink($filename);
+		//Cancellazione file temporaneo
+		
 		return ['code' => $code, 'file' => $tes, "year" => $a];
 	}
 	
@@ -304,6 +307,7 @@ class pdfCreator{
 		  $mail->addReplyTo('tesserevlk@roujutsu.it', 'Tessere VLK');
 		  $mail->send();
 		}catch(Exception $e){
+			echo "Email non iviata";
 		  mail("tesserevlkl@roujutsu.it", "Errore invio email", "Errore durante l'invio a ".$to." del file ".$file."<br>Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
 		}
 	  }
