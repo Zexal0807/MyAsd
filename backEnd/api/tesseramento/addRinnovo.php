@@ -22,9 +22,8 @@ class addRinnovo{
             //echo "Asd corretta \n";
             $ret = $ret[0];
             $asd = new Database($ret['host'], $ret['user'], $ret['password'], $ret['db']);
-
             //controllo che il record esista
-            $ret = $DB->select("*")
+            $ret = $asd->select("*")
                 ->from("anagrafiche")
                 ->where("codice_fiscale", "=", $data['codice_fiscale'], "AND ")
                 ->where("idIscritto", "=", $data['idIscritto'])
@@ -96,10 +95,12 @@ class addRinnovo{
                 $pdf = pdfCreator::api($data, $asd);
 
                 $sql = 'INSERT INTO tesseramenti(idIscritto, data, idTipoTesseramento, codice, idFile) VALUES("'. $data['idIscritto'].'", "'.date("Y-m-d H:i:s").'", 4'.$pdf['year'].', "'.$pdf['code'].'",'.$pdf['file'].')';
-                 
                 $ret = $asd->executeSql($sql);
-                echo "Ti abbiamo inviato una mail con i moduli :)";
-            }         
+
+                echo "<h1>Ti abbiamo inviato una mail con i moduli via email:)</h1>";
+                
+            }
         }
+        return [];
     }
 }
