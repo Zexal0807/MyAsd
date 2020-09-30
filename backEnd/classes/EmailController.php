@@ -16,7 +16,7 @@ class EmailController extends PHPMailer{
     $this->Host       = 'smtps.aruba.it';               // Set the SMTP server to send through
     $this->SMTPAuth   = true;                           // Enable SMTP authentication
     $this->Username   = 'tesserevlk@roujutsu.it';       // SMTP username
-    $this->Password   = 'roujutsu2018';                 // SMTP password
+    $this->Password   = 'roujutsu2020';                 // SMTP password
     $this->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;    // Enable TLS encryption;
     $this->Port       = 465;                            // TCP port to connect to
 
