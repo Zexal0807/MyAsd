@@ -137,7 +137,7 @@ class ListaIscrittiComponent extends ZexalComponent {
 
 export class ListaSociComponent extends ListaIscrittiComponent {
 
-    _functionId = 8;
+    _functionId = 17;
     _loadUrl = "/getSoci";
 
 }
@@ -146,7 +146,7 @@ customElements.define("lista-soci", ListaSociComponent);
 
 export class ListaTesseratiComponent extends ListaIscrittiComponent {
 
-    _functionId = 8;
+    _functionId = 18;
     _loadUrl = "/getTesserati";
 
 }
@@ -157,7 +157,7 @@ export class ListaAssociatiComponent extends ListaIscrittiComponent {
 
     _filterYear = false;
 
-    _functionId = 8;
+    _functionId = 16;
     _loadUrl = "/getIscritti";
 
 }
