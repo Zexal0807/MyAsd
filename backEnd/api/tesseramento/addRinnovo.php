@@ -91,7 +91,7 @@ class addRinnovo{
 
                 //pdf
                 require_once 'backEnd/api/tesseramento/pdfCreator.php';
-                $data['type'] = $data['asd'];
+                $data['type'] = "1".$data['asd'];
                 $pdf = pdfCreator::api($data, $asd);
 
                 $sql = 'INSERT INTO tesseramenti(idIscritto, data, idTipoTesseramento, codice, idFile) VALUES("'. $data['idIscritto'].'", "'.date("Y-m-d H:i:s").'", 4'.$pdf['year'].', "'.$pdf['code'].'",'.$pdf['file'].')';
