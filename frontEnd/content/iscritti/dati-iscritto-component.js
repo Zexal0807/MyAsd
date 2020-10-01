@@ -155,7 +155,7 @@ class DocTableComponent extends CustomTableComponent {
                 req.responseType = "blob";
                 req.onload = function(event) {
                     var blob = req.response;
-                    var fileName = req.getResponseHeader("fileName") //if you have the fileName header available
+                    var fileName = req.getResponseHeader("content-disposition") //if you have the fileName header available
                     fileName = fileName.substring(fileName.indexOf("=") + 1);
                     var link = document.createElement('a');
                     link.href = window.URL.createObjectURL(blob);
