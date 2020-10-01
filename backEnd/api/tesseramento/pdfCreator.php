@@ -8,7 +8,7 @@ class pdfCreator{
 		//generazione pdf
         require_once 'backEnd/Zexarel/class/ZDocument/ZPdf.php';
 		
-		$type = $dati['asd'];
+		$type = $dati['type'];
 		
 		$code = pdfCreator::createModuleToken($type);
         $path = 'https://roujutsu.it/json//moduli/'.$type.'.json';
