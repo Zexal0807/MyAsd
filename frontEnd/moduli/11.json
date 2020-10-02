@@ -5,7 +5,7 @@
     "content": [
         [{
                 "type": "title",
-                "titolo": "Yoshitaka Prevalle - Domanda di rinnovo tesseremanto all'Ente di Promozione Sportiva Libertas"
+                "titolo": "Yoshitaka Prevalle - Richiesta di rinnovo tesseremanto"
             },
             {
                 "type": "hidden",
@@ -239,7 +239,7 @@
             {
                 "type": "title",
                 "titolo": "Informative e consensi per Ente di Promozione Sportiva Libertas",
-                "descrizione": "Leggere attentamente l'<a href='https://www.roujutsu.it/informativa/libertas/1'>informativa</a>",
+                "descrizione": "Leggere attentamente l'<a target='_blank' href='https://www.roujutsu.it/informativa/libertas1'>informativa</a>",
                 "sub": true
             },
             {
@@ -272,7 +272,7 @@
             {
                 "type": "title",
                 "titolo": "Informative e consensi per Yoshitaka - Prevalle Arti Marziali",
-                "descrizione": "Leggere attentamente l'<a href='https://www.roujutsu.it/informativa/libertas/pal1'>informativa</a>",
+                "descrizione": "Leggere attentamente l'<a target='_blank' href='https://www.roujutsu.it/informativa/1'>informativa</a>",
                 "sub": true
             },
             {

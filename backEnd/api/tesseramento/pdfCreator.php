@@ -21,7 +21,11 @@ class pdfCreator{
         $pdf->setFont('Helvetica','',14);
         $pdf->setTextColor(0, 0, 0);
         $pdf->setAuthor("Roujutsu®");
-        $pdf->setCreator("Roujutsu®");
+		$pdf->setCreator("Roujutsu®");
+
+		$a = intval(date("m")) > 7 ? intval(date("Y"))+1:intval(date("Y"));
+		$nam = $json['nome'];
+		$nam = str_replace("{{ anno }}", $a, $nam);
         $pdf->setTitle($json['nome']);
 
 		//pagine successive se esistono
@@ -128,13 +132,13 @@ class pdfCreator{
 
 		//Salvataggio come file nel DB
 		$fi = file_get_contents($filename);
-		$a = intval(date("m")) > 7 ? intval(date("Y"))+1:intval(date("Y"));
-		$tes = $asd->executeSql('INSERT INTO file(nome, data, creazione) VALUES ("Tesseramento '.$a.'.pdf", "'.addslashes($fi).'", "'.date("Y-m-d H:i:s").'")');
+		
+		$tes = $asd->executeSql('INSERT INTO file(nome, data, creazione) VALUES ("'.$nam.'.pdf", "'.addslashes($fi).'", "'.date("Y-m-d H:i:s").'")');
 		//echo "File salvato su DB\n";
 
 		pdfCreator::sendDocument($filename, $dati['email'],[
 			"nome"=>$dati['cognome']." ".$dati['nome'],
-			"tit" => "Domanda di tesseramento di ".$dati['cognome']." ".$dati['nome'],
+			"tit" => "Domanda di ".($type > 10 ? "rinnovo " : "")."tesseramento di ".$dati['cognome']." ".$dati['nome'],
 			"sub" => $pal["nome"],
 			"text" => "Email generata automaticamente, si prega di non rispondere<br><br>Buongiorno,<br> Come da voi richiesto, vi alleghiamo i moduli d'iscrizione, essi sono da riconsegnare firmati all'<b>".$pal["nome"]." entro il ".date('d/m/Y', strtotime('+7 day', time()))."</b>"
 		]);

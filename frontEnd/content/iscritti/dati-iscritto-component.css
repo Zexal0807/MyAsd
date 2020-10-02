@@ -54,9 +54,8 @@ dati-iscritto .table .open {
     padding: 1rem;
 }
 
-doc-table .row>div:first-child {}
-
 doc-table .row>div:nth-child(2) i {
+    cursor: pointer;
     float: right;
 }
 
