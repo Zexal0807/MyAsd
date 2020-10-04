@@ -23,11 +23,7 @@ class pdfCreator{
         $pdf->setAuthor("Roujutsu®");
 		$pdf->setCreator("Roujutsu®");
 
-		$a = intval(date("m")) > 7 ? intval(date("Y"))+1:intval(date("Y"));
-		$nam = $json['nome'];
-		$nam = str_replace("{{ anno }}", $a, $nam);
-        $pdf->setTitle($json['nome']);
-
+		
 		//pagine successive se esistono
 		for($k = 0; $k < sizeof($pagine); $k++){
             $page = true;
@@ -125,6 +121,11 @@ class pdfCreator{
 			}
 		}
 		
+		$a = intval(date("m")) > 7 ? intval(date("Y"))+1:intval(date("Y"));
+		$nam = $json['nome'];
+		$nam = str_replace("{{ anno }}", $a, $nam);
+        $pdf->setTitle($json['nome']);
+
 		//salvo pdf tmp
 		$filename = date("YmdHis").".pdf";
 		$pdf->save('F', $filename);
