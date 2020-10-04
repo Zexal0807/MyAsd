@@ -12,6 +12,22 @@
             background-color: red;
             padding-top: 2rem;
         }
+        
+        i.fa-check-circle {
+            color: white;
+            text-align: center;
+            display: block;
+            font-size: 15rem;
+            text-shadow: 2px 2px 15px black;
+        }
+        
+        h1 {
+            color: white;
+            text-align: center;
+            display: block;
+            font-size: 2rem;
+            text-shadow: 2px 2px 15px black;
+        }
     </style>
 </head>
 
@@ -19,17 +35,22 @@
     <script>
         if (location.search.length > 1) {
             var search = new URLSearchParams(location.search);
-            var file = search.get('f');
-            if (file == undefined) {
-                document.body.append("QUALCOSA NON HA FUNZIONATO");
+            var status = search.get('s');
+            if (status != "null") {
+                document.body.innerHTML = '<i class="far fa-check-circle"></i><br><h1>Tesseramento effettuato, ti abbiamo<br>inviato una mail con i moduli</h1>';
             } else {
-                var cf = search.get('c');
-                if (cf != undefined) {
-                    document.body.innerHTML += '<zexal-form data-json="frontEnd/moduli/' + file + '.json" data-c="' + cf + '"></zexal-form>';
+                var file = search.get('f');
+                if (file == null) {
+                    document.body.append("QUALCOSA NON HA FUNZIONATO");
                 } else {
-                    document.body.innerHTML += '<zexal-form data-json="frontEnd/moduli/' + file + '.json"></zexal-form>';
+                    var cf = search.get('c');
+                    if (cf != null) {
+                        document.body.innerHTML += '<zexal-form data-json="frontEnd/moduli/' + file + '.json" data-c="' + cf + '"></zexal-form>';
+                    } else {
+                        document.body.innerHTML += '<zexal-form data-json="frontEnd/moduli/' + file + '.json"></zexal-form>';
+                    }
+                    window.history.replaceState("", "", (new URL(location.href)).pathname);
                 }
-                window.history.replaceState("", "", (new URL(location.href)).pathname);
             }
         } else {
             document.body.append("QUALCOSA NON HA FUNZIONATO");

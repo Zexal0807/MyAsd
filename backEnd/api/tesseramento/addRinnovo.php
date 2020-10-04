@@ -97,8 +97,7 @@ class addRinnovo{
                 $sql = 'INSERT INTO tesseramenti(idIscritto, data, idTipoTesseramento, codice, idFile) VALUES("'. $data['idIscritto'].'", "'.date("Y-m-d H:i:s").'", 4'.$pdf['year'].', "'.$pdf['code'].'",'.$pdf['file'].')';
                 $ret = $asd->executeSql($sql);
 
-                echo "<h1>Ti abbiamo inviato una mail con i moduli via email:)</h1>";
-                
+                redirect("/moduli.html?s=conf");
             }
         }
         return [];
