@@ -22,7 +22,13 @@ export class ZexalTextQuestionComponent extends ZexalQuestionComponent {
             self._isValid();
         });
         $('input', this).on("keydown keyup key", function(e) {
-            if (e.key != "Backspace" && e.key != "Delete" && e.key != "Tab" && self.max != undefined && $(this).val().length >= self.max) {
+            var c = e.key == "Backspace" ||
+                e.key == "Delete" ||
+                e.key == "Tab" ||
+                this.selectionEnd - this.selectionStart != 0 ||
+                (self.max != undefined && $(this).val().length < self.max);
+
+            if (!c) {
                 e.preventDefault();
             }
         });
