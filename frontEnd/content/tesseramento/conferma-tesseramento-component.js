@@ -80,7 +80,7 @@ export class ConfermaTesseramentoComponent extends ZexalComponent {
                         <div class="col-sm-7">
                             <select class="form-control col-sm-12" name="code">`;
             this._elencoIscritti.forEach(el => {
-                r += `<option value="` + el.code + `" ` + (self._data.code == el.code ? "selected" : "") + `>` + el.cognome + ' ' + el.nome + `</option>`;
+                r += `<option value="` + el.code + `" ` + (self._data.code == el.code ? "selected" : "") + `>` + el.code + ` - ` + el.cognome + ' ' + el.nome + `</option>`;
             });
             r += `</select>
                         </div>
