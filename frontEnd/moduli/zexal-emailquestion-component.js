@@ -12,5 +12,7 @@ export class ZexalEmailQuestionComponent extends ZexalTextQuestionComponent {
         </div>`;
         return html;
     }
+
+    _extraEvent(self) {}
 }
 customElements.define("zexal-email", ZexalEmailQuestionComponent);

@@ -16,8 +16,7 @@ export class ZexalPhoneQuestionComponent extends ZexalTextQuestionComponent {
         return html;
     }
 
-    _addEvent() {
-        super._addEvent();
+    _extraEvent(self) {
         $('input', this).on("keydown keyup key", function(e) {
             if (!(e.key == "Backspace" || e.key == "Delete" || (e.key >= "0" && e.key <= "9"))) {
                 e.preventDefault();

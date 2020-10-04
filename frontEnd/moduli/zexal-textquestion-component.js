@@ -21,16 +21,25 @@ export class ZexalTextQuestionComponent extends ZexalQuestionComponent {
         $('.anser', this).on("focusout", function() {
             self._isValid();
         });
+        self._extraEvent(self);
+    }
+
+    _extraEvent(self) {
         $('input', this).on("keydown keyup key", function(e) {
             var c = e.key == "Backspace" ||
                 e.key == "Delete" ||
-                e.key == "Tab" ||
-                this.selectionEnd - this.selectionStart != 0 ||
-                (self.max != undefined && $(this).val().length < self.max);
+                e.key == "Tab";
 
-            if (!c) {
-                e.preventDefault();
+            if (self.max == undefined) {
+
+            } else if ($(this).val().length >= self.max) {
+                if (this.selectionEnd - this.selectionStart == 0) {
+                    if (!c) {
+                        e.preventDefault();
+                    }
+                }
             }
+
         });
     }
 

@@ -16,6 +16,8 @@ export class ZexalDateQuestionComponent extends ZexalTextQuestionComponent {
         return html;
     }
 
+    _extraEvent(self) {}
+
     _isValid() {
         if (this.required) {
             if ($('input', this).val() != "") {
