@@ -156,10 +156,17 @@ export class AddPagamentoComponent extends ZexalComponent {
         
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Data pagamento</label>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <input type="date" class="form-control" name="data" required value="` + this._data.data + `">
                 </div>
-            <div class="col-sm-5"></div>
+            <label class="col-sm-3 col-form-label">Tipo Pagamento</label>
+            <div class="col-sm-3">
+                <select class="form-control col-sm-12" name="idTipoPagamento">`;
+                this._elencoPagamenti.forEach(el => {
+                    r += `<option value="` + el.id + `" ` + (self._data.idTipoPagamento == el.id ? "selected" : "") + `>` + el.descrizione + `</option>`;
+                });
+                r += `</select>
+            </div>
         </div>
 
         <div class="form-group row">
@@ -169,13 +176,20 @@ export class AddPagamentoComponent extends ZexalComponent {
             <div class="col-sm-3">
                 <input type="number" class="form-control" name="importo" required value="` + this._data.importo + `" step="0.01">
             </div>
-            <label class="col-sm-3 col-form-label">Tipo Pagamento</label>
+            <label class="col-sm-3 col-form-label">Già Pagato</label>
+            
             <div class="col-sm-3">
-                <select class="form-control col-sm-12" name="idTipoPagamento">`;
-                this._elencoPagamenti.forEach(el => {
-                    r += `<option value="` + el.id + `" ` + (self._data.idTipoPagamento == el.id ? "selected" : "") + `>` + el.descrizione + `</option>`;
-                });
-                r += `</select>
+                <div class="progress w-100">
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="` + this._elencoIscritti.find(function(e) {
+                    return self._data.idIscritto == e.id;
+                }).pagato + `" aria-valuemin="0" aria-valuemax="` + this._elencoIscritti.find(function(e) {
+                    return self._data.idIscritto == e.id;
+                }).costo + `">` + this._elencoIscritti.find(function(e) {
+                    return self._data.idIscritto == e.id;
+                }).pagato + "€/" + this._elencoIscritti.find(function(e) {
+                    return self._data.idIscritto == e.id;
+                }).costo + `€</div>
+                </div>
             </div>
         </div>
 
