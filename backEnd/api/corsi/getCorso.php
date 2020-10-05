@@ -1,8 +1,6 @@
 <?php
 class getCorso{
 
-    public static $fx = 15;
-
     public static $schema = [
         [
             "name" => "id",

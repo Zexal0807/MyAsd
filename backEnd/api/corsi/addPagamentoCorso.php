@@ -34,6 +34,8 @@ class addPagamentoCorso{
         ]
     ];
 
+    public static $fx = 9;
+
     public static function api($data){
         require_once 'backEnd/classes/Database.php';
 

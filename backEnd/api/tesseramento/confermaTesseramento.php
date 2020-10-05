@@ -6,6 +6,14 @@ class confermaTesseramento{
             'name' => "code",
             "type" => "string",
             "required" => true
+        ],
+        [
+            'name' => "costo",
+            "type" => "float"
+        ],
+        [
+            'name' => "idTipoPagamento",
+            "type" => "int"
         ]
     ];
 
@@ -23,8 +31,12 @@ class confermaTesseramento{
         
         if(sizeof($ret) == 1){
             $ret = $ret[0];
-
-            $sql = 'INSERT INTO tesseramenti(idIscritto, data, idTipoTesseramento, idFile) VALUES('.$ret['idIscritto'].', "'.date("Y-m-d H:i:s").'", '.(intval($ret['idTipoTesseramento']) - 10000).', '.($ret['idFile'] == null ? "null": $ret['idFile'] ).')';
+            //21 => Entrate da tesseramento
+            $id = $DB->insert("entrate")
+                ->value(null, date("Y-m-d H:i:s"), 1, $data['costo'], 21, "Tesseramento ".intval($ret['idTipoTesseramento'])%10000 , null, $data['idTipoPagamento'], null)
+                ->execute();
+            
+            $sql = 'INSERT INTO tesseramenti(idIscritto, data, idTipoTesseramento, idEntrata, idFile) VALUES('.$ret['idIscritto'].', "'.date("Y-m-d H:i:s").'", '.(intval($ret['idTipoTesseramento']) - 10000).', '.$id.','.($ret['idFile'] == null ? "null": $ret['idFile'] ).')';
             $r = $DB->executeSql($sql);
 
             if($r){

@@ -7,24 +7,22 @@ class Api {
         "userFunction" => "userFunction.php",
         "datiAsd" => "config/datiAsd.php",                          //2
 
-        "getTipoEntrate" => "contabilita/getTipoEntrate.php",
-        "addTipoEntrate" => "contabilita/addTipoEntrate.php",       //3
-        "getTipoUscite" => "contabilita/getTipoUscite.php",
-        "addTipoUscite" => "contabilita/addTipoUscite.php",         //4
-
         //--------------Corsi
         "getCorsi" => "corsi/getCorsi.php",                         //6
-        "getCorso" => "corsi/getCorso.php",                         //15
-        "deleteCorso" => "corsi/deleteCorso.php",                   //14
         "addCorso" => "corsi/addCorso.php",                         //12
         "editCorso" => "corsi/editCorso.php",                       //13
-
+        "deleteCorso" => "corsi/deleteCorso.php",                   //14
+        "getCorso" => "corsi/getCorso.php",
+        "addPagamentoCorso" => "corsi/addPagamentoCorso.php",       //9
         "getIscrivibiliCorso" => "corsi/getIscrivibiliCorso.php",   //15
         "addIscrizione" => "corsi/addIscrizione.php",               //15
 
         //-------------Contabilità
-        "addPagamentoCorso" => "contabilita/addPagamentoCorso.php", //15
         "getTipoPagamento" => "contabilita/getTipoPagamento.php",
+        "getTipoEntrate" => "contabilita/getTipoEntrate.php",
+        "addTipoEntrate" => "contabilita/addTipoEntrate.php",       //3
+        "getTipoUscite" => "contabilita/getTipoUscite.php",
+        "addTipoUscite" => "contabilita/addTipoUscite.php",         //4
 
         //-------------Iscritti
         "getIscritti" => "iscritti/getIscritti.php",
