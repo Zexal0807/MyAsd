@@ -304,7 +304,7 @@ export class CorsoDetailComponent extends ZexalComponent {
                 <div class="col-sm-10"></div>
             </div>`;
             this._data.iscritti.forEach((o) => {
-                html += o.nome + " " + o.cognome;
+                html += o.nome + " " + o.cognome + "<br>";
             })
         };
         html += `

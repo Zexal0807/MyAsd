@@ -32,11 +32,37 @@ class getCorso{
 
             $ret['modificabile'] = canEditCorso::api(['id' => $ret['id']]);
 
-            $ret['iscritti'] = $DB->select("*")
-                ->from("iscritticorso")
-                ->where("idCorso", "=", $data['id'])
-                ->execute();
-        
+            $ret['iscritti'] = $DB->executeSql('SELECT
+                sub.pagato AS pagato,
+                sub.idCorso AS idCorso,
+                sub.idIscritto AS id,
+                sub.costo AS costo,
+                anagrafiche.cognome AS cognome,
+                anagrafiche.nome AS nome,
+                DATE_FORMAT(
+                    anagrafiche.data_nascita,
+                    "%d/%m/%Y"
+                ) AS data_nascita,
+                anagrafiche.codice_fiscale AS codice_fiscale,
+                anagrafiche.foto AS foto,
+                IFNULL(sub.costo / sub.pagato, 0) AS perc
+            FROM (
+                SELECT
+                    IFNULL(SUM(entrate.importo), 0) AS pagato,
+                    iscrizioni.idCorso AS idCorso,
+                    iscrizioni.idIscritto AS idIscritto,
+                    iscrizioni.costo AS costo
+                FROM
+                    iscrizioni
+                LEFT JOIN pagamenti ON pagamenti.idIscrizione = iscrizioni.id
+                LEFT JOIN entrate ON pagamenti.idEntrata = entrate.id
+                GROUP BY
+                    pagamenti.idIscrizione,
+                    iscrizioni.idIscritto
+            ) AS sub
+            INNER JOIN anagrafiche ON anagrafiche.idIscritto = sub.idIscritto
+            WHERE sub.idCorso = '.$data['id']);
+            
             return $ret;
         }
     }
