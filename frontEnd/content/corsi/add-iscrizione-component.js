@@ -98,10 +98,12 @@ export class AddIscrizioneComponent extends ZexalComponent {
             data: this._data,
             dataType: "json",
             success: function(s) {
+                document.querySelector("app-alert").add("success", "Iscrizione confermata");
                 document.querySelector("app-content").connectedCallback();
             },
             error: function(e) {
                 console.log(e);
+                document.querySelector("app-alert").add("danger", e.responseText);
                 document.querySelector("app-content").connectedCallback();
             }
         });

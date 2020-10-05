@@ -23,7 +23,7 @@ export class AddPagamentoComponent extends ZexalComponent {
         $.ajax({
             type: "POST",
             url: "/userFunction",
-            data: { id: 15 },
+            data: { id: 9 },
             dataType: "json",
             success: function() {
                 $.ajax({
@@ -171,9 +171,9 @@ export class AddPagamentoComponent extends ZexalComponent {
             </div>
             <label class="col-sm-3 col-form-label">Tipo Pagamento</label>
             <div class="col-sm-3">
-                <select class="form-control col-sm-12" name="idTipoTesseramento">`;
+                <select class="form-control col-sm-12" name="idTipoPagamento">`;
                 this._elencoPagamenti.forEach(el => {
-                    r += `<option value="` + el.id + `" ` + (self._data.idTipoTesseramento == el.id ? "selected" : "") + `>` + el.descrizione + `</option>`;
+                    r += `<option value="` + el.id + `" ` + (self._data.idTipoPagamento == el.id ? "selected" : "") + `>` + el.descrizione + `</option>`;
                 });
                 r += `</select>
             </div>

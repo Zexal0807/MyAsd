@@ -111,10 +111,12 @@ export class CorsoDetailComponent extends ZexalComponent {
                             },
                             dataType: "json",
                             success: function(s) {
+                                document.querySelector("app-alert").add("success", "Corso modificato correttamente");
                                 document.querySelector("app-content").connectedCallback();
                             },
                             error: function(e) {
                                 document.querySelector("app-content").connectedCallback();
+                                document.querySelector("app-alert").add("danger", e.responseText);
                             }
                         });
                     }
@@ -141,10 +143,12 @@ export class CorsoDetailComponent extends ZexalComponent {
                     data: this._data,
                     dataType: "json",
                     success: function(s) {
+                        document.querySelector("app-alert").add("success", "Corso aggiunto correttamente");
                         document.querySelector("app-content").connectedCallback();
                     },
                     error: function(e) {
                         console.log(e);
+                        document.querySelector("app-alert").add("danger", e.responseText);
                         document.querySelector("app-content").connectedCallback();
                     }
                 });
@@ -155,10 +159,12 @@ export class CorsoDetailComponent extends ZexalComponent {
                     data: this._data,
                     dataType: "json",
                     success: function(s) {
+                        document.querySelector("app-alert").add("success", "Corso modificato correttamente");
                         document.querySelector("app-content").connectedCallback();
                     },
                     error: function(e) {
                         console.log(e);
+                        document.querySelector("app-alert").add("danger", e.responseText);
                         document.querySelector("app-content").connectedCallback();
                     }
                 });

@@ -2,10 +2,14 @@ export class ConfermaTesseramentoComponent extends ZexalComponent {
 
     _style = "frontEnd/content/corsi/add-iscrizione-component.css";
 
+    _elencoPagamenti = [];
+
     _elencoIscritti = [];
 
     _data = {
-        code: null
+        code: null,
+        importo: 0,
+        idTipoPagamento: null
     };
 
     connectedCallback() {
@@ -19,15 +23,28 @@ export class ConfermaTesseramentoComponent extends ZexalComponent {
             success: function() {
                 $.ajax({
                     type: "POST",
-                    url: "/getTesseramentoComfermabile",
+                    url: "/getTipoPagamento",
                     data: {},
                     dataType: "json",
                     success: function(s) {
-                        self._elencoIscritti = s;
-                        if (s.length > 0) {
-                            self._data.code = s[0].code;
-                        }
-                        self.render();
+                        self._elencoPagamenti = s;
+                        self._data.idTipoPagamento = self._elencoPagamenti[0].id;
+                        $.ajax({
+                            type: "POST",
+                            url: "/getTesseramentoComfermabile",
+                            data: {},
+                            dataType: "json",
+                            success: function(s) {
+                                self._elencoIscritti = s;
+                                if (s.length > 0) {
+                                    self._data.code = s[0].code;
+                                }
+                                self.render();
+                            },
+                            error: function(e) {
+                                console.log(e);
+                            }
+                        });
                     },
                     error: function(e) {
                         console.log(e);
@@ -58,10 +75,12 @@ export class ConfermaTesseramentoComponent extends ZexalComponent {
             data: this._data,
             dataType: "json",
             success: function(s) {
+                document.querySelector("app-alert").add("success", "Tesseramento confermato");
                 document.querySelector("app-content").connectedCallback();
             },
             error: function(e) {
                 console.log(e);
+                document.querySelector("app-alert").add("danger", e.responseText);
                 document.querySelector("app-content").connectedCallback();
             }
         });
@@ -86,6 +105,24 @@ export class ConfermaTesseramentoComponent extends ZexalComponent {
                         </div>
                     </div>
                 </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">
+                        Importo pagato
+                    </label>
+                    <div class="col-sm-3">
+                        <input type="number" class="form-control" name="importo" required value="` + this._data.importo + `" step="0.01">
+                    </div>
+                    <label class="col-sm-3 col-form-label">Tipo Pagamento</label>
+                    <div class="col-sm-3">
+                        <select class="form-control col-sm-12" name="idTipoPagamento">`;
+            this._elencoPagamenti.forEach(el => {
+                r += `<option value="` + el.id + `" ` + (self._data.idTipoPagamento == el.id ? "selected" : "") + `>` + el.descrizione + `</option>`;
+            });
+            r += `</select>
+                    </div>
+                </div>
+
                 <button type="submit" class="btn btn-primary mb-2">Conferma Tesseramento</button>`;
         }
         r += `</form>
