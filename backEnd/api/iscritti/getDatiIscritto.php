@@ -11,6 +11,8 @@ class getDatiIscritto{
 
     public static function api($data){
         require_once 'backEnd/classes/Database.php';
+        require_once 'backEnd/classes/VLKDatabase.php';
+
         $DB = new Database($_SESSION['db_host'], $_SESSION['db_user'], $_SESSION['db_pasw'], $_SESSION['db_db']);
 
         $ret = $DB->select("*")
@@ -89,8 +91,21 @@ class getDatiIscritto{
                 WHERE idIscritto = '.$data['id'].'
             )';
         $retu["doc"] = $DB->executeSql($sql);
-
         usort($retu['doc'], "cmp");
+
+        $DB = new VLKDatabase();
+        $retu['esami'] = $DB->executeSql('SELECT vlk_esami.*, 
+            pr.descrizione AS pr, 
+            po.descrizione AS po
+        FROM vlk_esami 
+        INNER JOIN vlk_gradi AS pr ON pr.id = vlk_esami.preTecnico
+        INNER JOIN vlk_gradi AS po ON po.id = vlk_esami.postTecnico
+        WHERE idIscritto IN (
+            SELECT id 
+            FROM vlk_iscritti 
+            WHERE idIscritto ='.$data['id'].' AND idAsd = '.$_SESSION['idAsd'].'
+        )
+        ORDER BY data DESC');
         
         return $retu;
     }
