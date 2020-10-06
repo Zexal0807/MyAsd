@@ -2,3 +2,7 @@ add-pagamento form {
     width: 80%;
     margin-top: 1%;
 }
+
+add-pagamento .progress>.progress-bar {
+    color: black;
+}

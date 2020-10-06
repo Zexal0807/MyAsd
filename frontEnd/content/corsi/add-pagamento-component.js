@@ -95,6 +95,8 @@ export class AddPagamentoComponent extends ZexalComponent {
             self._data[$(this).attr("name")] = this.value;
             if ($(this).attr("name") == "idCorso") {
                 self.loadCorso(this.value);
+            } else {
+                self.render();
             }
         });
         this.querySelector('form').addEventListener('submit', function(e) {
@@ -180,11 +182,10 @@ export class AddPagamentoComponent extends ZexalComponent {
             
             <div class="col-sm-3">
                 <div class="progress w-100">
-                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="` + this._elencoIscritti.find(function(e) {
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" 
+                    style="width:` + this._elencoIscritti.find(function(e) {
                     return self._data.idIscritto == e.id;
-                }).pagato + `" aria-valuemin="0" aria-valuemax="` + this._elencoIscritti.find(function(e) {
-                    return self._data.idIscritto == e.id;
-                }).costo + `">` + this._elencoIscritti.find(function(e) {
+                }).perc + `%">` + this._elencoIscritti.find(function(e) {
                     return self._data.idIscritto == e.id;
                 }).pagato + "€/" + this._elencoIscritti.find(function(e) {
                     return self._data.idIscritto == e.id;
