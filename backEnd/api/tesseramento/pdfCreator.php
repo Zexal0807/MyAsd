@@ -298,7 +298,7 @@ class pdfCreator{
 	
 		  $mail->addAddress($to);                   // Add a recipient
 		  $mail->addBCC('tesserevlk@roujutsu.it'); // Attachments
-		  $mail->addAttachment($file, "Moduli di ".$extra['nome']);              // Add attachments
+		  $mail->addAttachment($file, "Moduli di ".$extra['nome'].".pdf");              // Add attachments
 		  $mail->isHTML(true);                      // Set email format to HTML
 		  $mail->Subject = $extra['tit'];
 	
