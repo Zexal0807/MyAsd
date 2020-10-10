@@ -48,7 +48,7 @@ class pdfCreator{
 			}
 			if($page){
 				$pdf->setFontSize(12);
-				$pdf->addText(145, 10, $code);
+				$pdf->addText(70, 10, $code);
 				for($i = 0; $i < sizeof($saveOn["pag".($k+1)]); $i++){
 					$req = $saveOn["pag".($k+1)][$i];
 					if(isset($req['text']) && !isset($req['rich'])){
