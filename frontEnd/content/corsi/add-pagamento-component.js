@@ -1,6 +1,6 @@
 export class AddPagamentoComponent extends ZexalComponent {
 
-    _style = "frontEnd/content/contabilita/add-pagamento-component.css";
+    _style = "frontEnd/content/corsi/add-pagamento-component.css";
 
     _elencoPagamenti = [];
 
