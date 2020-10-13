@@ -95,7 +95,7 @@ export class AddPagamentoComponent extends ZexalComponent {
             self._data[$(this).attr("name")] = this.value;
             if ($(this).attr("name") == "idCorso") {
                 self.loadCorso(this.value);
-            } else {
+            } else if ($(this).attr("name") == "idIscritto") {
                 self.render();
             }
         });
