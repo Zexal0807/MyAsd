@@ -1,75 +1,75 @@
 dati-iscritto .back {
-    cursor: pointer;
-    font-size: 2rem;
-    margin-top: 1%;
-    margin-left: 1%;
+	cursor: pointer;
+	font-size: 2rem;
+	margin-top: 1%;
+	margin-left: 1%;
 }
 
 dati-iscritto .anagrafica span {
-    font-size: 2rem;
-    color: black;
+	font-size: 2rem;
+	color: black;
 }
 
 dati-iscritto .he {
-    background-color: #ff2626;
-    height: 10vh;
-    box-shadow: 0px 4px 15px 0px black;
-    margin-top: 2%;
-    z-index: 2;
-    position: relative;
-    display: flex;
+	background-color: #ff2626;
+	height: 10vh;
+	box-shadow: 0px 4px 15px 0px black;
+	margin-top: 2%;
+	z-index: 2;
+	position: relative;
+	display: flex;
 }
 
 dati-iscritto .he span {
-    margin: auto;
-    color: white;
-    font-size: 3vh;
-    font-variant: small-caps;
-    float: left;
+	margin: auto;
+	color: white;
+	font-size: 3vh;
+	font-variant: small-caps;
+	float: left;
 }
 
 dati-iscritto .table {
-    border: 1px solid #ccc;
-    width: 95%;
-    margin: auto;
+	border: 1px solid #ccc;
+	width: 95%;
+	margin: auto;
 }
 
 dati-iscritto .table>.row {
-    margin: 0;
-    padding: 1% 0;
+	margin: 0;
+	padding: 1% 0;
 }
 
 dati-iscritto .table>.row:nth-of-type(2n) {
-    background-color: rgba(0, 0, 0, .05);
+	background-color: rgba(0, 0, 0, .05);
 }
 
 dati-iscritto .table>.row.hiddable {
-    display: none;
+	display: none;
 }
 
 dati-iscritto .table .open {
-    text-align: center;
-    color: black;
-    font-size: 1rem;
-    padding: 1rem;
+	text-align: center;
+	color: black;
+	font-size: 1rem;
+	padding: 1rem;
 }
 
 doc-table .row>div:nth-child(2) i {
-    cursor: pointer;
-    float: right;
+	cursor: pointer;
+	float: right;
 }
 
 @media screen and (max-width: 760px) {
-    dati-iscritto .anagrafica span {
-        font-size: 1.2rem;
-    }
-    dati-iscritto .he {
-        height: 8vh;
-    }
-    dati-iscritto .table .open {
-        padding: 0.5rem;
-    }
-    dati-iscritto .table>.row {
-        padding: 3% 0;
-    }
+	dati-iscritto .anagrafica span {
+		font-size: 1.2rem;
+	}
+	dati-iscritto .he {
+		height: 8vh;
+	}
+	dati-iscritto .table .open {
+		padding: 0.5rem;
+	}
+	dati-iscritto .table>.row {
+		padding: 3% 0;
+	}
 }

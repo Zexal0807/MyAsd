@@ -27,7 +27,8 @@ class getDatiIscritto{
 
         $retu = [
             "data" => [],
-            "doc" => []
+            "doc" => [],
+            "esami"=>[]
         ];
 
         $ret = $DB->select(
@@ -95,6 +96,7 @@ class getDatiIscritto{
 
         $DB = new VLKDatabase();
         $retu['esami'] = $DB->executeSql('SELECT vlk_esami.*, 
+            DATE_FORMAT(data, "%d/%m/%Y") AS data_creazione,
             pr.descrizione AS pr, 
             po.descrizione AS po
         FROM vlk_esami 
